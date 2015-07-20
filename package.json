@@ -1,0 +1,23 @@
+{
+  "name": "dhimate.github.io",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhimate/dhimate.github.io"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/dhimate/dhimate.github.io/issues"
+  },
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "bootswatch": "~3.3.5"
+  }
+}
