@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Yogesh Dhimate</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="css/freelancer.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">Yogesh Dhimate</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,13 +51,17 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="page-scroll">
                         <a href="#about">About</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="#portfolio">Experience</a>
+                    </li>
+
+                    <li class="page-scroll">
                         <a href="#contact">Contact</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="http://blog.dhimate.com">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -73,17 +77,20 @@
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/profile.png" alt="">
                     <div class="intro-text">
-                        <span class="name">Start Bootstrap</span>
+                        <span class="name">Yogesh Dhimate</span>
                         <hr class="star-light">
-                        <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                        <span class="skills">Software Consultant - Integration Architect - Web Developer</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
+
+
+
     <!-- Portfolio Grid Section -->
-    <section id="portfolio">
+<!--    <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -155,31 +162,94 @@
             </div>
         </div>
     </section>
+-->
 
-    <!-- About Section -->
-    <section class="success" id="about">
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>About</h2>
+                <!--<hr class="star-light">-->
+                <hr class="star-primary">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-2">
+                <p>I am a passionate software engineer specializing in integration services. But I do more than just connect systems at enterprise level, I'll work with you to make sure that the project we are working is going to meet your goals.</p>
+            </div>
+            <div class="col-lg-4">
+                <p>I have more than 15 years of experience in the software industry. I am confident that my education, skills and experience has prepared me to make significant contribution to your project.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <section  class="experience" id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
-                    <hr class="star-light">
+                    <h2>Experience</h2>
+                    <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <!--<img src="img/portfolio/cabin.png" class="img-responsive" alt="">-->
+                      <div class="col-lg-12 text-center">
+                        <h3>ProSoft Technology Group, Inc</h2>
+                        <hr class="primary">
+                        <h4>Integration Architect</h4>
+                        <h4>Since 2012</h4>
+                      </div>
+                    </a>
                 </div>
-                <div class="col-lg-4">
-                    <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                          <h3>Wipro Technologies</h2>
+                          <br/>
+                          <hr class="primary">
+                          <h4>Technical Lead</h4>
+                          <h4>2005 - 2012</h4>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Theme
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                          <h3>Patni Computer Systems, Inc</h2>
+                          <hr class="primary">
+                          <h4>Software Engineer</h4>
+                          <h4>2003 - 2005</h4>
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
     <!-- Contact Section -->
     <section id="contact">
