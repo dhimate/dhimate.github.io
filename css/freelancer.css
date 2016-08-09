@@ -69,7 +69,7 @@ hr.star-primary:after {
 }
 header {
   text-align: center;
-  background: #18BC9C;
+  background: #516637;
   color: white;
 }
 header .container {
@@ -191,13 +191,29 @@ section.success {
 }
 
 section.about {
-  background: #18BDDC;
+  background: #3a374e;
   color: white;
 }
 
 section.experience {
-  background: black;
+  background: #396f3c;
   color: white;
+}
+
+section.skillset {
+  background: #2e8478;
+  color: white;
+}
+
+section.education {
+  background: #457989;
+  color: white;
+}
+
+section.contact{
+  background: #d8e4f3;
+  color: black;
+
 }
 
 @media (max-width: 767px) {
