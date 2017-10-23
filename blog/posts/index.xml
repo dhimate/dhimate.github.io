@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Yogesh Dhimate</title>
+    <link>http://localhost:8000/posts/</link>
+    <description>Recent content in Posts on Yogesh Dhimate</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Oct 2017 16:57:12 -0400</lastBuildDate>
+    
+	<atom:link href="http://localhost:8000/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>my first post</title>
+      <link>http://localhost:8000/posts/my-first-post/</link>
+      <pubDate>Sat, 21 Oct 2017 16:57:12 -0400</pubDate>
+      
+      <guid>http://localhost:8000/posts/my-first-post/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
