@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Google Spreadsheets and ArrayFormula for XIRR Calculation &ndash; Yogesh Dhimate
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets. Nice thing with Google Spreadsheets is its support for import and queries. e.g. AMFI India publishes daily NAV’s on their website http://portal.amfiindia.com/spages/NAV1.txt You can import the data programmatically and run a query on it to find desired NAV.|">
+    
+
+    <meta name="apple-mobile-web-app-title" content="Yogesh Dhimate">
+    
+    
+    
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://www.dhimate.com/">
+    Yogesh Dhimate
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    <a class="UnderlineNav-item " href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+    
+    <a class="UnderlineNav-item " href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    <a class="UnderlineNav-item " href="/resume/">
+      
+      <span>Resume</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Google Spreadsheets and ArrayFormula for XIRR Calculation</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2017-10-24. Published at: 2017-10-24.">
+        
+          Published: 2017-10-24
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets.
+Nice thing with Google Spreadsheets is its support for import and queries.
+e.g. AMFI India publishes daily NAV’s on their website <a href="http://portal.amfiindia.com/spages/NAV1.txt">http://portal.amfiindia.com/spages/NAV1.txt</a>
+You can import the data programmatically and run a query on it to find desired NAV.
+I can use following simple query to check the latest NAV of Birla Sunlife Frontline Equity fund, whose symbol is INF209K01YY7</p>
+
+<pre><code>=QUERY(SPLIT(QUERY(importDATA(&quot;http://portal.amfiindia.com/spages/NAV1.txt&quot;),
+&quot;SELECT * Where Col1 like '%INF209K01YY7%'&quot;),&quot;;&quot;), &quot;Select Col5&quot;)
+</code></pre>
+
+<p>Google Spreadsheets obviously supports data from Google Finance with its built in function GOOGLEFINANCE</p>
+
+<pre><code>=GOOGLEFINANCE(&quot;SBIN&quot;,&quot;price&quot;)
+</code></pre>
+
+<p>This will return latest price for State Bank of India.
+You can also use Stock Exchange assigned ID’s to query the data from Google Finance</p>
+
+<pre><code>=GOOGLEFINANCE(&quot;500510&quot;,&quot;price&quot;)
+</code></pre>
+
+<p>This will return latest price for Larsen and Tubro.
+However the most killer feature of Google Spreadsheets is its support for ArrayFormula in conjunction with XIRR.
+Let me explain.
+Consider following cash flow.</p>
+
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Transaction</td>
+<td>Symbol</td>
+<td>Date</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>Havells</td>
+<td>31/12/2017</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>01/01/2017</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>06/01/2017</td>
+</tr>
+</tbody>
+</table>
+
+<p>We have to update the XIRR formula to include the new transaction we just added in our cash flow</p>
+
+<pre><code>=XIRR(D2:D4,C2:C4)*100
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>XIRR</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Havells</td>
+<td>4.493</td>
+</tr>
+</tbody>
+</table>
+
+<p>This is very cumbersome to update XIRR formula, if you have a diversified portfolio with 10+ symbols and investing on a regular basis.</p>
+
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Transaction</td>
+<td>Symbol</td>
+<td>Date</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>Havells</td>
+<td>31/12/2017</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>01/01/2017</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>06/01/2017</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>SBI</td>
+<td>31/12/2017</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>SBI</td>
+<td>01/01/2017</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>SBI</td>
+<td>06/01/2017</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>Havells =XIRR(D2:D4,C2:C4)*100
+SBI =XIRR(D5:D7,C5:C7)*100
+</code></pre>
+
+<p>You can see for two symbols we have to keep close track of cell numbers etc to accurately calculate XIRR.
+ArrayFormula provides nice workaround to simplify and automate this process of using XIRR formulas for a growing number of transactions</p>
+
+<blockquote>
+<p><a href="https://support.google.com/docs/answer/3093275?hl=en">https://support.google.com/docs/answer/3093275?hl=en</a></p>
+
+<p>Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.</p>
+</blockquote>
+
+<p>XIRR can be easily combined with ArrayFormula like below</p>
+
+<pre><code>=ArrayFormula(XIRR((B2:B7=&quot;HAVELLS&quot;)*D2:D7,C2:C7))*100
+=ArrayFormula(XIRR((B2:B7=&quot;SBI&quot;)*D2:D7,C2:C7))*100
+</code></pre>
+
+<p>As you can see that except the symbol name both the formulas are identical. We can remove the hard coded symbol name and refer to the cell which has symbol name.
+Using ArrayFormula in the portfolio tracker has simplified maintenance of the spreadsheet and saved quite a few hours for me.</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Google Spreadsheets and ArrayFormula for XIRR Calculation</b>
+      
+    </div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+  </body>
+</html>

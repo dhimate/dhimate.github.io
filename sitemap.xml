@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.dhimate.com/</loc>
+    <lastmod>2018-07-04T19:36:24+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/resume/</loc>
+    <lastmod>2018-07-04T19:36:24+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/blog/</loc>
+    <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/</loc>
+    <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
