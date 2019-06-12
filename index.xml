@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Info on Yogesh Dhimate</title>
+    <title>About on Yogesh Dhimate</title>
     <link>https://www.dhimate.com/</link>
-    <description>Recent content in Info on Yogesh Dhimate</description>
+    <description>Recent content in About on Yogesh Dhimate</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 04 Jul 2018 19:36:24 +0900</lastBuildDate>
     
@@ -29,6 +29,16 @@
       
       <guid>https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/</guid>
       <description>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets. Nice thing with Google Spreadsheets is its support for import and queries. e.g. AMFI India publishes daily NAV’s on their website http://portal.amfiindia.com/spages/NAV1.txt You can import the data programmatically and run a query on it to find desired NAV.</description>
+    </item>
+    
+    <item>
+      <title>Automated Testing of Webmethods Services with REST Assured</title>
+      <link>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</link>
+      <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</guid>
+      <description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
+You will need following things on your machine.</description>
     </item>
     
   </channel>
