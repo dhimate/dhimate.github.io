@@ -5,10 +5,20 @@
     <link>https://www.dhimate.com/tags/webmethods/</link>
     <description>Recent content in webMethods on Yogesh Dhimate</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 16 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 Sep 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.dhimate.com/tags/webmethods/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automated Testing of Webmethods Services with REST Assured</title>
+      <link>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</link>
+      <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</guid>
+      <description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
+You will need following things on your machine.</description>
+    </item>
     
     <item>
       <title>Integration Server Class Loading for Custom Jars</title>

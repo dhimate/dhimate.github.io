@@ -18,8 +18,20 @@
   </url>
   
   <url>
+    <loc>https://www.dhimate.com/tags/google/</loc>
+    <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/</loc>
     <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/tags/</loc>
+    <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -28,20 +40,14 @@
   </url>
   
   <url>
+    <loc>https://www.dhimate.com/tags/webmethods/</loc>
+    <lastmod>2017-09-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.dhimate.com/blog/2016/integration-server-class-loading/</loc>
     <lastmod>2016-08-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dhimate.com/tags/</loc>
-    <lastmod>2016-08-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.dhimate.com/tags/webmethods/</loc>
-    <lastmod>2016-08-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
