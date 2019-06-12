@@ -29,5 +29,15 @@
 You will need following things on your machine.</description>
     </item>
     
+    <item>
+      <title>Integration Server Class Loading for Custom Jars</title>
+      <link>https://www.dhimate.com/blog/2016/integration-server-class-loading/</link>
+      <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2016/integration-server-class-loading/</guid>
+      <description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
+It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description>
+    </item>
+    
   </channel>
 </rss>
