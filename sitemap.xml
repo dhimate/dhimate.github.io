@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.dhimate.com/</loc>
+    <loc>https://www.dhimate.com/about/</loc>
     <lastmod>2019-06-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -14,24 +14,42 @@
   
   <url>
     <loc>https://www.dhimate.com/blog/</loc>
-    <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/license/</loc>
+    <lastmod>2020-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/tags/mulesoft/</loc>
+    <lastmod>2020-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</loc>
+    <lastmod>2020-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/tags/</loc>
+    <lastmod>2020-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/</loc>
+    <lastmod>2020-12-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dhimate.com/tags/google/</loc>
     <lastmod>2017-10-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/</loc>
     <lastmod>2017-10-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dhimate.com/tags/</loc>
-    <lastmod>2017-10-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -42,7 +60,6 @@
   <url>
     <loc>https://www.dhimate.com/tags/webmethods/</loc>
     <lastmod>2017-09-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -52,7 +69,6 @@
   
   <url>
     <loc>https://www.dhimate.com/categories/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

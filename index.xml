@@ -1,14 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>About on Yogesh Dhimate</title>
+    <title>Yogesh Dhimate</title>
     <link>https://www.dhimate.com/</link>
-    <description>Recent content in About on Yogesh Dhimate</description>
+    <description>Recent content on Yogesh Dhimate</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 11 Jun 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 21 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://www.dhimate.com/about/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/about/</guid>
+      <description> I’m Yogesh Dhimate. I’m a Software Architect. This is my personal website. All opinions expressed here are my own.
+Find me here  LinkedIn : https://www.linkedin.com/in/dhimate/ GitHub : https://www.github.com/dhimate  </description>
+    </item>
     
     <item>
       <title>Resume</title>
@@ -16,10 +22,25 @@
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.dhimate.com/resume/</guid>
-      <description>Career Profile  Software professional with 15+ years of global consulting experience in various roles as technical lead, integration architect and pre-sales engineer in the industry.
- Extensive experience in B2B and enterprise integration architecture using message oriented middleware, enterprise service bus, on premise/cloud implementation and API based solutions.
- Adept in analyzing information system needs, evaluating end-user requirements, and custom designing solutions for complex information systems architecture.
- Effective in work situations requiring an ability to manage concurrent projects and responsibilities.</description>
+      <description>Career Profile  Extensive global consulting, management and leadership experience in various roles as technical lead, solutions architect and people leader in the software industry. Deep experience in enterprise solutions using message-oriented middleware, enterprise service bus, on premise/cloud/hybrid implementation and API based architecture. Adept in analyzing information system needs, evaluating end-user requirements, custom designing solutions for complex information systems. Effective in work situations requiring an ability to manage concurrent projects and responsibilities.</description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://www.dhimate.com/license/</link>
+      <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/license/</guid>
+      <description>This is a license file.</description>
+    </item>
+    
+    <item>
+      <title>MuleSoft Capacity Explanation for Noobs and CXOs </title>
+      <link>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</link>
+      <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</guid>
+      <description>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&amp;rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was very accomodating and somewhat understood what I was talking about. Nevertheless, I should&amp;rsquo;ve done better.</description>
     </item>
     
     <item>
