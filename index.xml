@@ -35,6 +35,15 @@ Find me here  LinkedIn : https://www.linkedin.com/in/dhimate/ GitHub : https://w
     </item>
     
     <item>
+      <title>Test2 CI</title>
+      <link>https://www.dhimate.com/blog/2020/test2/</link>
+      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2020/test2/</guid>
+      <description>Test the CI pipeline</description>
+    </item>
+    
+    <item>
       <title>License</title>
       <link>https://www.dhimate.com/license/</link>
       <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
