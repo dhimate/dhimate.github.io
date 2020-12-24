@@ -5,7 +5,7 @@
     <link>https://www.dhimate.com/</link>
     <description>Recent content on Yogesh Dhimate</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 23 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://www.dhimate.com/about/</link>
@@ -23,24 +23,6 @@ Find me here  LinkedIn : https://www.linkedin.com/in/dhimate/ GitHub : https://w
       
       <guid>https://www.dhimate.com/resume/</guid>
       <description>Summary  Extensive global consulting, management and leadership experience in various roles as product manager, solutions architect and people leader in the software industry. Deep experience in enterprise solutions using message-oriented middleware, enterprise service bus, on premise/cloud/hybrid implementation and API based architecture. Adept in analyzing information system needs, evaluating end-user requirements, custom designing solutions for complex information systems. Effective in work situations requiring an ability to manage concurrent projects and responsibilities.</description>
-    </item>
-    
-    <item>
-      <title>Test CI</title>
-      <link>https://www.dhimate.com/blog/2020/test/</link>
-      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dhimate.com/blog/2020/test/</guid>
-      <description>Test the CI pipeline</description>
-    </item>
-    
-    <item>
-      <title>Test2 CI</title>
-      <link>https://www.dhimate.com/blog/2020/test2/</link>
-      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dhimate.com/blog/2020/test2/</guid>
-      <description>Test the CI pipeline</description>
     </item>
     
     <item>
