@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Books on Yogesh Dhimate</title>
+    <link>https://www.dhimate.com/tags/books/</link>
+    <description>Recent content in Books on Yogesh Dhimate</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/tags/books/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Made to Stick and the Curse of Knowledge</title>
+      <link>https://www.dhimate.com/blog/2020/curse-of-knowledge/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2020/curse-of-knowledge/</guid>
+      <description>I recently read &amp;ldquo;Made to Stick&amp;rdquo; by Chip Heath and Dan Heath. It was a fun and quick read. While I liked their framework of SUCCESs (Simple, Unexpected, Concrete, Credible, Emotional, Stories) to get the idea to stick, I thoroughly enjoyed the explanation of the Curse of Knowledge. The curse of knowledge occurs when a knowledgeable individual/expert assumes that the others have the background to understand a specific concept.
+According to Chip and Dan, In general, getting your message across has two stages - the Answer Stage, and the Telling Others Stage.</description>
+    </item>
+    
+  </channel>
+</rss>

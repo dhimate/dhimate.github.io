@@ -5,7 +5,7 @@
     <link>https://www.dhimate.com/</link>
     <description>Recent content on Yogesh Dhimate</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 21 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://www.dhimate.com/about/</link>
@@ -23,6 +23,16 @@ Find me here  LinkedIn : https://www.linkedin.com/in/dhimate/ GitHub : https://w
       
       <guid>https://www.dhimate.com/resume/</guid>
       <description>Summary  Extensive global consulting, management and leadership experience in various roles as product manager, solutions architect and people leader in the software industry. Deep experience in enterprise solutions using message-oriented middleware, enterprise service bus, on premise/cloud/hybrid implementation and API based architecture. Adept in analyzing information system needs, evaluating end-user requirements, custom designing solutions for complex information systems. Effective in work situations requiring an ability to manage concurrent projects and responsibilities.</description>
+    </item>
+    
+    <item>
+      <title>Made to Stick and the Curse of Knowledge</title>
+      <link>https://www.dhimate.com/blog/2020/curse-of-knowledge/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2020/curse-of-knowledge/</guid>
+      <description>I recently read &amp;ldquo;Made to Stick&amp;rdquo; by Chip Heath and Dan Heath. It was a fun and quick read. While I liked their framework of SUCCESs (Simple, Unexpected, Concrete, Credible, Emotional, Stories) to get the idea to stick, I thoroughly enjoyed the explanation of the Curse of Knowledge. The curse of knowledge occurs when a knowledgeable individual/expert assumes that the others have the background to understand a specific concept.
+According to Chip and Dan, In general, getting your message across has two stages - the Answer Stage, and the Telling Others Stage.</description>
     </item>
     
     <item>

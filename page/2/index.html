@@ -119,6 +119,117 @@
         
 
 <header>
+  <p class="meta">Sep 24, 2017
+     - 2 minute read 
+     - <a href="https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/#disqus_thread">Comments</a>
+
+    
+  </p>
+  <h1 class="entry-title">
+    <a href="https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/">Automated Testing of Webmethods Services with REST Assured</a>
+  </h1>
+</header>
+
+        
+          <p>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.</p>
+<p>You will need following things on your machine. Make sure these are working without any issues.</p>
+<ul>
+<li>Java JDK 1.8 (<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">link</a>).  Set JAVA_HOME. And add JAVA_HOME to your PATH</li>
+<li>IntelliJ IDEA (<a href="http://www.jetbrains.com/idea/download/">link</a>)</li>
+</ul>
+<p>We will write automated tests for a simple flow service that adds two numbers.</p>
+<p><img src="/img/2017/Flow_Service.gif" alt="Flow_Service"></p>
+<p>Follow following steps to create automated tests.</p>
+<ul>
+<li>
+<p>Open IntelliJ IDEA and create a new project</p>
+<p><img src="/img/2017/Create_Project.gif" alt="Create_Project"></p>
+</li>
+<li>
+<p>Add following lines in your build.gradle file</p>
+</li>
+</ul>
+<pre><code>dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
+    testCompile 'io.rest-assured:rest-assured:3.0.3'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0' //version required
+} 
+</code></pre><p><img src="/img/2017/Update_BuildGradle.gif" alt="Update_BuildGradle"></p>
+<ul>
+<li>
+<p>Create new package for our test cases</p>
+<p><img src="/img/2017/Create_Package.gif" alt="Create_Package"></p>
+</li>
+<li>
+<p>Create new Java class for our tests.</p>
+</li>
+</ul>
+<pre><code>package com.dhimate.wm;
+
+import org.junit.Before;
+import org.junit.Test;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import java.util.HashMap;
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.basic;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+public class AddNumbersTest {
+
+	@Before
+	public void setUp() throws Exception {
+		RestAssured.baseURI = &quot;http://localhost:5555/invoke&quot;;
+		RestAssured.authentication = basic(&quot;Administrator&quot;, &quot;manage&quot;);
+	}
+
+	@Test
+	public void AddNumbersTestSuccess() {
+		String requestBody = &quot;{&quot; +
+                    &quot;\&quot;num1\&quot;:\&quot;10\&quot;,&quot; +
+                    &quot;\&quot;num2\&quot;:\&quot;20\&quot;&quot; +
+                    &quot;}&quot;;
+
+		Response response = given().
+                	header(&quot;Content-Type&quot;,&quot;application/json&quot;).
+	                body(requestBody).
+       			put(&quot;Yogesh.flow/addNumbers&quot;);
+
+        		response.getBody().prettyPrint();
+
+        		HashMap responseBody = response.jsonPath().get(&quot;&quot;);
+
+        		assertThat(&quot;status code&quot;, response.getStatusCode(), equalTo(200));
+        		assertThat(&quot;sum&quot;, responseBody.get(&quot;sum&quot;), equalTo(&quot;30&quot;));
+    	}
+}
+</code></pre><p>Here we are just taking advantage of Integration Server&rsquo;s built in content handler for Content Type - &lsquo;application/json&rsquo;. For the flow service available on Integration Server, we can simply pass JSON request using REST Assured framework. Integration Server will take care of converting this to IDoc and subsequently process it to return a JSON response back to your test case.</p>
+<ul>
+<li>Run the tests using Gradle wrapper</li>
+</ul>
+<p>Gradle wrapper provides a convenient and easy to use CLI to run your tests. Using Gradle wrapper you can quickly associate your REST Assured tests with your Continuous Integration process.</p>
+<p><img src="/img/2017/Gradle_Wrapper.gif" alt="Gradle_Wrapper"></p>
+<p>Good thing about using REST Assured and Hamcrest to test your webMethods flow services is, it is completely FREE.  You don&rsquo;t need to buy an expensive automated testing solution to test your flow services.</p>
+<p>Further resources to read</p>
+<ol>
+<li>REST Assured has comprehensive <a href="https://github.com/rest-assured/rest-assured/wiki/GettingStarted">documentation</a> available to get you started.</li>
+<li>Excellent tutorial on <a href="http://www.vogella.com/tutorials/Gradle/article.html">Gradle</a> and <a href="http://www.vogella.com/tutorials/Hamcrest/article.html">Hamcrest</a> by Vogella.</li>
+</ol>
+
+        
+      </article>
+      
+      <article>
+        
+        
+
+<header>
   <p class="meta">Aug 16, 2016
      - 1 minute read 
      - <a href="https://www.dhimate.com/blog/2016/integration-server-class-loading/#disqus_thread">Comments</a>
