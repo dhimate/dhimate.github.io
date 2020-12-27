@@ -1929,6 +1929,7 @@ figure a {
 
 div.mermaid svg{
     font-family: 'Ubuntu';
-    vertical-align: top;
+    line-height: 0.9;
+    font-weight: lighter;
 }
 /* Hugo Figure shortcode - end */
