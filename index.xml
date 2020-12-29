@@ -5,7 +5,7 @@
     <link>https://www.dhimate.com/</link>
     <description>Recent content on Yogesh Dhimate</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://www.dhimate.com/about/</link>
@@ -33,6 +33,16 @@ Find me here  LinkedIn : https://www.linkedin.com/in/dhimate/ GitHub : https://w
       <guid>https://www.dhimate.com/books/</guid>
       <description>I am currently reading - Range: Why Generalists Triumph in a Specialized World by David Epstein.
 2020  Range: Why Generalists Triumph in a Specialized World - David Epstein (Dec 2020) Made to Stick - Dan Heath and Chip Heath (Dec 2020) Atomic Habits - James Clear (Nov 2020) Back Home: An Emotional Guide for NRIs Who Are on the Fence - Nupur Dave (Nov 2020) The Inimitable Jeeves - P.</description>
+    </item>
+    
+    <item>
+      <title>Upload Attachments to Salesforce Using MuleSoft</title>
+      <link>https://www.dhimate.com/blog/2020/upload-salesforce-attachments-mulesoft/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/blog/2020/upload-salesforce-attachments-mulesoft/</guid>
+      <description>This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
+As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce erDiagram ContentDocument ||--|{ ContentDocumentLink : has ContentDocument { string Id string Title string PathOnClient date CreatedDate } ContentDocumentLink ||--|| Account : linkedEntity ContentDocumentLink { string Id reference LinkedEntityId reference ContentDocumentId picklist ShareType picklist Visibility } Account { string Id string AccountNumber } ContentDocumentLink ||--|| Contact : linkedEntity Contact { string Id string FirstName string LastName } ContentDocumentLink ||--|| sObject : linkedEntity sObject { string Id string SomeProperty }  Things to note:</description>
     </item>
     
     <item>

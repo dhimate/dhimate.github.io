@@ -4,6 +4,25 @@
     <title>Categories on Yogesh Dhimate</title>
     <link>https://www.dhimate.com/categories/</link>
     <description>Recent content in Categories on Yogesh Dhimate</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://www.dhimate.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 29 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming</title>
+      <link>https://www.dhimate.com/categories/programming/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Books</title>
+      <link>https://www.dhimate.com/categories/books/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/categories/books/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
