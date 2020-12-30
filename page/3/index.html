@@ -17,7 +17,7 @@
   
 
   
-  <title>About</title>
+  <title>Yogesh Dhimate</title>
 
   
   
@@ -35,7 +35,7 @@
   <link href="https://www.dhimate.com/favicon.png" rel="icon">
 
   
-  
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Yogesh Dhimate" />
 
   <meta name="description" content="" />
   <meta name="keywords" content="">
@@ -115,85 +115,89 @@
 </nav>
 
 
+
+
+  
+
 <div id="main">
   <div id="content">
-    <div>
-      <article class="hentry" role="article">
-
+    <div class="blog-index">
+      
+      
+      <article>
         
         
 
 <header>
-  <p class="meta">Jun 11, 2019
+  <p class="meta">Aug 16, 2016
      - 1 minute read 
-     - <a href="https://www.dhimate.com/about/#disqus_thread">Comments</a>
+     - <a href="https://www.dhimate.com/blog/2016/integration-server-class-loading/#disqus_thread">Comments</a>
 
+    
+    
+      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
     
   </p>
   <h1 class="entry-title">
-     About 
+    <a href="https://www.dhimate.com/blog/2016/integration-server-class-loading/">Integration Server Class Loading for Custom Jars</a>
   </h1>
 </header>
 
-
-        <div class="entry-content">
-          
-          
-          
-          <h2 id="heading"></h2>
-<p>I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own.</p>
-<h3 id="find-me-here">Find me here</h3>
-<ul>
-<li>LinkedIn : <a href="https://www.linkedin.com/in/dhimate/">https://www.linkedin.com/in/dhimate/</a></li>
-<li>GitHub : <a href="https://www.github.com/dhimate">https://www.github.com/dhimate</a></li>
-</ul>
-
-        </div>
         
+          <p>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.</p>
+<p>It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</p>
+<ol>
+<li>
+<p>packages/<!-- raw HTML omitted -->/code/jars or packages/<!-- raw HTML omitted -->/code/classes:  The jar file placed in these folders are only accessible to java services inside the same package and the packages dependent on this package. If there is any change in the jar, simply reloading of the package is sufficient to have the classes loaded in memory.</p>
+</li>
+<li>
+<p>packages/<!-- raw HTML omitted -->/code/jars/static are accessible to all java services across the entire IS. If there is any change in the jar, a restart of IS is required to activate any additions or changes to these.</p>
+</li>
+</ol>
 
-<footer>
-  <p class="meta">
-    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
-    
-    <time>Jun 11, 2019</time>
-    
-    </span>
-  </p>
-
-  
-
-  <p class="meta">
-    
-        <a class="basic-alignment left" href="https://www.dhimate.com/r%C3%A9sum%C3%A9/" title="Résumé">Résumé</a>
-    
-
-    
-  </p>
-  
-    
-      <div id="disqus_thread"></div>
-<script type="text/javascript">
-  (function() {
-      
-      
-      
-      if (window.location.hostname == "localhost")
-          return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'dhimate';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-  
-</footer>
-
+        
       </article>
+      
+      
+      
+
+
+
+
+
+
+<div class="pagination">
+
+    
+        
+        
+        
+        <a href="/" aria-label="First" class="label-pagination"><i class="fa fa-angle-double-left fa-lg"></i></a>
+    
+
+    
+    
+        <a href="/page/2/" aria-label="Previous" class="label-pagination"><i class="fa fa-angle-left fa-lg"></i></a>
+    
+
+    
+        <a href="/" class="label-pagination">1</a>
+    
+        <a href="/page/2/" class="label-pagination">2</a>
+    
+        <a href="/page/3/" class="label-pagination">3</a>
+    
+
+    
+
+    
+    
+        <a href="/page/3/" aria-label="Last"><i class="fa fa-angle-double-right fa-lg"></i></a>
+    
+
+</div>
+
+  
     </div>
     
 
@@ -287,10 +291,9 @@
     
   
 </aside>
-
+    
   </div>
 </div>
-
     <footer role="contentinfo">
       <p>Copyright &copy; 2020 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
         <span class="credit">Powered by <a target="_blank" href="https://gohugo.io">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/">Hugo-Octopress</a> theme.
@@ -311,4 +314,5 @@
     
   </body>
 </html>
+   
 

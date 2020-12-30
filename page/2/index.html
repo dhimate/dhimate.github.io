@@ -129,6 +129,40 @@
         
 
 <header>
+  <p class="meta">Dec 21, 2020
+     - 2 minute read 
+     - <a href="https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/#disqus_thread">Comments</a>
+
+    
+    
+      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
+    
+  </p>
+  <h1 class="entry-title">
+    <a href="https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/">MuleSoft Capacity Explanation for Noobs and CXOs </a>
+  </h1>
+</header>
+
+        
+          <p>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was <em>very</em> accomodating and <em>somewhat</em> understood what I was talking about. Nevertheless, I should&rsquo;ve done better.</p>
+<p>I was thinking about this conversation over the next couple of days and decided to explain it to my wife - who is very non-technical.</p>
+<p>Think of MuleSoft as a specialty cookie store. Or even better, think of Salesforce as a big giant grocery store, with a bakery section called &lsquo;MuleSoft&rsquo;.
+MuleSoft specializes in cookies. They offer 3 types of options to buy their fantastic product.</p>
+<ul>
+<li><strong>Cloudhub:</strong> Pre-baked cookies, these come in boxes. Very light and crispy. Rightfully branded as &lsquo;Cloudhub&rsquo;. You can buy as many boxes as you want. Each box contains 10 cookies. This means with one box you can feed 10 guests. If you have more guests coming over, or some guests are unusually hungry you can buy more boxes.
+There is also an allergen/gluten free version of pre-baked cookies for government guests.</li>
+<li><strong>Hybrid:</strong> A cookie dough to bake your cookies in your oven. The cookie dough is branded as &lsquo;On-premise / Hybrid&rsquo;. You can decide how big (or small) each cookie can be. You can make as many cookies as you want with the dough. (No more 10 cookies per box restriction!). Of course, some guests will find your ridiculously small sized cookies unappetizing (or funny).</li>
+<li><strong>Runtime Fabric:</strong> After some guests complained that pre-baked cookies were too big, and &lsquo;make your own cookies&rsquo; unappetizing. MuleSoft started offering &lsquo;Runtime Fabric&rsquo; branded cookie dough. You still have to bake your cookies, but the sizes of cookies are standardized. They won&rsquo;t look funny.</li>
+</ul>
+
+        
+      </article>
+      
+      <article>
+        
+        
+
+<header>
   <p class="meta">Oct 24, 2017
      - 2 minute read 
      - <a href="https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/#disqus_thread">Comments</a>
@@ -403,40 +437,6 @@ public class AddNumbersTest {
         
       </article>
       
-      <article>
-        
-        
-
-<header>
-  <p class="meta">Aug 16, 2016
-     - 1 minute read 
-     - <a href="https://www.dhimate.com/blog/2016/integration-server-class-loading/#disqus_thread">Comments</a>
-
-    
-    
-      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
-    
-  </p>
-  <h1 class="entry-title">
-    <a href="https://www.dhimate.com/blog/2016/integration-server-class-loading/">Integration Server Class Loading for Custom Jars</a>
-  </h1>
-</header>
-
-        
-          <p>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.</p>
-<p>It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</p>
-<ol>
-<li>
-<p>packages/<!-- raw HTML omitted -->/code/jars or packages/<!-- raw HTML omitted -->/code/classes:  The jar file placed in these folders are only accessible to java services inside the same package and the packages dependent on this package. If there is any change in the jar, simply reloading of the package is sufficient to have the classes loaded in memory.</p>
-</li>
-<li>
-<p>packages/<!-- raw HTML omitted -->/code/jars/static are accessible to all java services across the entire IS. If there is any change in the jar, a restart of IS is required to activate any additions or changes to these.</p>
-</li>
-</ol>
-
-        
-      </article>
-      
       
       
 
@@ -464,12 +464,17 @@ public class AddNumbersTest {
     
         <a href="/page/2/" class="label-pagination">2</a>
     
-
+        <a href="/page/3/" class="label-pagination">3</a>
     
 
     
     
-        <a href="/page/2/" aria-label="Last"><i class="fa fa-angle-double-right fa-lg"></i></a>
+        <a href="/page/3/" aria-label="Next" class="label-pagination"><i class="fa fa-angle-right fa-lg"></i></a>
+    
+
+    
+    
+        <a href="/page/3/" aria-label="Last"><i class="fa fa-angle-double-right fa-lg"></i></a>
     
 
 </div>
@@ -541,6 +546,12 @@ public class AddNumbersTest {
           
             
               <li class="post">
+                <a href="/blog/2020/intermittent-fasting/">How Intermittent Fasting Saved My Life</a>
+              </li>
+            
+          
+            
+              <li class="post">
                 <a href="/blog/2020/upload-salesforce-attachments-mulesoft/">Upload Attachments to Salesforce Using MuleSoft</a>
               </li>
             
@@ -554,12 +565,6 @@ public class AddNumbersTest {
             
               <li class="post">
                 <a href="/blog/2020/mule-cloudhub-vs-onprem/">MuleSoft Capacity Explanation for Noobs and CXOs </a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/blog/2017/google-spreadsheet-and-arrayformula/">Google Spreadsheets and ArrayFormula for XIRR Calculation</a>
               </li>
             
           
