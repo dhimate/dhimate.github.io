@@ -8,10 +8,10 @@
     <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Recap of 2020</title>
-      <link>https://www.dhimate.com/blog/2020/recap-2020/</link>
+      <link>https://www.dhimate.com/2020/recap-of-2020/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/recap-2020/</guid>
+      <guid>https://www.dhimate.com/2020/recap-of-2020/</guid>
       <description>The end of the year is the time to pause, look back, and think about how the year went by. I am very grateful and fortunate to had an opportunity to enjoy a reasonably good time in 2020.
 On the personal front
  We visited our families in India in January. I enjoyed meeting my parents, brother, in-laws, and friends. I did not travel for work and got more time to spend with my wife.</description>
@@ -19,68 +19,68 @@ On the personal front
     
     <item>
       <title>How Intermittent Fasting Saved My Life</title>
-      <link>https://www.dhimate.com/blog/2020/intermittent-fasting/</link>
+      <link>https://www.dhimate.com/2020/how-intermittent-fasting-saved-my-life/</link>
       <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/intermittent-fasting/</guid>
+      <guid>https://www.dhimate.com/2020/how-intermittent-fasting-saved-my-life/</guid>
       <description>One of my goals for 2020 was to stick to an intermittent fasting routine. I completed 6600 hours of fasting in 2020. On average, that&amp;rsquo;s 18 hours of fasting every day, for 365 days. Other interesting stats include the longest streak of 440 fasts and the longest fast of 37 hours. I did reasonably well to maintain a healthy weight despite stress-induced binge eating during the pandemic.
 My fasting journey started in mid of 2019.</description>
     </item>
     
     <item>
       <title>Upload Attachments to Salesforce Using MuleSoft</title>
-      <link>https://www.dhimate.com/blog/2020/upload-salesforce-attachments-mulesoft/</link>
+      <link>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/upload-salesforce-attachments-mulesoft/</guid>
+      <guid>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</guid>
       <description>This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
 As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce erDiagram ContentDocument ||--|{ ContentDocumentLink : has ContentDocument { string Id string Title string PathOnClient date CreatedDate } ContentDocumentLink ||--|| Account : linkedEntity ContentDocumentLink { string Id reference LinkedEntityId reference ContentDocumentId picklist ShareType picklist Visibility } Account { string Id string AccountNumber } ContentDocumentLink ||--|| Contact : linkedEntity Contact { string Id string FirstName string LastName } ContentDocumentLink ||--|| sObject : linkedEntity sObject { string Id string SomeProperty }  Things to note:</description>
     </item>
     
     <item>
       <title>Made to Stick and the Curse of Knowledge</title>
-      <link>https://www.dhimate.com/blog/2020/curse-of-knowledge/</link>
+      <link>https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/</link>
       <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/curse-of-knowledge/</guid>
+      <guid>https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/</guid>
       <description>I recently read &amp;ldquo;Made to Stick&amp;rdquo; by Chip Heath and Dan Heath. It was a fun and quick read. While I liked their framework of SUCCESs (Simple, Unexpected, Concrete, Credible, Emotional, Stories) to get the idea to stick, I thoroughly enjoyed the explanation of the Curse of Knowledge. The curse of knowledge occurs when a knowledgeable individual/expert assumes that the others have the background to understand a specific concept.
 According to Chip and Dan, In general, getting your message across has two stages - the Answer Stage, and the Telling Others Stage.</description>
     </item>
     
     <item>
       <title>MuleSoft Capacity Explanation for Noobs and CXOs </title>
-      <link>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</link>
+      <link>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</link>
       <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</guid>
+      <guid>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</guid>
       <description>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&amp;rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was very accomodating and somewhat understood what I was talking about. Nevertheless, I should&amp;rsquo;ve done better.</description>
     </item>
     
     <item>
       <title>Google Spreadsheets and ArrayFormula for XIRR Calculation</title>
-      <link>https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/</link>
+      <link>https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/</link>
       <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/</guid>
+      <guid>https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/</guid>
       <description>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets. Nice thing with Google Spreadsheets is its support for import and queries. e.g. AMFI India publishes daily NAV’s on their website http://portal.amfiindia.com/spages/NAV1.txt You can import the data programmatically and run a query on it to find desired NAV.</description>
     </item>
     
     <item>
       <title>Automated Testing of Webmethods Services with REST Assured</title>
-      <link>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</link>
+      <link>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</link>
       <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</guid>
+      <guid>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</guid>
       <description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
 You will need following things on your machine.</description>
     </item>
     
     <item>
       <title>Integration Server Class Loading for Custom Jars</title>
-      <link>https://www.dhimate.com/blog/2016/integration-server-class-loading/</link>
+      <link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link>
       <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2016/integration-server-class-loading/</guid>
+      <guid>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</guid>
       <description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
 It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description>
     </item>

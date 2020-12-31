@@ -17,7 +17,7 @@
   
 
   
-  <title>MuleSoft Capacity Explanation for Noobs and CXOs </title>
+  <title>Google Spreadsheets and ArrayFormula for XIRR Calculation</title>
 
   
   
@@ -124,17 +124,14 @@
         
 
 <header>
-  <p class="meta">Dec 21, 2020
+  <p class="meta">Oct 24, 2017
      - 2 minute read 
-     - <a href="https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/#disqus_thread">Comments</a>
+     - <a href="https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/#disqus_thread">Comments</a>
 
-    
-    
-      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
     
   </p>
   <h1 class="entry-title">
-     MuleSoft Capacity Explanation for Noobs and CXOs  
+     Google Spreadsheets and ArrayFormula for XIRR Calculation 
   </h1>
 </header>
 
@@ -145,16 +142,150 @@
           
             <nav id="TableOfContents"></nav>
           
-          <p>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was <em>very</em> accomodating and <em>somewhat</em> understood what I was talking about. Nevertheless, I should&rsquo;ve done better.</p>
-<p>I was thinking about this conversation over the next couple of days and decided to explain it to my wife - who is very non-technical.</p>
-<p>Think of MuleSoft as a specialty cookie store. Or even better, think of Salesforce as a big giant grocery store, with a bakery section called &lsquo;MuleSoft&rsquo;.
-MuleSoft specializes in cookies. They offer 3 types of options to buy their fantastic product.</p>
-<ul>
-<li><strong>Cloudhub:</strong> Pre-baked cookies, these come in boxes. Very light and crispy. Rightfully branded as &lsquo;Cloudhub&rsquo;. You can buy as many boxes as you want. Each box contains 10 cookies. This means with one box you can feed 10 guests. If you have more guests coming over, or some guests are unusually hungry you can buy more boxes.
-There is also an allergen/gluten free version of pre-baked cookies for government guests.</li>
-<li><strong>Hybrid:</strong> A cookie dough to bake your cookies in your oven. The cookie dough is branded as &lsquo;On-premise / Hybrid&rsquo;. You can decide how big (or small) each cookie can be. You can make as many cookies as you want with the dough. (No more 10 cookies per box restriction!). Of course, some guests will find your ridiculously small sized cookies unappetizing (or funny).</li>
-<li><strong>Runtime Fabric:</strong> After some guests complained that pre-baked cookies were too big, and &lsquo;make your own cookies&rsquo; unappetizing. MuleSoft started offering &lsquo;Runtime Fabric&rsquo; branded cookie dough. You still have to bake your cookies, but the sizes of cookies are standardized. They won&rsquo;t look funny.</li>
-</ul>
+          <p>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets.
+Nice thing with Google Spreadsheets is its support for import and queries.
+e.g. AMFI India publishes daily NAV’s on their website <a href="http://portal.amfiindia.com/spages/NAV1.txt">http://portal.amfiindia.com/spages/NAV1.txt</a>
+You can import the data programmatically and run a query on it to find desired NAV.
+I can use following simple query to check the latest NAV of Birla Sunlife Frontline Equity fund, whose symbol is INF209K01YY7</p>
+<pre><code>=QUERY(SPLIT(QUERY(importDATA(&quot;http://portal.amfiindia.com/spages/NAV1.txt&quot;),
+&quot;SELECT * Where Col1 like '%INF209K01YY7%'&quot;),&quot;;&quot;), &quot;Select Col5&quot;)
+</code></pre><p>Google Spreadsheets obviously supports data from Google Finance with its built in function GOOGLEFINANCE</p>
+<pre><code>=GOOGLEFINANCE(&quot;SBIN&quot;,&quot;price&quot;)
+</code></pre><p>This will return latest price for State Bank of India.
+You can also use Stock Exchange assigned ID’s to query the data from Google Finance</p>
+<pre><code>=GOOGLEFINANCE(&quot;500510&quot;,&quot;price&quot;)
+</code></pre><p>This will return latest price for Larsen and Tubro.
+However the most killer feature of Google Spreadsheets is its support for ArrayFormula in conjunction with XIRR.
+Let me explain.
+Consider following cash flow.</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Transaction</td>
+<td>Symbol</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>Havells</td>
+<td>31/12/2017</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>01/01/2017</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>06/01/2017</td>
+</tr>
+</tbody>
+</table>
+<p>We have to update the XIRR formula to include the new transaction we just added in our cash flow</p>
+<pre><code>=XIRR(D2:D4,C2:C4)*100
+</code></pre><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>XIRR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Havells</td>
+<td>4.493</td>
+</tr>
+</tbody>
+</table>
+<p>This is very cumbersome to update XIRR formula, if you have a diversified portfolio with 10+ symbols and investing on a regular basis.</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Transaction</td>
+<td>Symbol</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>Havells</td>
+<td>31/12/2017</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>01/01/2017</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>06/01/2017</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>SBI</td>
+<td>31/12/2017</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>SBI</td>
+<td>01/01/2017</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>SBI</td>
+<td>06/01/2017</td>
+</tr>
+<tr>
+<td><!-- raw HTML omitted --></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code>Havells =XIRR(D2:D4,C2:C4)*100
+SBI =XIRR(D5:D7,C5:C7)*100
+</code></pre><p>You can see for two symbols we have to keep close track of cell numbers etc to accurately calculate XIRR.
+ArrayFormula provides nice workaround to simplify and automate this process of using XIRR formulas for a growing number of transactions</p>
+<blockquote>
+<p><a href="https://support.google.com/docs/answer/3093275?hl=en">https://support.google.com/docs/answer/3093275?hl=en</a></p>
+</blockquote>
+<blockquote>
+<p>Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.</p>
+</blockquote>
+<p>XIRR can be easily combined with ArrayFormula like below</p>
+<pre><code>=ArrayFormula(XIRR((B2:B7=&quot;HAVELLS&quot;)*D2:D7,C2:C7))*100
+=ArrayFormula(XIRR((B2:B7=&quot;SBI&quot;)*D2:D7,C2:C7))*100
+</code></pre><p>As you can see that except the symbol name both the formulas are identical. We can remove the hard coded symbol name and refer to the cell which has symbol name.
+Using ArrayFormula in the portfolio tracker has simplified maintenance of the spreadsheet and saved quite a few hours for me.</p>
 
         </div>
         
@@ -163,12 +294,12 @@ There is also an allergen/gluten free version of pre-baked cookies for governmen
   <p class="meta">
     <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
     
-    <time>Dec 21, 2020</time>
+    <time>Oct 24, 2017</time>
     
       <span class="categories">
         Tags:
         
-          <a class="category" href="https://www.dhimate.com/tags/mulesoft">MuleSoft</a>  
+          <a class="category" href="https://www.dhimate.com/tags/google">Google</a>  
     
     </span>
   </p>
@@ -177,11 +308,11 @@ There is also an allergen/gluten free version of pre-baked cookies for governmen
 
   <p class="meta">
     
-        <a class="basic-alignment left" href="https://www.dhimate.com/blog/2017/google-spreadsheet-and-arrayformula/" title="Google Spreadsheets and ArrayFormula for XIRR Calculation">Google Spreadsheets and ArrayFormula for XIRR Calculation</a>
+        <a class="basic-alignment left" href="https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/" title="Automated Testing of Webmethods Services with REST Assured">Automated Testing of Webmethods Services with REST Assured</a>
     
 
     
-      <a class="basic-alignment right" href="https://www.dhimate.com/blog/2020/curse-of-knowledge/" title="Made to Stick and the Curse of Knowledge">Made to Stick and the Curse of Knowledge</a>
+      <a class="basic-alignment right" href="https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/" title="MuleSoft Capacity Explanation for Noobs and CXOs ">MuleSoft Capacity Explanation for Noobs and CXOs </a>
     
   </p>
   
@@ -275,25 +406,25 @@ There is also an allergen/gluten free version of pre-baked cookies for governmen
           
             
               <li class="post">
-                <a href="/blog/2020/upload-salesforce-attachments-mulesoft/">Upload Attachments to Salesforce Using MuleSoft</a>
+                <a href="/2020/recap-of-2020/">Recap of 2020</a>
               </li>
             
           
             
               <li class="post">
-                <a href="/blog/2020/curse-of-knowledge/">Made to Stick and the Curse of Knowledge</a>
+                <a href="/2020/how-intermittent-fasting-saved-my-life/">How Intermittent Fasting Saved My Life</a>
               </li>
             
           
             
               <li class="post">
-                <a href="/blog/2020/mule-cloudhub-vs-onprem/">MuleSoft Capacity Explanation for Noobs and CXOs </a>
+                <a href="/2020/upload-attachments-to-salesforce-using-mulesoft/">Upload Attachments to Salesforce Using MuleSoft</a>
               </li>
             
           
             
               <li class="post">
-                <a href="/blog/2017/google-spreadsheet-and-arrayformula/">Google Spreadsheets and ArrayFormula for XIRR Calculation</a>
+                <a href="/2020/made-to-stick-and-the-curse-of-knowledge/">Made to Stick and the Curse of Knowledge</a>
               </li>
             
           

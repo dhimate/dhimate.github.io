@@ -8,39 +8,39 @@
     <lastBuildDate>Tue, 29 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Upload Attachments to Salesforce Using MuleSoft</title>
-      <link>https://www.dhimate.com/blog/2020/upload-salesforce-attachments-mulesoft/</link>
+      <link>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</link>
       <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/upload-salesforce-attachments-mulesoft/</guid>
+      <guid>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</guid>
       <description>This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
 As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce erDiagram ContentDocument ||--|{ ContentDocumentLink : has ContentDocument { string Id string Title string PathOnClient date CreatedDate } ContentDocumentLink ||--|| Account : linkedEntity ContentDocumentLink { string Id reference LinkedEntityId reference ContentDocumentId picklist ShareType picklist Visibility } Account { string Id string AccountNumber } ContentDocumentLink ||--|| Contact : linkedEntity Contact { string Id string FirstName string LastName } ContentDocumentLink ||--|| sObject : linkedEntity sObject { string Id string SomeProperty }  Things to note:</description>
     </item>
     
     <item>
       <title>MuleSoft Capacity Explanation for Noobs and CXOs </title>
-      <link>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</link>
+      <link>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</link>
       <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2020/mule-cloudhub-vs-onprem/</guid>
+      <guid>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</guid>
       <description>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&amp;rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was very accomodating and somewhat understood what I was talking about. Nevertheless, I should&amp;rsquo;ve done better.</description>
     </item>
     
     <item>
       <title>Automated Testing of Webmethods Services with REST Assured</title>
-      <link>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</link>
+      <link>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</link>
       <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2017/automated-testing-of-webmethods/</guid>
+      <guid>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</guid>
       <description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
 You will need following things on your machine.</description>
     </item>
     
     <item>
       <title>Integration Server Class Loading for Custom Jars</title>
-      <link>https://www.dhimate.com/blog/2016/integration-server-class-loading/</link>
+      <link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link>
       <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.dhimate.com/blog/2016/integration-server-class-loading/</guid>
+      <guid>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</guid>
       <description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
 It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description>
     </item>
