@@ -14,7 +14,7 @@
   
   <url>
     <loc>https://www.dhimate.com/blog/</loc>
-    <lastmod>2020-12-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -24,21 +24,36 @@
   
   <url>
     <loc>https://www.dhimate.com/categories/</loc>
-    <lastmod>2020-12-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.dhimate.com/blog/2020/intermittent-fasting/</loc>
-    <lastmod>2020-12-30T00:00:00+00:00</lastmod>
+    <loc>https://www.dhimate.com/tags/personal/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dhimate.com/categories/personal/</loc>
-    <lastmod>2020-12-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/blog/2020/recap-2020/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/tags/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.dhimate.com/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dhimate.com/blog/2020/intermittent-fasting/</loc>
     <lastmod>2020-12-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -49,11 +64,6 @@
   
   <url>
     <loc>https://www.dhimate.com/categories/programming/</loc>
-    <lastmod>2020-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.dhimate.com/tags/</loc>
     <lastmod>2020-12-29T00:00:00+00:00</lastmod>
   </url>
   
