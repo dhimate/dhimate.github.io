@@ -1,7 +1,5 @@
 html,
 body,
-div,
-span,
 applet,
 object,
 iframe,
@@ -1683,7 +1681,7 @@ th {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 80%;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 1;
   color: #fff;
   text-align: center;
