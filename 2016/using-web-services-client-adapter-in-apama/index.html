@@ -1,678 +1,230 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1"><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'loose'});</script><link href=/css/fonts.css rel=stylesheet type=text/css><title>Using Web Services Client adapter in Apama</title><link rel=stylesheet href=/css/hugo-octopress.css><link rel=stylesheet href=https://pro.fontawesome.com/releases/v5.10.0/css/all.css integrity=sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p crossorigin=anonymous><link href=https://www.dhimate.com/favicon.png rel=icon><meta name=description content><meta name=keywords content><meta name=author content="Yogesh Dhimate"><meta name=generator content="Hugo 0.80.0"></head><body><header role=banner><hgroup><h1><a href=https://www.dhimate.com/>Yogesh Dhimate</a></h1><h2>Notes to Myself</h2></hgroup></header><nav role=navigation><fieldset class=mobile-nav><select onchange="location=this.value;">
+<option value>Navigate…</option>
+<option value=https://www.dhimate.com/about/>» About</option>
+<option value=https://www.dhimate.com/r%C3%A9sum%C3%A9/>» Résumé</option>
+<option value=https://www.dhimate.com/blog/>» Blog</option>
+<option value=https://www.dhimate.com/books/>» Books I Read</option></select></fieldset><ul class=main-navigation><li><a href=https://www.dhimate.com/about/ title=About>About</a></li><li><a href=https://www.dhimate.com/r%C3%A9sum%C3%A9/ title=Résumé>Résumé</a></li><li><a href=https://www.dhimate.com/blog/ title=Blog>Blog</a></li><li><a href=https://www.dhimate.com/books/ title="Books I Read">Books I Read</a></li></ul><ul class=subscription></ul><form action=https://www.google.com/search method=get target=_blank><fieldset role=search><input class=search type=text name=q results=0 placeholder=Search>
+<input type=hidden name=q value=site:https://www.dhimate.com/></fieldset></form></nav><div id=main><div id=content><div><article class=hentry role=article><header><p class=meta>Aug 24, 2016
+- 5 minute read
+- <a href=https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/#disqus_thread>Comments</a>
+- <a class=label href=https://www.dhimate.com/categories/programming/>Programming</a></p><h1 class=entry-title>Using Web Services Client adapter in Apama</h1></header><div class=entry-content><nav id=TableOfContents></nav><p>Software AG Apama provides a SOAP-based Web Services Client adapter to invoke web services from your Apama application. In this post, we will see how to use this adapter in your application.</p><p>We will use a free web service available at CDYNE (link) for our application. This service has multiple operations, out of which we will use GetCityWeatherByZIP operation.</p><p>Below are the sample request and response messages for this operation, which we will use to describe our event definition in Apama.</p><p>Request XML<figure class=code><figcaption><span>Request XML</span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>    <span style=color:#f92672>&lt;soap:envelope</span> 
+    <span style=color:#a6e22e>xmlns:soap=</span><span style=color:#e6db74>&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;</span> 
+    <span style=color:#a6e22e>xmlns:xsd=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema&#34;</span> 
+    <span style=color:#a6e22e>xmlns:xsi=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span><span style=color:#f92672>&gt;</span>
+    <span style=color:#f92672>&lt;soap:body&gt;</span>
+        <span style=color:#f92672>&lt;GetCityWeatherByZip</span> <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;http://ws.cdyne.com/WeatherWS/&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;Zip&gt;</span>43209<span style=color:#f92672>&lt;/Zip&gt;</span>
+        <span style=color:#f92672>&lt;/GetCityWeatherByZip&gt;</span>
+    <span style=color:#f92672>&lt;/soap:body&gt;</span>
+    <span style=color:#f92672>&lt;/soap:envelope&gt;</span></code></pre></td></tr></table></div></div></div></figure></p><p>Response XML<figure class=code><figcaption><span>Response XML</span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>    <span style=color:#f92672>&lt;soap:Envelope</span> 
+    <span style=color:#a6e22e>xmlns:xsi=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> 
+    <span style=color:#a6e22e>xmlns:xsd=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema&#34;</span> 
+    <span style=color:#a6e22e>xmlns:soap=</span><span style=color:#e6db74>&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;</span><span style=color:#f92672>&gt;</span>
+    <span style=color:#f92672>&lt;soap:Body&gt;</span>
+        <span style=color:#f92672>&lt;GetCityWeatherByZIPResponse</span> 
+        <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;http://ws.cdyne.com/WeatherWS/&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;GetCityWeatherByZIPResult&gt;</span>
+            <span style=color:#f92672>&lt;Success&gt;</span>true<span style=color:#f92672>&lt;/Success&gt;</span>
+            <span style=color:#f92672>&lt;ResponseText&gt;</span>City Found<span style=color:#f92672>&lt;/ResponseText&gt;</span>
+            <span style=color:#f92672>&lt;State&gt;</span>OH<span style=color:#f92672>&lt;/State&gt;</span>
+            <span style=color:#f92672>&lt;City&gt;</span>Columbus<span style=color:#f92672>&lt;/City&gt;</span>
+            <span style=color:#f92672>&lt;WeatherStationCity&gt;</span>Columbus<span style=color:#f92672>&lt;/WeatherStationCity&gt;</span>
+            <span style=color:#f92672>&lt;WeatherID&gt;</span>14<span style=color:#f92672>&lt;/WeatherID&gt;</span>
+            <span style=color:#f92672>&lt;Description&gt;</span>Cloudy<span style=color:#f92672>&lt;/Description&gt;</span>
+            <span style=color:#f92672>&lt;Temperature&gt;</span>63<span style=color:#f92672>&lt;/Temperature&gt;</span>
+            <span style=color:#f92672>&lt;RelativeHumidity&gt;</span>83<span style=color:#f92672>&lt;/RelativeHumidity&gt;</span>
+            <span style=color:#f92672>&lt;Wind&gt;</span>CALM<span style=color:#f92672>&lt;/Wind&gt;</span>
+            <span style=color:#f92672>&lt;Pressure&gt;</span>29.93R<span style=color:#f92672>&lt;/Pressure&gt;</span>
+            <span style=color:#f92672>&lt;Visibility/&gt;</span>
+            <span style=color:#f92672>&lt;WindChill/&gt;</span>
+            <span style=color:#f92672>&lt;Remarks/&gt;</span>
+        <span style=color:#f92672>&lt;/GetCityWeatherByZIPResult&gt;</span>
+        <span style=color:#f92672>&lt;/GetCityWeatherByZIPResponse&gt;</span>
+    <span style=color:#f92672>&lt;/soap:Body&gt;</span>
+    <span style=color:#f92672>&lt;/soap:Envelope&gt;</span></code></pre></td></tr></table></div></div></div></figure></p><p>Let&rsquo;s begin by creating a new Apama project. We will name it WeatherWebServiceDemo.</p><p>While creating the project using &lsquo;New Apama Project Wizard&rsquo;, select &lsquo;Web Services Client Adapter&rsquo; bundle</p><p><img src=/img/2016/ApamaWS_1.PNG alt=img></p><p>Now let&rsquo;s describe the event definitions. We will define events such that their structure corresponds directly to the XML structure of the web service message shown above. Such type of mapping is called as &lsquo;Convention based&rsquo; mapping where Apama automatically converts the event instance to the request XML structure of the web service, and also converts the web service response XML to an event instance.</p><p>The event definition will look like this:</p><figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    event GetCityWeatherByZIPType <span style=color:#f92672>{</span>
+        string ZIP<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
 
-  
-  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
-  
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({ startOnLoad: true,  theme: 'neutral', securityLevel: 'loose'});</script>
+    event GetCityWeatherByZIPResultType <span style=color:#f92672>{</span>
+        string Success<span style=color:#f92672>;</span>
+        string ResponseText<span style=color:#f92672>;</span>
+        string State<span style=color:#f92672>;</span>
+        string City<span style=color:#f92672>;</span>
+        string WeatherStationCity<span style=color:#f92672>;</span>
+        string WeatherID<span style=color:#f92672>;</span>
+        string Description<span style=color:#f92672>;</span>
+        string Temperature<span style=color:#f92672>;</span>
+        string RelativeHumidity<span style=color:#f92672>;</span>
+        string Wind<span style=color:#f92672>;</span>
+        string Pressure<span style=color:#f92672>;</span>
+        string Visibility<span style=color:#f92672>;</span>
+        string WindChill<span style=color:#f92672>;</span>
+        string Remarks<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
 
-  
-    
-    
-      <link href="/css/fonts.css" rel="stylesheet" type="text/css">
-    
-  
+    event GetCityWeatherByZIPResponseType <span style=color:#f92672>{</span>
+        GetCityWeatherByZIPResultType GetCityWeatherByZIPResult<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
 
-  
-  <title>Using Web Services Client adapter in Apama</title>
+    event MyRequest <span style=color:#f92672>{</span>
+        GetCityWeatherByZIPType GetCityWeatherByZIP<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
 
-  
-  
-  <link rel="stylesheet" href="/css/hugo-octopress.css">
+    event MyResponse <span style=color:#f92672>{</span>
+        GetCityWeatherByZIPResponseType GetCityWeatherByZIPResponse<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
 
-  
-  
+    event MyZIP <span style=color:#f92672>{</span>
+        string ZIP<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span></code></pre></td></tr></table></div></div></div></figure><p>Out of these the MyRequest and MyResponse event definitions are wrapper types required for Convention based mapping, whereas MyZIP is our custom event definition which we will use to request weather information for a zip code.</p><p>After describing the event definitions, we can import the WSDL and map the event definitions to web service input and output. To do that, open the adapter instance file located in Adapters->WebServices Client Adapter -> instance1 in your project and click on + (plus) to add the operation name, it will bring up the following screen to configure your web service.</p><p><img src=/img/2016/ApamaWS_1_Import.PNG alt=img></p><p>In this screen click on &lsquo;Add&rsquo; operation, and then click on &lsquo;Create New&rsquo; to bring the following screen to import the WSDL and select the operation that you want to use.</p><p><img src=/img/2016/ApamaWS_2_Import.PNG alt=img></p><p>We will only import GetCityWeatherByZIP operation for our application as shown below.</p><p><img src=/img/2016/ApamaWS_3_Import.PNG alt=img></p><p>After importing the operation select the input and output event types corresponding to the input and output of the operation</p><p><img src=/img/2016/ApamaWS_4_Import.PNG alt=img></p><p>Once input and output event for the web service is selected, you can perform the mapping of fields to web service parameters</p><p>In the input mapping it&rsquo;s important to select the &lsquo;Convert to XML&rsquo; transformation to convert the event structure to XML. You can select this transformation by using &lsquo;Add computed node&rsquo; option in your input mapping.</p><p><img src=/img/2016/ApamaWS_input_mapping.PNG alt=img></p><p>The output mapping is straightforward as shown below.</p><p><img src=/img/2016/ApamaWS_output_mapping.PNG alt=img></p><p>Once the mapping is completed you can write your monitor script (EPL) program to call the weather service and then identify the pattern in the data.</p><p>Following simple monitor script program will just print the weather information received from web service.</p><p>In this script, whenever the correlator engine detects MyZIP event in the queue, it will route the MyRequest event. MyRequest event will in turn call the web service to get the weather information using web service client adapter and receive the response in the form of MyResponse event. Whenever MyResponse event is detected, our script prints the weather information in the log.</p><figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    monitor WeatherServiceMonitor <span style=color:#f92672>{</span>
+        MyRequest myRequest<span style=color:#f92672>;</span>
+        MyResponse myResponse<span style=color:#f92672>;</span>
+        MyZIP myZIP<span style=color:#f92672>;</span>
 
-  
-    
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  
+        action <span style=color:#a6e22e>onload</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
 
-  
-  <link href="https://www.dhimate.com/favicon.png" rel="icon">
+            on all <span style=color:#a6e22e>MyZIP</span><span style=color:#f92672>():</span> myZIP <span style=color:#f92672>{</span>
+                print <span style=color:#e6db74>&#34;Received request for ZIP code : &#34;</span> <span style=color:#f92672>+</span> myZIP<span style=color:#f92672>.</span><span style=color:#a6e22e>ZIP</span><span style=color:#f92672>;</span>
+                print <span style=color:#e6db74>&#34;Preparing to call the service &#34;</span> <span style=color:#f92672>;</span>
+                myRequest<span style=color:#f92672>.</span><span style=color:#a6e22e>GetCityWeatherByZIP</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ZIP</span> <span style=color:#f92672>:=</span> myZIP<span style=color:#f92672>.</span><span style=color:#a6e22e>ZIP</span><span style=color:#f92672>;</span>
+                route myRequest<span style=color:#f92672>;</span>            
+            <span style=color:#f92672>}</span>
 
-  
-  
-
-  <meta name="description" content="" />
-  <meta name="keywords" content="">
-  <meta name="author" content="Yogesh Dhimate">
-
-  
-  <meta name="generator" content="Hugo 0.80.0" />
-
-  
-  
-
-  
-  
-</head>
-<body>
-
-
-<header role="banner">
-<hgroup>
-  
-  <h1><a href="https://www.dhimate.com/">Yogesh Dhimate</a></h1>
-    <h2>Notes to Myself</h2>
-</hgroup></header>
-
-
-<nav role="navigation">
-<fieldset class="mobile-nav">
-  
-  <select onchange="location = this.value;">
-    <option value="">Navigate…</option>
-      
-        <option value="https://www.dhimate.com/about/">» About</option>
-      
-        <option value="https://www.dhimate.com/r%C3%A9sum%C3%A9/">» Résumé</option>
-      
-        <option value="https://www.dhimate.com/blog/">» Blog</option>
-      
-        <option value="https://www.dhimate.com/books/">» Books I Read</option>
-      
-  </select>
-</fieldset>
-
-
-<ul class="main-navigation">
-  
-  
-    
-      <li><a href="https://www.dhimate.com/about/" title="About" >About</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/r%C3%A9sum%C3%A9/" title="Résumé" >Résumé</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/blog/" title="Blog" >Blog</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/books/" title="Books I Read" >Books I Read</a></li>
-    
-  
-</ul>
-
-<ul class="subscription">
-  
-</ul>
-
-
-  <form action="https://www.google.com/search" method="get" target="_blank">
-    <fieldset role="search">
-      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-      <input type="hidden" name="q" value="site:https://www.dhimate.com/" />
-    </fieldset>
-  </form>
-
-</nav>
-
-
-<div id="main">
-  <div id="content">
-    <div>
-      <article class="hentry" role="article">
-
-        
-        
-
-<header>
-  <p class="meta">Aug 24, 2016
-     - 5 minute read 
-     - <a href="https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/#disqus_thread">Comments</a>
-
-    
-    
-      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
-    
-  </p>
-  <h1 class="entry-title">
-    <a href="https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/">Using Web Services Client adapter in Apama</a>
-  </h1>
-</header>
-
-
-        <div class="entry-content">
-          
-          
-          
-            <nav id="TableOfContents"></nav>
-          
-          <p>Software AG Apama provides a SOAP-based Web Services Client adapter to invoke web services from your Apama application. In this post, we will see how to use this adapter in your application.</p>
-<p>We will use a free web service available at  CDYNE (link) for our application. This service has multiple operations, out of which we will use GetCityWeatherByZIP operation.</p>
-<p>Below are the sample request and response messages for this operation, which we will use to describe our event definition in Apama.</p>
-<p>Request XML
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span>Request XML</span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="color:#f92672">&lt;soap:envelope</span> 
-    <span style="color:#a6e22e">xmlns:soap=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;</span> 
-    <span style="color:#a6e22e">xmlns:xsd=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> 
-    <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;soap:body&gt;</span>
-        <span style="color:#f92672">&lt;GetCityWeatherByZip</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.cdyne.com/WeatherWS/&#34;</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;Zip&gt;</span>43209<span style="color:#f92672">&lt;/Zip&gt;</span>
-        <span style="color:#f92672">&lt;/GetCityWeatherByZip&gt;</span>
-    <span style="color:#f92672">&lt;/soap:body&gt;</span>
-    <span style="color:#f92672">&lt;/soap:envelope&gt;</span></code></pre></td></tr></table>
-</div>
-</div>
-  </div>
-</figure></p>
-<p>Response XML
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span>Response XML</span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="color:#f92672">&lt;soap:Envelope</span> 
-    <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> 
-    <span style="color:#a6e22e">xmlns:xsd=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span> 
-    <span style="color:#a6e22e">xmlns:soap=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;soap:Body&gt;</span>
-        <span style="color:#f92672">&lt;GetCityWeatherByZIPResponse</span> 
-        <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://ws.cdyne.com/WeatherWS/&#34;</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;GetCityWeatherByZIPResult&gt;</span>
-            <span style="color:#f92672">&lt;Success&gt;</span>true<span style="color:#f92672">&lt;/Success&gt;</span>
-            <span style="color:#f92672">&lt;ResponseText&gt;</span>City Found<span style="color:#f92672">&lt;/ResponseText&gt;</span>
-            <span style="color:#f92672">&lt;State&gt;</span>OH<span style="color:#f92672">&lt;/State&gt;</span>
-            <span style="color:#f92672">&lt;City&gt;</span>Columbus<span style="color:#f92672">&lt;/City&gt;</span>
-            <span style="color:#f92672">&lt;WeatherStationCity&gt;</span>Columbus<span style="color:#f92672">&lt;/WeatherStationCity&gt;</span>
-            <span style="color:#f92672">&lt;WeatherID&gt;</span>14<span style="color:#f92672">&lt;/WeatherID&gt;</span>
-            <span style="color:#f92672">&lt;Description&gt;</span>Cloudy<span style="color:#f92672">&lt;/Description&gt;</span>
-            <span style="color:#f92672">&lt;Temperature&gt;</span>63<span style="color:#f92672">&lt;/Temperature&gt;</span>
-            <span style="color:#f92672">&lt;RelativeHumidity&gt;</span>83<span style="color:#f92672">&lt;/RelativeHumidity&gt;</span>
-            <span style="color:#f92672">&lt;Wind&gt;</span>CALM<span style="color:#f92672">&lt;/Wind&gt;</span>
-            <span style="color:#f92672">&lt;Pressure&gt;</span>29.93R<span style="color:#f92672">&lt;/Pressure&gt;</span>
-            <span style="color:#f92672">&lt;Visibility/&gt;</span>
-            <span style="color:#f92672">&lt;WindChill/&gt;</span>
-            <span style="color:#f92672">&lt;Remarks/&gt;</span>
-        <span style="color:#f92672">&lt;/GetCityWeatherByZIPResult&gt;</span>
-        <span style="color:#f92672">&lt;/GetCityWeatherByZIPResponse&gt;</span>
-    <span style="color:#f92672">&lt;/soap:Body&gt;</span>
-    <span style="color:#f92672">&lt;/soap:Envelope&gt;</span></code></pre></td></tr></table>
-</div>
-</div>
-  </div>
-</figure></p>
-<p>Let&rsquo;s begin by creating a new Apama project. We will name it WeatherWebServiceDemo.</p>
-<p>While creating the project using &lsquo;New Apama Project Wizard&rsquo;, select &lsquo;Web Services Client Adapter&rsquo; bundle</p>
-<p><img src="/img/2016/ApamaWS_1.PNG" alt="img"></p>
-<p>Now let&rsquo;s describe the event definitions. We will define events such that their structure corresponds directly to the XML structure of the web service message shown above. Such type of mapping is called as &lsquo;Convention based&rsquo; mapping where Apama automatically converts the event instance to the request XML structure of the web service, and also converts the web service response XML to an event instance.</p>
-<p>The event definition will look like this:</p>
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    event GetCityWeatherByZIPType <span style="color:#f92672">{</span>
-        string ZIP<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    event GetCityWeatherByZIPResultType <span style="color:#f92672">{</span>
-        string Success<span style="color:#f92672">;</span>
-        string ResponseText<span style="color:#f92672">;</span>
-        string State<span style="color:#f92672">;</span>
-        string City<span style="color:#f92672">;</span>
-        string WeatherStationCity<span style="color:#f92672">;</span>
-        string WeatherID<span style="color:#f92672">;</span>
-        string Description<span style="color:#f92672">;</span>
-        string Temperature<span style="color:#f92672">;</span>
-        string RelativeHumidity<span style="color:#f92672">;</span>
-        string Wind<span style="color:#f92672">;</span>
-        string Pressure<span style="color:#f92672">;</span>
-        string Visibility<span style="color:#f92672">;</span>
-        string WindChill<span style="color:#f92672">;</span>
-        string Remarks<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    event GetCityWeatherByZIPResponseType <span style="color:#f92672">{</span>
-        GetCityWeatherByZIPResultType GetCityWeatherByZIPResult<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    event MyRequest <span style="color:#f92672">{</span>
-        GetCityWeatherByZIPType GetCityWeatherByZIP<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    event MyResponse <span style="color:#f92672">{</span>
-        GetCityWeatherByZIPResponseType GetCityWeatherByZIPResponse<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-
-    event MyZIP <span style="color:#f92672">{</span>
-        string ZIP<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span></code></pre></td></tr></table>
-</div>
-</div>
-  </div>
-</figure>
-<p>Out of these the MyRequest and MyResponse event definitions are wrapper types required for Convention based mapping, whereas MyZIP is our custom event definition which we will use to request weather information for a zip code.</p>
-<p>After describing the event definitions, we can import the WSDL and map the event definitions to web service input and output. To do that, open the adapter instance file located in Adapters-&gt;WebServices Client Adapter -&gt; instance1 in your project and click on + (plus) to add the operation name, it will bring up the following screen to configure your web service.</p>
-<p><img src="/img/2016/ApamaWS_1_Import.PNG" alt="img"></p>
-<p>In this screen click on &lsquo;Add&rsquo; operation, and then click on &lsquo;Create New&rsquo; to bring the following screen to import the WSDL and select the operation that you want to use.</p>
-<p><img src="/img/2016/ApamaWS_2_Import.PNG" alt="img"></p>
-<p>We will only import GetCityWeatherByZIP operation for our application as shown below.</p>
-<p><img src="/img/2016/ApamaWS_3_Import.PNG" alt="img"></p>
-<p>After importing the operation select the input and output event types corresponding to the input and output of the operation</p>
-<p><img src="/img/2016/ApamaWS_4_Import.PNG" alt="img"></p>
-<p>Once input and output event for the web service is selected, you can perform the mapping of fields to web service parameters</p>
-<p>In the input mapping it&rsquo;s important to select the &lsquo;Convert to XML&rsquo; transformation to convert the event structure to XML. You can select this transformation by using &lsquo;Add computed node&rsquo; option in your input mapping.</p>
-<p><img src="/img/2016/ApamaWS_input_mapping.PNG" alt="img"></p>
-<p>The output mapping is straightforward as shown below.</p>
-<p><img src="/img/2016/ApamaWS_output_mapping.PNG" alt="img"></p>
-<p>Once the mapping is completed you can write your monitor script (EPL) program to call the weather service and then identify the pattern in the data.</p>
-<p>Following simple monitor script program will just print the weather information received from web service.</p>
-<p>In this script, whenever the correlator engine detects MyZIP event in the queue, it will route the MyRequest event. MyRequest event will in turn call the web service to get the weather information using web service client adapter and receive the response in the form of MyResponse event. Whenever MyResponse event is detected, our script prints the weather information in the log.</p>
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    monitor WeatherServiceMonitor <span style="color:#f92672">{</span>
-        MyRequest myRequest<span style="color:#f92672">;</span>
-        MyResponse myResponse<span style="color:#f92672">;</span>
-        MyZIP myZIP<span style="color:#f92672">;</span>
-
-        action <span style="color:#a6e22e">onload</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-
-            on all <span style="color:#a6e22e">MyZIP</span><span style="color:#f92672">():</span> myZIP <span style="color:#f92672">{</span>
-                print <span style="color:#e6db74">&#34;Received request for ZIP code : &#34;</span> <span style="color:#f92672">+</span> myZIP<span style="color:#f92672">.</span><span style="color:#a6e22e">ZIP</span><span style="color:#f92672">;</span>
-                print <span style="color:#e6db74">&#34;Preparing to call the service &#34;</span> <span style="color:#f92672">;</span>
-                myRequest<span style="color:#f92672">.</span><span style="color:#a6e22e">GetCityWeatherByZIP</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ZIP</span> <span style="color:#f92672">:=</span> myZIP<span style="color:#f92672">.</span><span style="color:#a6e22e">ZIP</span><span style="color:#f92672">;</span>
-                route myRequest<span style="color:#f92672">;</span>            
-            <span style="color:#f92672">}</span>
-
-            on all <span style="color:#a6e22e">MyResponse</span><span style="color:#f92672">():</span> myResponse <span style="color:#f92672">{</span>
+            on all <span style=color:#a6e22e>MyResponse</span><span style=color:#f92672>():</span> myResponse <span style=color:#f92672>{</span>
                 print 
-                    myResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">GetCityWeatherByZIPResponse</span><span style="color:#f92672">.</span>
-                    GetCityWeatherByZIPResult<span style="color:#f92672">.</span><span style="color:#a6e22e">ResponseText</span> 
-                <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> 
-                <span style="color:#f92672">+</span>     myResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">GetCityWeatherByZIPResponse</span><span style="color:#f92672">.</span>
-                    GetCityWeatherByZIPResult<span style="color:#f92672">.</span><span style="color:#a6e22e">City</span>
-                <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> 
-                <span style="color:#f92672">+</span>     myResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">GetCityWeatherByZIPResponse</span><span style="color:#f92672">.</span>
-                    GetCityWeatherByZIPResult<span style="color:#f92672">.</span><span style="color:#a6e22e">Temperature</span>
-                <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> 
-                <span style="color:#f92672">+</span>     myResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">GetCityWeatherByZIPResponse</span><span style="color:#f92672">.</span>
-                    GetCityWeatherByZIPResult<span style="color:#f92672">.</span><span style="color:#a6e22e">Description</span>
-                <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> 
-                <span style="color:#f92672">+</span>     myResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">GetCityWeatherByZIPResponse</span><span style="color:#f92672">.</span>
-                    GetCityWeatherByZIPResult<span style="color:#f92672">.</span><span style="color:#a6e22e">Wind</span><span style="color:#f92672">;</span> 
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span></code></pre></td></tr></table>
-</div>
-</div>
-  </div>
-</figure>
-<p>Let&rsquo;s fetch the weather for zip code 43209
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">    C:<span style="color:#ae81ff">\S</span>oftwareAG<span style="color:#ae81ff">\A</span>pama<span style="color:#ae81ff">\b</span>in&gt;engine_send
-    MyZIP<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;43209&#34;</span><span style="color:#f92672">)</span>;</code></pre></td></tr></table>
-</div>
-</div>
-  </div>
-</figure></p>
-<p><img src="/img/2016/ApamaWS_result.PNG" alt="img"></p>
-<p>We can invoke the web service periodically to fetch the weather information using &lsquo;on all wait() ' as shown below. This code snippet will route the MyZIP event every minute (60 seconds) to fetch the weather information.</p>
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    on all <span style="color:#a6e22e">wait</span> <span style="color:#f92672">(</span>60<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      MyZIP<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;43209&#34;</span><span style="color:#f92672">);</span> 
-    <span style="color:#f92672">}</span></code></pre></td></tr></table>
-</div>
-</div>
-  </div>
-</figure>
-<p>Instead of logging the information to a file we can actually use Apama Dashboard to visually monitor the weather fluctuation and any patterns in the data. I will explain how to do that in another post.</p>
-
-        </div>
-        
-
-<footer>
-  <p class="meta">
-    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
-    
-    <time>Aug 24, 2016</time>
-    
-      <span class="categories">
-        Tags:
-        
-          <a class="category" href="https://www.dhimate.com/tags/apama">Apama</a>  
-    
-    </span>
-  </p>
-
-  
-
-  <p class="meta">
-    
-        <a class="basic-alignment left" href="https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/" title="Integration Server Class Loading for Custom Jars">Integration Server Class Loading for Custom Jars</a>
-    
-
-    
-      <a class="basic-alignment right" href="https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/" title="Automated Testing of Webmethods Services with REST Assured">Automated Testing of Webmethods Services with REST Assured</a>
-    
-  </p>
-  
-    
-      <div id="disqus_thread"></div>
-<script type="text/javascript">
-  (function() {
-      
-      
-      
-      if (window.location.hostname == "localhost")
-          return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'dhimate';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-  
-</footer>
-
-      </article>
-    </div>
-    
-
-<aside class="sidebar thirds">
-  <section class="first odd">
-
-    
-      <h1>About Me</h1>
-    
-
-    <p>
-      
-        I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href="/about">About</a> to know more.
-      
-    </p>
-  </section>
-
-
-
-  
-  <ul class="sidebar-nav">
-    <li class="sidebar-nav-item">
-      <a target="_blank" href="https://github.com/dhimate/" title="https://github.com/dhimate/"><i class="fa fa-github fa-3x"></i></a>
-      
-      
-      
-      
-         
-      
-      <a target="_blank" href="https://linkedin.com/in/dhimate" title="https://linkedin.com/in/dhimate"><i class="fa fa-linkedin fa-3x"></i></a>
-      
-      
-      
-      
-      
-      
-
-    
-    
-    </li>
-  </ul>
-
-  
-
-  
-    
-      <section class="odd">
-        
-        
-      </section>
-    
-  
-
-  
-  
-  
-    
-      <section class="even">
-        <h1>Recent Posts</h1>
-        <ul id="recent_posts">
-          
-          
-            
-          
-            
-              <li class="post">
-                <a href="/2021/drinking-water-habit/">Drinking Water Habit</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/how-to-use-netcat-to-debug-cloudhub-networking-issues/">How to Use Netcat to Debug Cloudhub Networking Issues</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2020/recap-of-2020/">Recap of 2020</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2020/how-intermittent-fasting-saved-my-life/">How Intermittent Fasting Saved My Life</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2020/upload-attachments-to-salesforce-using-mulesoft/">Upload Attachments to Salesforce Using MuleSoft</a>
-              </li>
-            
-          
-        </ul>
-      </section>
-    
-  
-</aside>
-
-  </div>
-</div>
-
-    <footer role="contentinfo">
-      <p>Copyright &copy; 2021 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
-        <span class="credit">Powered by <a target="_blank" href="https://gohugo.io">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/">Hugo-Octopress</a> theme.
-      </p>
-    </footer>
-
-    
-    
-    
-
-    
-      <script>
-        var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
-      </script>
-    
-  </body>
-</html>
-
+                    myResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>GetCityWeatherByZIPResponse</span><span style=color:#f92672>.</span>
+                    GetCityWeatherByZIPResult<span style=color:#f92672>.</span><span style=color:#a6e22e>ResponseText</span> 
+                <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> 
+                <span style=color:#f92672>+</span>     myResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>GetCityWeatherByZIPResponse</span><span style=color:#f92672>.</span>
+                    GetCityWeatherByZIPResult<span style=color:#f92672>.</span><span style=color:#a6e22e>City</span>
+                <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> 
+                <span style=color:#f92672>+</span>     myResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>GetCityWeatherByZIPResponse</span><span style=color:#f92672>.</span>
+                    GetCityWeatherByZIPResult<span style=color:#f92672>.</span><span style=color:#a6e22e>Temperature</span>
+                <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> 
+                <span style=color:#f92672>+</span>     myResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>GetCityWeatherByZIPResponse</span><span style=color:#f92672>.</span>
+                    GetCityWeatherByZIPResult<span style=color:#f92672>.</span><span style=color:#a6e22e>Description</span>
+                <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> 
+                <span style=color:#f92672>+</span>     myResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>GetCityWeatherByZIPResponse</span><span style=color:#f92672>.</span>
+                    GetCityWeatherByZIPResult<span style=color:#f92672>.</span><span style=color:#a6e22e>Wind</span><span style=color:#f92672>;</span> 
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span></code></pre></td></tr></table></div></div></div></figure><p>Let&rsquo;s fetch the weather for zip code 43209<figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>    C:<span style=color:#ae81ff>\S</span>oftwareAG<span style=color:#ae81ff>\A</span>pama<span style=color:#ae81ff>\b</span>in&gt;engine_send
+    MyZIP<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;43209&#34;</span><span style=color:#f92672>)</span>;</code></pre></td></tr></table></div></div></div></figure></p><p><img src=/img/2016/ApamaWS_result.PNG alt=img></p><p>We can invoke the web service periodically to fetch the weather information using &lsquo;on all wait() ' as shown below. This code snippet will route the MyZIP event every minute (60 seconds) to fetch the weather information.</p><figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    on all <span style=color:#a6e22e>wait</span> <span style=color:#f92672>(</span>60<span style=color:#f92672>.</span><span style=color:#a6e22e>0</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+      MyZIP<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;43209&#34;</span><span style=color:#f92672>);</span> 
+    <span style=color:#f92672>}</span></code></pre></td></tr></table></div></div></div></figure><p>Instead of logging the information to a file we can actually use Apama Dashboard to visually monitor the weather fluctuation and any patterns in the data. I will explain how to do that in another post.</p></div><footer><p class=meta><span class="byline author vcard">Posted by <span class=fn>Yogesh Dhimate</span></span>
+<time>Aug 24, 2016</time>
+<span class=categories>Tags:
+<a class=category href=https://www.dhimate.com/tags/apama>Apama</a></span></p><p class=meta><a class="basic-alignment left" href=https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/ title="Integration Server Class Loading for Custom Jars">Integration Server Class Loading for Custom Jars</a>
+<a class="basic-alignment right" href=https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/ title="Automated Testing of Webmethods Services with REST Assured">Automated Testing of Webmethods Services with REST Assured</a></p><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='dhimate';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></footer></article></div><aside class="sidebar thirds"><section class="first odd"><h1>About Me</h1><p>I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href=/about>About</a> to know more.</p></section><ul class=sidebar-nav><li class=sidebar-nav-item><a target=_blank href=https://github.com/dhimate/ title=https://github.com/dhimate/><i class="fa fa-github fa-3x"></i></a><a target=_blank href=https://linkedin.com/in/dhimate title=https://linkedin.com/in/dhimate><i class="fa fa-linkedin fa-3x"></i></a></li></ul><section class=odd></section><section class=even><h1>Recent Posts</h1><ul id=recent_posts><li class=post><a href=/2021/drinking-water-habit/>Drinking Water Habit</a></li><li class=post><a href=/2021/how-to-use-netcat-to-debug-cloudhub-networking-issues/>How to Use Netcat to Debug Cloudhub Networking Issues</a></li><li class=post><a href=/2020/recap-of-2020/>Recap of 2020</a></li><li class=post><a href=/2020/how-intermittent-fasting-saved-my-life/>How Intermittent Fasting Saved My Life</a></li><li class=post><a href=/2020/upload-attachments-to-salesforce-using-mulesoft/>Upload Attachments to Salesforce Using MuleSoft</a></li></ul></section></aside></div></div><footer role=contentinfo><p>Copyright &copy; 2021 Yogesh Dhimate - <a href=https://www.dhimate.com/license/>License</a> -
+<span class=credit>Powered by <a target=_blank href=https://gohugo.io>Hugo</a> and <a target=_blank href=https://github.com/parsiya/hugo-octopress/>Hugo-Octopress</a> theme.</p></footer><script>var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'));</script></body></html>
