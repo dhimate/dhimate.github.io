@@ -1,1 +1,64 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Yogesh Dhimate</title><link>https://www.dhimate.com/tags/</link><description>Recent content in Tags on Yogesh Dhimate</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 02 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>MuleSoft</title><link>https://www.dhimate.com/tags/mulesoft/</link><pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/tags/mulesoft/</guid><description/></item><item><title>Personal</title><link>https://www.dhimate.com/tags/personal/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/tags/personal/</guid><description/></item><item><title>Books</title><link>https://www.dhimate.com/tags/books/</link><pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/tags/books/</guid><description/></item><item><title>Google</title><link>https://www.dhimate.com/tags/google/</link><pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/tags/google/</guid><description/></item><item><title>webMethods</title><link>https://www.dhimate.com/tags/webmethods/</link><pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/tags/webmethods/</guid><description/></item><item><title>Apama</title><link>https://www.dhimate.com/tags/apama/</link><pubDate>Wed, 24 Aug 2016 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/tags/apama/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Yogesh Dhimate</title>
+    <link>https://www.dhimate.com/tags/</link>
+    <description>Recent content in Tags on Yogesh Dhimate</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 02 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MuleSoft</title>
+      <link>https://www.dhimate.com/tags/mulesoft/</link>
+      <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/tags/mulesoft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Personal</title>
+      <link>https://www.dhimate.com/tags/personal/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/tags/personal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Books</title>
+      <link>https://www.dhimate.com/tags/books/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/tags/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Google</title>
+      <link>https://www.dhimate.com/tags/google/</link>
+      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/tags/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>webMethods</title>
+      <link>https://www.dhimate.com/tags/webmethods/</link>
+      <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/tags/webmethods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Apama</title>
+      <link>https://www.dhimate.com/tags/apama/</link>
+      <pubDate>Wed, 24 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/tags/apama/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
