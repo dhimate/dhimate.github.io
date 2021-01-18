@@ -1,5 +1,7 @@
 html,
 body,
+div,
+span,
 applet,
 object,
 iframe,
@@ -1681,7 +1683,7 @@ th {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 80%;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 1;
   color: #fff;
   text-align: center;
@@ -1925,9 +1927,4 @@ figure a {
     white-space: nowrap;
 }
 
-div.mermaid svg{
-    font-family: 'Ubuntu';
-    line-height: 0.9;
-    font-weight: lighter;
-}
-/* Hugo Figure shortcode - end here -*/
+/* Hugo Figure shortcode - end */
