@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>webMethods on Yogesh Dhimate</title><link>https://www.dhimate.com/tags/webmethods/</link><description>Recent content in webMethods on Yogesh Dhimate</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 24 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/tags/webmethods/index.xml" rel="self" type="application/rss+xml"/><item><title>Automated Testing of Webmethods Services with REST Assured</title><link>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</link><pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</guid><description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
-You will need following things on your machine.</description></item><item><title>Using OAuth 2.0 with webMethods Integration Server</title><link>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</link><pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</guid><description>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.
-For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</description></item><item><title>Integration Server Class Loading for Custom Jars</title><link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link><pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</guid><description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
-It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webMethods on Yogesh Dhimate</title>
+    <link>https://www.dhimate.com/tags/webmethods/</link>
+    <description>Recent content in webMethods on Yogesh Dhimate</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 24 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/tags/webmethods/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automated Testing of Webmethods Services with REST Assured</title>
+      <link>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</link>
+      <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</guid>
+      <description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
+You will need following things on your machine.</description>
+    </item>
+    
+    <item>
+      <title>Integration Server Class Loading for Custom Jars</title>
+      <link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link>
+      <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</guid>
+      <description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
+It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description>
+    </item>
+    
+  </channel>
+</rss>
