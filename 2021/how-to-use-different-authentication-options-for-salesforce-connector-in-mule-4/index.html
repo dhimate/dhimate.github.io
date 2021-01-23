@@ -275,10 +275,14 @@
 </p>
 </li>
 <li>
-<p>Fill in name and email. Select ‘Enable OAuth Settings’ Enter two Callback URLs
-a. <a href="https://oauthdebugger.com/debug">https://oauthdebugger.com/debug</a>
-b. http://localhost:8081
-Select ‘Use digital signatures’ and upload the .crt file received when setting up the certificate above.
+<p>Fill in name and email. Select ‘Enable OAuth Settings’ Enter two Callback URLs</p>
+<ul>
+<li><a href="https://oauthdebugger.com/debug">https://oauthdebugger.com/debug</a></li>
+<li>http://localhost:8081</li>
+</ul>
+</li>
+</ol>
+<p>Select ‘Use digital signatures’ and upload the .crt file received when setting up the certificate above.
 Select all the OAuth Scopes if possible
 <figure>
     <img src="/img/2021/salesforce-connector-auth/create-connected-app.jpg"
@@ -286,7 +290,7 @@ Select all the OAuth Scopes if possible
 </figure>
 
 Note the client_id and client_Secret</p>
-</li>
+<ol start="5">
 <li>
 <p>In your connected app&rsquo;s page, click on Manage button to review and update the app policies. Click on Manage.
 <figure>
@@ -312,7 +316,7 @@ Note the client_id and client_Secret</p>
 <ul>
 <li>Go to Settings &gt; Manage Users &gt; Profiles</li>
 <li>Edit the profile associated with the user</li>
-<li>For ‘Connected App Access’ under the profile, Tick.</li>
+<li>For ‘Connected App Access’ under the profile, select the checkbox against the connected app. Save.</li>
 </ul>
 </li>
 <li>

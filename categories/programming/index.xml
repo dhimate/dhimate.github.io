@@ -88,6 +88,16 @@ Below are the sample request and response messages for this operation, which we 
     </item>
     
     <item>
+      <title>Using OAuth 2.0 with webMethods Integration Server</title>
+      <link>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</link>
+      <pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</guid>
+      <description>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.
+For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</description>
+    </item>
+    
+    <item>
       <title>Integration Server Class Loading for Custom Jars</title>
       <link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link>
       <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
