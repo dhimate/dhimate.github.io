@@ -1,8 +1,80 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1"><script src=/js/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:'neutral',securityLevel:'loose'})</script><link href=/css/fonts.css rel=stylesheet type=text/css><title>Yogesh Dhimate</title><link rel=stylesheet href=/css/hugo-octopress.css><link rel=stylesheet href=/css/fork-awesome.min.css><link href=https://www.dhimate.com/favicon.png rel=icon><link href=/index.xml rel=alternate type=application/rss+xml title="Yogesh Dhimate"><meta name=description content><meta name=keywords content><meta name=author content="Yogesh Dhimate"><meta name=generator content="Hugo 0.85.0"></head><body><header role=banner><hgroup><h1><a href=https://www.dhimate.com/>Yogesh Dhimate</a></h1><h2>Notes to Myself</h2></hgroup></header><nav role=navigation><fieldset class=mobile-nav><select onchange="location=this.value"><option value>Navigate…</option><option value=https://www.dhimate.com/about/>» About</option><option value=https://www.dhimate.com/r%C3%A9sum%C3%A9/>» Résumé</option><option value=https://www.dhimate.com/blog/>» Blog</option><option value=https://www.dhimate.com/books/>» Bookshelf</option></select></fieldset><ul class=main-navigation><li><a href=https://www.dhimate.com/about/ title=About rel="noopener noreferrer">About</a></li><li><a href=https://www.dhimate.com/r%C3%A9sum%C3%A9/ title=Résumé rel="noopener noreferrer">Résumé</a></li><li><a href=https://www.dhimate.com/blog/ title=Blog rel="noopener noreferrer">Blog</a></li><li><a href=https://www.dhimate.com/books/ title=Bookshelf rel="noopener noreferrer">Bookshelf</a></li></ul><ul class=subscription></ul><form action=https://www.google.com/search method=get target=_blank rel="noopener noreferrer"><fieldset role=search><input class=search type=text name=q results=0 placeholder=Search>
-<input type=hidden name=q value=site:https://www.dhimate.com/></fieldset></form></nav><div id=main><div id=content><div class=blog-index><article><header><p class=meta>Jan 23, 2021
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1">
+<script src=/js/mermaid.min.js></script>
+<script>mermaid.initialize({startOnLoad:!0,theme:'neutral',securityLevel:'loose'})</script>
+<link href=/css/fonts.css rel=stylesheet type=text/css>
+<title>Yogesh Dhimate</title>
+<link rel=stylesheet href=/css/hugo-octopress.css>
+<link rel=stylesheet href=/css/fork-awesome.min.css>
+<link href=https://www.dhimate.com/favicon.png rel=icon>
+<link href=/index.xml rel=alternate type=application/rss+xml title="Yogesh Dhimate">
+<meta name=description content>
+<meta name=keywords content>
+<meta name=author content="Yogesh Dhimate">
+<meta name=generator content="Hugo 0.86.0">
+</head>
+<body>
+<header role=banner>
+<hgroup>
+<h1><a href=https://www.dhimate.com/>Yogesh Dhimate</a></h1>
+<h2>Notes to Myself</h2>
+</hgroup></header>
+<nav role=navigation>
+<fieldset class=mobile-nav>
+<select onchange="location=this.value"><option value>Navigate…</option><option value=https://www.dhimate.com/about/>» About</option><option value=https://www.dhimate.com/r%C3%A9sum%C3%A9/>» Résumé</option><option value=https://www.dhimate.com/blog/>» Blog</option><option value=https://www.dhimate.com/books/>» Bookshelf</option></select>
+</fieldset>
+<ul class=main-navigation>
+<li><a href=https://www.dhimate.com/about/ title=About rel="noopener noreferrer">About</a></li>
+<li><a href=https://www.dhimate.com/r%C3%A9sum%C3%A9/ title=Résumé rel="noopener noreferrer">Résumé</a></li>
+<li><a href=https://www.dhimate.com/blog/ title=Blog rel="noopener noreferrer">Blog</a></li>
+<li><a href=https://www.dhimate.com/books/ title=Bookshelf rel="noopener noreferrer">Bookshelf</a></li>
+</ul>
+<ul class=subscription>
+</ul>
+<form action=https://www.google.com/search method=get target=_blank rel="noopener noreferrer">
+<fieldset role=search>
+<input class=search type=text name=q results=0 placeholder=Search>
+<input type=hidden name=q value=site:https://www.dhimate.com/>
+</fieldset>
+</form>
+</nav>
+<div id=main>
+<div id=content>
+<div class=blog-index>
+<article>
+<header>
+<p class=meta>Jan 23, 2021
 - 5 minute read
 - <a href=https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/#disqus_thread>Comments</a>
-- <a class=label href=https://www.dhimate.com/categories/programming/>Programming</a></p><h1 class=entry-title><a href=https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/>Using Epic's FHIR APIs in Mule 4</a></h1></header><h2 id=introduction>Introduction</h2><p>FHIR (Fast Healthcare Interoperability Resources) is a new and emerging standard for interoperability in healthcare IT. Unlike the ancient HL7v2 standard, FHIR is open, extensible, and composable. It supports modern web standards like JSON, XML, HTTP(!), and Turtle. It also defines different data exchange methods like RESTful API, messaging, services, documents, and persistent storage. Best of all the FHIR documentation is outstanding: There is detail documentation for every type of resource, with lots of examples. Enough detail for anyone to create a compliant implementation. All of the data types like dates and times, terminologies, identifiers, references, numeric values, extensions are documented in detail, including how to read and write them. It&rsquo;s probably one of the best documented and well thought out APIs I have worked with.</p><p>Epic made their FHIR APIs available on <a href=https://fhir.epic.com/>https://fhir.epic.com/</a>. In this post, we will discuss using Epic&rsquo;s FHIR APIs in Mule 4</p><h2 id=prerequisites>Prerequisites</h2><p>You will need an Epic developer account. You can get one for free by signing up <a href=https://fhir.epic.com/Developer/Index>here</a>. I have used Anypoint Studio 7.7 for Mule app.</p><h2 id=configuration>Configuration</h2><h3 id=certificate-setup-for-jws>Certificate setup for JWS</h3><ol><li><p>We will use SMART Backend Services approach described <a href="https://fhir.epic.com/Documentation?docId=oauth2&section=BackendOAuth2Guide">here</a> which uses signed JWT to get the access token.</p></li><li><p>Generate a new public-private key pair, and get the certificate(s) in appropriate format<figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+- <a class=label href=https://www.dhimate.com/categories/programming/>Programming </a>
+</p>
+<h1 class=entry-title>
+<a href=https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/>Using Epic's FHIR APIs in Mule 4</a>
+</h1>
+</header>
+<h2 id=introduction>Introduction</h2>
+<p>FHIR (Fast Healthcare Interoperability Resources) is a new and emerging standard for interoperability in healthcare IT. Unlike the ancient HL7v2 standard, FHIR is open, extensible, and composable. It supports modern web standards like JSON, XML, HTTP(!), and Turtle. It also defines different data exchange methods like RESTful API, messaging, services, documents, and persistent storage. Best of all the FHIR documentation is outstanding: There is detail documentation for every type of resource, with lots of examples. Enough detail for anyone to create a compliant implementation. All of the data types like dates and times, terminologies, identifiers, references, numeric values, extensions are documented in detail, including how to read and write them. It&rsquo;s probably one of the best documented and well thought out APIs I have worked with.</p>
+<p>Epic made their FHIR APIs available on <a href=https://fhir.epic.com/>https://fhir.epic.com/</a>. In this post, we will discuss using Epic&rsquo;s FHIR APIs in Mule 4</p>
+<h2 id=prerequisites>Prerequisites</h2>
+<p>You will need an Epic developer account. You can get one for free by signing up <a href=https://fhir.epic.com/Developer/Index>here</a>. I have used Anypoint Studio 7.7 for Mule app.</p>
+<h2 id=configuration>Configuration</h2>
+<h3 id=certificate-setup-for-jws>Certificate setup for JWS</h3>
+<ol>
+<li>
+<p>We will use SMART Backend Services approach described <a href="https://fhir.epic.com/Documentation?docId=oauth2&section=BackendOAuth2Guide">here</a> which uses signed JWT to get the access token.</p>
+</li>
+<li>
+<p>Generate a new public-private key pair, and get the certificate(s) in appropriate format
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
@@ -10,14 +82,59 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># generate a new public-private key pair</span>
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># generate a new public-private key pair</span>
 openssl genrsa -out Anypoint_Mulesoft.pem <span style=color:#ae81ff>2048</span>  
 
 <span style=color:#75715e># export the public key to a base64 encoded X.509 certificate</span>
 openssl req -new -x509 -key Anypoint_Mulesoft.pem -out Anypoint_PublicKey.pem -subj <span style=color:#e6db74>&#39;/CN=Anypoint&#39;</span> -days <span style=color:#ae81ff>365</span>
 
 <span style=color:#75715e># export the keystore in pkcs12</span>
-openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -out Anypoint_Keystore.p12</code></pre></td></tr></table></div></div></div></figure></p></li></ol><h3 id=create-an-app-in-epic>Create an app in Epic</h3><ol><li><p>Login to <a href=https://fhir.epic.com/>https://fhir.epic.com/</a> and click on &lsquo;Build Apps&rsquo;<figure><img src=/img/2021/epic-fhir-server/epic-build-app.png alt=dwarf width=600px></figure></p></li><li><p>Click on &lsquo;Create&rsquo; and enter your app details as follows. Make sure to select the Application Audience as &lsquo;Backend Systems&rsquo;. For Sandbox JWT signing public key, upload the public key store (Anypoint_PublicKey.pem) file generated in the previous step. Click on save.<figure><img src=/img/2021/epic-fhir-server/epic-create-app.png alt=dwarf width=600px></figure></p></li><li><p>You should see the Client ID and Non-Production Client ID for your app. Select the SMART on FHIR version as R4, enter the summary, accept the terms of usage and click on &lsquo;Save & Ready for Sandbox&rsquo;.<figure><img src=/img/2021/epic-fhir-server/epic-app-overview.png alt=dwarf width=600px></figure></p></li></ol><p><em>In my experience it usually takes a couple of hours for your app to be usable in Epic. It took me ~2 hours for my app to be usable</em></p><h2 id=mule-application-details>Mule application details</h2><ol><li><p>Create a new Mule application, and copy the pkcs12 formatted keystore (Anypoint_Keystore.p12) created earlier, in the <code>src/main/resources</code> folder.</p></li><li><p>To generate a signed JWT (JWS), we will use <a href=https://github.com/jwtk/jjwt>Java JWT library</a>. In the pom.xml of your Mule application, include the following dependencies. (I have included Apache log4j dependencies, these are optional).<figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -out Anypoint_Keystore.p12</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</figure></p>
+</li>
+</ol>
+<h3 id=create-an-app-in-epic>Create an app in Epic</h3>
+<ol>
+<li>
+<p>Login to <a href=https://fhir.epic.com/>https://fhir.epic.com/</a> and click on &lsquo;Build Apps&rsquo;
+<figure><img src=/img/2021/epic-fhir-server/epic-build-app.png alt=dwarf width=600px>
+</figure>
+</p>
+</li>
+<li>
+<p>Click on &lsquo;Create&rsquo; and enter your app details as follows. Make sure to select the Application Audience as &lsquo;Backend Systems&rsquo;. For Sandbox JWT signing public key, upload the public key store (Anypoint_PublicKey.pem) file generated in the previous step. Click on save.
+<figure><img src=/img/2021/epic-fhir-server/epic-create-app.png alt=dwarf width=600px>
+</figure>
+</p>
+</li>
+<li>
+<p>You should see the Client ID and Non-Production Client ID for your app. Select the SMART on FHIR version as R4, enter the summary, accept the terms of usage and click on &lsquo;Save & Ready for Sandbox&rsquo;.
+<figure><img src=/img/2021/epic-fhir-server/epic-app-overview.png alt=dwarf width=600px>
+</figure>
+</p>
+</li>
+</ol>
+<p><em>In my experience it usually takes a couple of hours for your app to be usable in Epic. It took me ~2 hours for my app to be usable</em></p>
+<h2 id=mule-application-details>Mule application details</h2>
+<ol>
+<li>
+<p>Create a new Mule application, and copy the pkcs12 formatted keystore (Anypoint_Keystore.p12) created earlier, in the <code>src/main/resources</code> folder.</p>
+</li>
+<li>
+<p>To generate a signed JWT (JWS), we will use <a href=https://github.com/jwtk/jjwt>Java JWT library</a>. In the pom.xml of your Mule application, include the following dependencies. (I have included Apache log4j dependencies, these are optional).
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -48,7 +165,9 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;dependency&gt;</span>
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;dependency&gt;</span>
     <span style=color:#f92672>&lt;groupId&gt;</span>org.apache.logging.log4j<span style=color:#f92672>&lt;/groupId&gt;</span>
     <span style=color:#f92672>&lt;artifactId&gt;</span>log4j-api<span style=color:#f92672>&lt;/artifactId&gt;</span>
     <span style=color:#f92672>&lt;version&gt;</span>2.14.0<span style=color:#f92672>&lt;/version&gt;</span>
@@ -78,7 +197,22 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
     <span style=color:#f92672>&lt;artifactId&gt;</span>bcprov-jdk15on<span style=color:#f92672>&lt;/artifactId&gt;</span>
     <span style=color:#f92672>&lt;version&gt;</span>1.65<span style=color:#f92672>&lt;/version&gt;</span>
     <span style=color:#f92672>&lt;type&gt;</span>jar<span style=color:#f92672>&lt;/type&gt;</span>
-<span style=color:#f92672>&lt;/dependency&gt;</span></code></pre></td></tr></table></div></div></div></figure></p></li><li><p>In Mule application&rsquo;s <code>src/main/java</code> folder, create a new Java package <code>com.dhimate.demo</code>, class <code>JWTProvider</code> and use following code snippet to generate signed JWT.<figure class=code><figcaption><span></span></figcaption><div class=codewrapper><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<span style=color:#f92672>&lt;/dependency&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</figure></p>
+</li>
+<li>
+<p>In Mule application&rsquo;s <code>src/main/java</code> folder, create a new Java package <code>com.dhimate.demo</code>, class <code>JWTProvider</code> and use following code snippet to generate signed JWT.
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -144,7 +278,9 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> com.dhimate.demo<span style=color:#f92672>;</span>
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> com.dhimate.demo<span style=color:#f92672>;</span>
 
 <span style=color:#f92672>import</span> io.jsonwebtoken.Jwts<span style=color:#f92672>;</span> 
 
@@ -209,14 +345,289 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
 		<span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
 	<span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
- </code></pre></td></tr></table></div></div></div></figure></p></li></ol><p>Your Mule application should look like this.</p><figure><img src=/img/2021/epic-fhir-server/epic-mule-app-structure.png alt=dwarf width=300px></figure><ol start=3><li><p>In Mule application&rsquo;s <code>src/main/java</code> folder, create a new Java package <code>com.dhimate.demo</code>, class <code>JWTProvider</code> and use the following code snippet to generate signed JWT.</p></li><li><p>Calling Epic&rsquo;s FHIR APIs is a two-step process.</p></li></ol><ul><li>In the first step we need to get the access token using the signed JWT token</li><li>In the second step we will use the access token received in the step above to access FHIR resource<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow.png alt=dwarf width=600px></figure></li></ul><ol start=5><li>Let&rsquo;s look at the configuration of important components</li></ol><ul><li>Generate signed JWS token using <code>Invoke Static</code> component<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-generate-JWS.png alt=dwarf width=600px></figure></li><li>Prepare request payload to get access token<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-prepare-token-request.png alt=dwarf width=600px></figure></li><li>Get the access token<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-get-access-token.png alt=dwarf width=600px></figure></li><li>Call FHIR API to get the data<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-epic-fhir-api.png alt=dwarf width=600px></figure></li></ul><ol start=6><li>Once this is done, we can add a simple HTTP listener and connect our flow to it to get the data from Epic&rsquo;s FHIR API. Epic has provided <a href="https://fhir.epic.com/Documentation?docId=testpatients">test data</a> in the sandbox. Let&rsquo;s use it to search for a patient record.<figure><img src=/img/2021/epic-fhir-server/epic-fhir-postman.png alt=dwarf width=600px></figure></li></ol></article><article><header><p class=meta>Jan 16, 2021
+ </code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</figure></p>
+</li>
+</ol>
+<p>Your Mule application should look like this.</p>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-app-structure.png alt=dwarf width=300px>
+</figure>
+<ol start=3>
+<li>
+<p>In Mule application&rsquo;s <code>src/main/java</code> folder, create a new Java package <code>com.dhimate.demo</code>, class <code>JWTProvider</code> and use the following code snippet to generate signed JWT.</p>
+</li>
+<li>
+<p>Calling Epic&rsquo;s FHIR APIs is a two-step process.</p>
+</li>
+</ol>
+<ul>
+<li>In the first step we need to get the access token using the signed JWT token</li>
+<li>In the second step we will use the access token received in the step above to access FHIR resource
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow.png alt=dwarf width=600px>
+</figure>
+</li>
+</ul>
+<ol start=5>
+<li>Let&rsquo;s look at the configuration of important components</li>
+</ol>
+<ul>
+<li>Generate signed JWS token using <code>Invoke Static</code> component
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-generate-JWS.png alt=dwarf width=600px>
+</figure>
+</li>
+<li>Prepare request payload to get access token
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-prepare-token-request.png alt=dwarf width=600px>
+</figure>
+</li>
+<li>Get the access token
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-get-access-token.png alt=dwarf width=600px>
+</figure>
+</li>
+<li>Call FHIR API to get the data
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-epic-fhir-api.png alt=dwarf width=600px>
+</figure>
+</li>
+</ul>
+<ol start=6>
+<li>Once this is done, we can add a simple HTTP listener and connect our flow to it to get the data from Epic&rsquo;s FHIR API. Epic has provided <a href="https://fhir.epic.com/Documentation?docId=testpatients">test data</a> in the sandbox. Let&rsquo;s use it to search for a patient record.
+<figure><img src=/img/2021/epic-fhir-server/epic-fhir-postman.png alt=dwarf width=600px>
+</figure>
+</li>
+</ol>
+</article>
+<article>
+<header>
+<p class=meta>Jan 16, 2021
 - 4 minute read
 - <a href=https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/#disqus_thread>Comments</a>
-- <a class=label href=https://www.dhimate.com/categories/programming/>Programming</a></p><h1 class=entry-title><a href=https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/>How to Use Different Authentication Options for Salesforce Connector in Mule 4</a></h1></header><h2 id=introduction>Introduction</h2><p>MuleSoft offers multiple connectors for Salesforce integration. This post is about Salesforce Connector for Mule 4. This connector helps in integrating with Sales Cloud, Service Cloud, Salesforce Platform, and Force.com. We will specifically look into different options for authentication with Salesforce.</p><h2 id=software-prerequisites>Software Prerequisites</h2><p>You need a Salesforce developer account. You can get one for free by signing up <a href=https://developer.salesforce.com/signup>here</a>. I have used the following versions for MuleSoft software.</p><ol><li>Anypoint Studio 7.7</li><li>Salesforce Connector 10.8.0</li></ol><h2 id=configuration>Configuration</h2><h3 id=security-token-in-salesforce>Security Token in Salesforce</h3><p>Salesforce security token is an alphanumeric code associated with your password. You do not need a security token if you are trying to authenticate from an IP address that is inside your Salesforce org&rsquo;s trusted IP range, or your Salesforce profile&rsquo;s login IP range. When you sign up for a new developer account, your Salesforce org does not have trusted IP ranges. You can either set up trusted or login IP ranges in your org, or use the security token for authentication. Generating security token is simple.</p><ol><li><p>Go to settings<br><figure><img src=/img/2021/salesforce-connector-auth/settings-salesforce.jpg alt=dwarf width=300px></figure></p></li><li><p>Reset security token by using the &lsquo;Reset My Security Token&rsquo; menu and clicking on the &lsquo;Reset Security Token&rsquo; button.<figure><img src=/img/2021/salesforce-connector-auth/reset-security-token.jpg alt=dwarf width=500px></figure></p></li><li><p>You should receive your new security token in your email account that you used to sign up for the Salesforce developer account.</p></li></ol><h3 id=certificate-setup-in-salesforce>Certificate setup in Salesforce</h3><p>For certificate-based security, you need to set up a certificate in Salesforce.</p><ol><li><p>Go to setup<figure><img src=/img/2021/salesforce-connector-auth/setup-salesforce.jpg alt=dwarf width=300px></figure></p></li><li><p>Search for certificate and key management and select the option<figure><img src=/img/2021/salesforce-connector-auth/certificate-key-management-menu.jpg alt=dwarf width=300px></figure></p></li><li><p>Click on &lsquo;Create Self-Signed Certificate&rsquo; button to create a new certificate and enter the information and save it.<figure><img src=/img/2021/salesforce-connector-auth/create-self-signed-certificate.jpg alt=dwarf width=800px></figure></p></li><li><p>Once certificate is created, download the certificate (.crt) file. We need it for setting up the connected app.<figure><img src=/img/2021/salesforce-connector-auth/download-certificate.jpg alt=dwarf width=800px></figure></p></li><li><p>Export the certificate to keystore. We need it to configure the connection information in Mule app.<figure><img src=/img/2021/salesforce-connector-auth/export-to-keystore.jpg alt=dwarf width=800px></figure></p></li><li><p>Enter the password when exporting to keystore<figure><img src=/img/2021/salesforce-connector-auth/enter-password.jpg alt=dwarf width=800px></figure></p></li><li><p>Make sure you save both the .crt file (downloaded in step 4 above) and the .jks file safely on your disk.</p></li></ol><h3 id=connected-app-setup-in-salesforce>Connected App setup in Salesforce</h3><ol><li><p>Go to setup<figure><img src=/img/2021/salesforce-connector-auth/setup-salesforce.jpg alt=dwarf width=300px></figure></p></li><li><p>Search for app manager and select the &lsquo;App Manager&rsquo; option<figure><img src=/img/2021/salesforce-connector-auth/app-manager-option.jpg alt=dwarf width=300px></figure></p></li><li><p>Use the &lsquo;New Connected App&rsquo; button to create a new connected app.<figure><img src=/img/2021/salesforce-connector-auth/new-connected-app.jpg alt=dwarf width=800px></figure></p></li><li><p>Fill in name and email. Select ‘Enable OAuth Settings’ Enter two Callback URLs</p><ul><li><a href=https://oauthdebugger.com/debug>https://oauthdebugger.com/debug</a></li><li>http://localhost:8081</li></ul></li></ol><p>Select ‘Use digital signatures’ and upload the .crt file received when setting up the certificate above.
-Select all the OAuth Scopes if possible<figure><img src=/img/2021/salesforce-connector-auth/create-connected-app.jpg alt=dwarf width=800px></figure>Note the client_id and client_Secret</p><ol start=5><li><p>In your connected app&rsquo;s page, click on Manage button to review and update the app policies. Click on Manage.<figure><img src=/img/2021/salesforce-connector-auth/manage-connected-app-menu.jpg alt=dwarf width=800px></figure></p></li><li><p>And then on &lsquo;Edit Policies&rsquo;<figure><img src=/img/2021/salesforce-connector-auth/edit-policies.jpg alt=dwarf width=800px></figure></p></li><li><p>In the Permitted Users option you can see two options</p><ul><li><p>Admin approved users are pre-authorized.</p><p>We will not go into the details of this option, but if you want to use it you can use the following steps</p><ul><li>Go to Settings > Manage Users > Profiles</li><li>Edit the profile associated with the user</li><li>For ‘Connected App Access’ under the profile, select the checkbox against the connected app. Save.</li></ul></li><li><p>All users may self-authorize.</p><p>We will use this option. Ensure that you select this option and save the policy.<figure><img src=/img/2021/salesforce-connector-auth/connected-app-policy.jpg alt=dwarf width=800px></figure></p></li></ul></li><li><p>Open your browser and go to <a href=https://oauthdebugger.com/>https://oauthdebugger.com/</a>. Enter following details</p><ul><li>Authorization url = ‘https://login.salesforce.com/services/oauth2/authorize’</li><li>Redirect URI = ‘https://oauthdebugger.com/debug’</li><li>Client ID = obtained from the connected app</li><li>Scope = ‘api refresh_token offline_access’</li><li>Response type = ‘code’</li><li>Response mode = ‘query’</li><li>Click on “send request”</li></ul></li></ol><figure><img src=/img/2021/salesforce-connector-auth/oauth-debugger-screen.jpg alt=dwarf width=800px></figure><ol start=9><li><p>It should redirect you to enter your credentials on Salesforce login screen and you should receive an authorization code.<figure><img src=/img/2021/salesforce-connector-auth/salesforce-oauth-consent.jpg alt=dwarf width=500px></figure></p></li><li><p>This will complete the connected app setup.</p></li></ol><h2 id=basic-authentication>Basic Authentication</h2><p>Basic authentication is the easiest way to authenticate with Salesforce. For basic authentication you need username and password, and optionally a <a href=#configuration>security token</a>.<figure><img src=/img/2021/salesforce-connector-auth/basic-auth-test-connection.jpg alt=dwarf width=800px></figure></p><h2 id=oauth-jwt>OAuth JWT</h2><p>For OAuth JWT connection copy and paste the key store file (.jks) that you created in the certificate setup section into the src/main/resources folder.</p><ul><li>Consumer Key – Consumer key of the Connected App that was created in Salesforce</li><li>Key Store – Keystore file (.jks) that you downloaded from the certificate setup</li><li>Store Password – Keystore password that was created when you generated the key store file</li><li>Principal – Salesforce username of the user that was approved against the authorization URL</li></ul><figure><img src=/img/2021/salesforce-connector-auth/oauth-jwt-connection.jpg alt=dwarf width=800px></figure><h2 id=oauth-saml>OAuth SAML</h2><p>For OAuth SAML connection copy and paste the key store file (.jks) that you created in the certificate setup section into the src/main/resources folder.</p><ul><li>Consumer Key – Consumer key of the Connected App that was created in Salesforce</li><li>Key Store – Keystore file (.jks) that you downloaded from the certificate setup</li><li>Store Password – Keystore password that was created when you generated the key store file</li><li>Principal – Salesforce username of the user that was approved against the authorization URL</li></ul><figure><img src=/img/2021/salesforce-connector-auth/oauth-saml-connection.jpg alt=dwarf width=800px></figure><h2 id=oauth-username-password>OAuth Username Password</h2><p>For OAuth Username Password configure the following properties</p><ul><li>Consumer Key – Consumer key of the Connected App that was created in Salesforce</li><li>Consumer Secret – Consumer secret of the Connected App that was created in Salesforce</li><li>Username – Salesforce login id</li><li>Password – Salesforce password</li><li>Security Token - Security token associated with the username</li></ul><figure><img src=/img/2021/salesforce-connector-auth/oauth-username-password.jpg alt=dwarf width=800px></figure></article><article><header><p class=meta>Jan 13, 2021
+- <a class=label href=https://www.dhimate.com/categories/programming/>Programming </a>
+</p>
+<h1 class=entry-title>
+<a href=https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/>How to Use Different Authentication Options for Salesforce Connector in Mule 4</a>
+</h1>
+</header>
+<h2 id=introduction>Introduction</h2>
+<p>MuleSoft offers multiple connectors for Salesforce integration. This post is about Salesforce Connector for Mule 4. This connector helps in integrating with Sales Cloud, Service Cloud, Salesforce Platform, and Force.com. We will specifically look into different options for authentication with Salesforce.</p>
+<h2 id=software-prerequisites>Software Prerequisites</h2>
+<p>You need a Salesforce developer account. You can get one for free by signing up <a href=https://developer.salesforce.com/signup>here</a>. I have used the following versions for MuleSoft software.</p>
+<ol>
+<li>Anypoint Studio 7.7</li>
+<li>Salesforce Connector 10.8.0</li>
+</ol>
+<h2 id=configuration>Configuration</h2>
+<h3 id=security-token-in-salesforce>Security Token in Salesforce</h3>
+<p>Salesforce security token is an alphanumeric code associated with your password. You do not need a security token if you are trying to authenticate from an IP address that is inside your Salesforce org&rsquo;s trusted IP range, or your Salesforce profile&rsquo;s login IP range. When you sign up for a new developer account, your Salesforce org does not have trusted IP ranges. You can either set up trusted or login IP ranges in your org, or use the security token for authentication. Generating security token is simple.</p>
+<ol>
+<li>
+<p>Go to settings<br>
+<figure><img src=/img/2021/salesforce-connector-auth/settings-salesforce.jpg alt=dwarf width=300px>
+</figure>
+</p>
+</li>
+<li>
+<p>Reset security token by using the &lsquo;Reset My Security Token&rsquo; menu and clicking on the &lsquo;Reset Security Token&rsquo; button.
+<figure><img src=/img/2021/salesforce-connector-auth/reset-security-token.jpg alt=dwarf width=500px>
+</figure>
+</p>
+</li>
+<li>
+<p>You should receive your new security token in your email account that you used to sign up for the Salesforce developer account.</p>
+</li>
+</ol>
+<h3 id=certificate-setup-in-salesforce>Certificate setup in Salesforce</h3>
+<p>For certificate-based security, you need to set up a certificate in Salesforce.</p>
+<ol>
+<li>
+<p>Go to setup
+<figure><img src=/img/2021/salesforce-connector-auth/setup-salesforce.jpg alt=dwarf width=300px>
+</figure>
+</p>
+</li>
+<li>
+<p>Search for certificate and key management and select the option
+<figure><img src=/img/2021/salesforce-connector-auth/certificate-key-management-menu.jpg alt=dwarf width=300px>
+</figure>
+</p>
+</li>
+<li>
+<p>Click on &lsquo;Create Self-Signed Certificate&rsquo; button to create a new certificate and enter the information and save it.
+<figure><img src=/img/2021/salesforce-connector-auth/create-self-signed-certificate.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>Once certificate is created, download the certificate (.crt) file. We need it for setting up the connected app.
+<figure><img src=/img/2021/salesforce-connector-auth/download-certificate.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>Export the certificate to keystore. We need it to configure the connection information in Mule app.
+<figure><img src=/img/2021/salesforce-connector-auth/export-to-keystore.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>Enter the password when exporting to keystore
+<figure><img src=/img/2021/salesforce-connector-auth/enter-password.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>Make sure you save both the .crt file (downloaded in step 4 above) and the .jks file safely on your disk.</p>
+</li>
+</ol>
+<h3 id=connected-app-setup-in-salesforce>Connected App setup in Salesforce</h3>
+<ol>
+<li>
+<p>Go to setup
+<figure><img src=/img/2021/salesforce-connector-auth/setup-salesforce.jpg alt=dwarf width=300px>
+</figure>
+</p>
+</li>
+<li>
+<p>Search for app manager and select the &lsquo;App Manager&rsquo; option
+<figure><img src=/img/2021/salesforce-connector-auth/app-manager-option.jpg alt=dwarf width=300px>
+</figure>
+</p>
+</li>
+<li>
+<p>Use the &lsquo;New Connected App&rsquo; button to create a new connected app.
+<figure><img src=/img/2021/salesforce-connector-auth/new-connected-app.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>Fill in name and email. Select ‘Enable OAuth Settings’ Enter two Callback URLs</p>
+<ul>
+<li><a href=https://oauthdebugger.com/debug>https://oauthdebugger.com/debug</a></li>
+<li>http://localhost:8081</li>
+</ul>
+</li>
+</ol>
+<p>Select ‘Use digital signatures’ and upload the .crt file received when setting up the certificate above.
+Select all the OAuth Scopes if possible
+<figure><img src=/img/2021/salesforce-connector-auth/create-connected-app.jpg alt=dwarf width=800px>
+</figure>
+Note the client_id and client_Secret</p>
+<ol start=5>
+<li>
+<p>In your connected app&rsquo;s page, click on Manage button to review and update the app policies. Click on Manage.
+<figure><img src=/img/2021/salesforce-connector-auth/manage-connected-app-menu.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>And then on &lsquo;Edit Policies&rsquo;
+<figure><img src=/img/2021/salesforce-connector-auth/edit-policies.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+<li>
+<p>In the Permitted Users option you can see two options</p>
+<ul>
+<li>
+<p>Admin approved users are pre-authorized.</p>
+<p>We will not go into the details of this option, but if you want to use it you can use the following steps</p>
+<ul>
+<li>Go to Settings > Manage Users > Profiles</li>
+<li>Edit the profile associated with the user</li>
+<li>For ‘Connected App Access’ under the profile, select the checkbox against the connected app. Save.</li>
+</ul>
+</li>
+<li>
+<p>All users may self-authorize.</p>
+<p>We will use this option. Ensure that you select this option and save the policy.
+<figure><img src=/img/2021/salesforce-connector-auth/connected-app-policy.jpg alt=dwarf width=800px>
+</figure>
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Open your browser and go to <a href=https://oauthdebugger.com/>https://oauthdebugger.com/</a>. Enter following details</p>
+<ul>
+<li>Authorization url = ‘https://login.salesforce.com/services/oauth2/authorize’</li>
+<li>Redirect URI = ‘https://oauthdebugger.com/debug’</li>
+<li>Client ID = obtained from the connected app</li>
+<li>Scope = ‘api refresh_token offline_access’</li>
+<li>Response type = ‘code’</li>
+<li>Response mode = ‘query’</li>
+<li>Click on “send request”</li>
+</ul>
+</li>
+</ol>
+<figure><img src=/img/2021/salesforce-connector-auth/oauth-debugger-screen.jpg alt=dwarf width=800px>
+</figure>
+<ol start=9>
+<li>
+<p>It should redirect you to enter your credentials on Salesforce login screen and you should receive an authorization code.
+<figure><img src=/img/2021/salesforce-connector-auth/salesforce-oauth-consent.jpg alt=dwarf width=500px>
+</figure>
+</p>
+</li>
+<li>
+<p>This will complete the connected app setup.</p>
+</li>
+</ol>
+<h2 id=basic-authentication>Basic Authentication</h2>
+<p>Basic authentication is the easiest way to authenticate with Salesforce. For basic authentication you need username and password, and optionally a <a href=#configuration>security token</a>.
+<figure><img src=/img/2021/salesforce-connector-auth/basic-auth-test-connection.jpg alt=dwarf width=800px>
+</figure>
+</p>
+<h2 id=oauth-jwt>OAuth JWT</h2>
+<p>For OAuth JWT connection copy and paste the key store file (.jks) that you created in the certificate setup section into the src/main/resources folder.</p>
+<ul>
+<li>Consumer Key – Consumer key of the Connected App that was created in Salesforce</li>
+<li>Key Store – Keystore file (.jks) that you downloaded from the certificate setup</li>
+<li>Store Password – Keystore password that was created when you generated the key store file</li>
+<li>Principal – Salesforce username of the user that was approved against the authorization URL</li>
+</ul>
+<figure><img src=/img/2021/salesforce-connector-auth/oauth-jwt-connection.jpg alt=dwarf width=800px>
+</figure>
+<h2 id=oauth-saml>OAuth SAML</h2>
+<p>For OAuth SAML connection copy and paste the key store file (.jks) that you created in the certificate setup section into the src/main/resources folder.</p>
+<ul>
+<li>Consumer Key – Consumer key of the Connected App that was created in Salesforce</li>
+<li>Key Store – Keystore file (.jks) that you downloaded from the certificate setup</li>
+<li>Store Password – Keystore password that was created when you generated the key store file</li>
+<li>Principal – Salesforce username of the user that was approved against the authorization URL</li>
+</ul>
+<figure><img src=/img/2021/salesforce-connector-auth/oauth-saml-connection.jpg alt=dwarf width=800px>
+</figure>
+<h2 id=oauth-username-password>OAuth Username Password</h2>
+<p>For OAuth Username Password configure the following properties</p>
+<ul>
+<li>Consumer Key – Consumer key of the Connected App that was created in Salesforce</li>
+<li>Consumer Secret – Consumer secret of the Connected App that was created in Salesforce</li>
+<li>Username – Salesforce login id</li>
+<li>Password – Salesforce password</li>
+<li>Security Token - Security token associated with the username</li>
+</ul>
+<figure><img src=/img/2021/salesforce-connector-auth/oauth-username-password.jpg alt=dwarf width=800px>
+</figure>
+</article>
+<article>
+<header>
+<p class=meta>Jan 13, 2021
 - 2 minute read
 - <a href=https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/#disqus_thread>Comments</a>
-- <a class=label href=https://www.dhimate.com/categories/books/>Books</a></p><h1 class=entry-title><a href=https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/>Reflections on Range by David Epstein</a></h1></header><p>I recently finished reading Range - Why Generalists Triumph in a Specialized World by David Epstein. It wasn&rsquo;t exactly a new topic. It was recommended in Bill Gates' <a href=https://www.gatesnotes.com/Books/Range>blog</a> so I was curious about it and picked it up. The book talks about (hyper)specialization vs broad thinking in career as well as life. I had read one perspective about this in other books like &lsquo;Talent is Overrated&rsquo; by Geoffrey Colvin, and Cal Newport&rsquo;s &lsquo;So Good They Can&rsquo;t Ignore You&rsquo;.</p><p>This book offers a different perspective. It&rsquo;s quite a myth-buster about the 10000 hours theory or deliberate practice. It explains how the hyperspecialization of narrow skills can be harmful to your long term growth. David kept me engaged throughout the book, even though sometimes the content kept on dragging the same message. It also felt relevant to my experience in life and career. I have been a sort of generalist, trying out different things like software engineering, solution architecture, or pre-sales over the last 20 years in my career. I intentionally avoided sticking to a single tech stack or framework or career track. And sometimes felt bad (or incompetent) being a jack of all trades type of a person. Turns out it isn&rsquo;t bad to be that guy. In a way, I felt vindicated of everything I have done so far.</p><p>The key messages that stuck with me were about the experimentation and match quality - the term used to describe the fit between work someone does and their abilities. Everyone progresses at a different rate, so feeling behind doesn&rsquo;t help much. Most likely you don&rsquo;t know where exactly you are going. In this situation, the proactive pursuit of match quality, experimentation with different things, learning and adjusting as you go is the best approach. Comparing yourself to (cherry-picked) younger people doesn&rsquo;t help either. Instead, compare yourself to your yesterday&rsquo;s self and see how you are progressing. Epstein provides a good framework and reason to encourage range (rather than depth) over different areas of interest and stay curious.</p><p>As noted above, some of the repetitive content could&rsquo;ve been edited to make it more concise. But other than that it was a fun and enjoyable read.</p></article><div class=pagination><a href=/ aria-label=First class=label-pagination><i class="fa fa-angle-double-left fa-lg"></i></a>
+- <a class=label href=https://www.dhimate.com/categories/books/>Books </a>
+</p>
+<h1 class=entry-title>
+<a href=https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/>Reflections on Range by David Epstein</a>
+</h1>
+</header>
+<p>I recently finished reading Range - Why Generalists Triumph in a Specialized World by David Epstein. It wasn&rsquo;t exactly a new topic. It was recommended in Bill Gates' <a href=https://www.gatesnotes.com/Books/Range>blog</a> so I was curious about it and picked it up. The book talks about (hyper)specialization vs broad thinking in career as well as life. I had read one perspective about this in other books like &lsquo;Talent is Overrated&rsquo; by Geoffrey Colvin, and Cal Newport&rsquo;s &lsquo;So Good They Can&rsquo;t Ignore You&rsquo;.</p>
+<p>This book offers a different perspective. It&rsquo;s quite a myth-buster about the 10000 hours theory or deliberate practice. It explains how the hyperspecialization of narrow skills can be harmful to your long term growth. David kept me engaged throughout the book, even though sometimes the content kept on dragging the same message. It also felt relevant to my experience in life and career. I have been a sort of generalist, trying out different things like software engineering, solution architecture, or pre-sales over the last 20 years in my career. I intentionally avoided sticking to a single tech stack or framework or career track. And sometimes felt bad (or incompetent) being a jack of all trades type of a person. Turns out it isn&rsquo;t bad to be that guy. In a way, I felt vindicated of everything I have done so far.</p>
+<p>The key messages that stuck with me were about the experimentation and match quality - the term used to describe the fit between work someone does and their abilities. Everyone progresses at a different rate, so feeling behind doesn&rsquo;t help much. Most likely you don&rsquo;t know where exactly you are going. In this situation, the proactive pursuit of match quality, experimentation with different things, learning and adjusting as you go is the best approach. Comparing yourself to (cherry-picked) younger people doesn&rsquo;t help either. Instead, compare yourself to your yesterday&rsquo;s self and see how you are progressing. Epstein provides a good framework and reason to encourage range (rather than depth) over different areas of interest and stay curious.</p>
+<p>As noted above, some of the repetitive content could&rsquo;ve been edited to make it more concise. But other than that it was a fun and enjoyable read.</p>
+</article>
+<div class=pagination>
+<a href=/ aria-label=First class=label-pagination><i class="fa fa-angle-double-left fa-lg"></i></a>
 <a href=/ aria-label=Previous class=label-pagination><i class="fa fa-angle-left fa-lg"></i></a>
 <a href=/ class=label-pagination>1</a>
 <a href=/page/2/ class=label-pagination>2</a>
@@ -226,6 +637,52 @@ Select all the OAuth Scopes if possible<figure><img src=/img/2021/salesforce-con
 <a href=/page/6/ class=label-pagination>6</a>
 <a href=/page/7/ class=label-pagination>7</a>
 <a href=/page/3/ aria-label=Next class=label-pagination><i class="fa fa-angle-right fa-lg"></i></a>
-<a href=/page/7/ aria-label=Last><i class="fa fa-angle-double-right fa-lg"></i></a></div></div><aside class="sidebar thirds"><section class="first odd"><h1>About Me</h1><p>I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href=/about>About</a> to know more.</p></section><ul class=sidebar-nav><li class=sidebar-nav-item><a target=_blank rel="noopener noreferrer" href=https://github.com/dhimate/ title=https://github.com/dhimate/><i class="fa fa-github fa-3x"></i></a>
-<a target=_blank rel="noopener noreferrer" href=https://linkedin.com/in/dhimate title=https://linkedin.com/in/dhimate><i class="fa fa-linkedin fa-3x"></i></a></li></ul><section class=odd></section><section class=even><h1>Recent Posts</h1><ul id=recent_posts><li class=post><a href=/2021/my-audible-experience/>My Audible Experience</a></li><li class=post><a href=/2021/certificate-of-authenticity/>Certificate of Authenticity</a></li><li class=post><a href=/2021/february-quick-update/>February Quick Update</a></li><li class=post><a href=/2021/using-epics-fhir-apis-in-mule-4/>Using Epic's FHIR APIs in Mule 4</a></li><li class=post><a href=/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/>How to Use Different Authentication Options for Salesforce Connector in Mule 4</a></li></ul></section></aside></div></div><footer role=contentinfo><p>Copyright &copy; 2021 Yogesh Dhimate - <a href=https://www.dhimate.com/license/>License</a> -
-<span class=credit>Powered by <a target=_blank href=https://gohugo.io rel="noopener noreferrer">Hugo</a> and <a target=_blank href=https://github.com/parsiya/hugo-octopress/ rel="noopener noreferrer">Hugo-Octopress</a> theme.</p></footer><script>var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];(function(a,b){var c=a.createElement(b),d=a.getElementsByTagName(b)[0];c.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js',d.parentNode.insertBefore(c,d)})(document,'script')</script></body></html>
+<a href=/page/7/ aria-label=Last><i class="fa fa-angle-double-right fa-lg"></i></a>
+</div>
+</div>
+<aside class="sidebar thirds">
+<section class="first odd">
+<h1>About Me</h1>
+<p>
+I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href=/about>About</a> to know more.
+</p>
+</section>
+<ul class=sidebar-nav>
+<li class=sidebar-nav-item>
+<a target=_blank rel="noopener noreferrer" href=https://github.com/dhimate/ title=https://github.com/dhimate/><i class="fa fa-github fa-3x"></i></a>
+<a target=_blank rel="noopener noreferrer" href=https://linkedin.com/in/dhimate title=https://linkedin.com/in/dhimate><i class="fa fa-linkedin fa-3x"></i></a>
+</li>
+</ul>
+<section class=odd>
+</section>
+<section class=even>
+<h1>Recent Posts</h1>
+<ul id=recent_posts>
+<li class=post>
+<a href=/2021/my-audible-experience/>My Audible Experience</a>
+</li>
+<li class=post>
+<a href=/2021/certificate-of-authenticity/>Certificate of Authenticity</a>
+</li>
+<li class=post>
+<a href=/2021/february-quick-update/>February Quick Update</a>
+</li>
+<li class=post>
+<a href=/2021/using-epics-fhir-apis-in-mule-4/>Using Epic's FHIR APIs in Mule 4</a>
+</li>
+<li class=post>
+<a href=/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/>How to Use Different Authentication Options for Salesforce Connector in Mule 4</a>
+</li>
+</ul>
+</section>
+</aside>
+</div>
+</div>
+<footer role=contentinfo>
+<p>Copyright &copy; 2021 Yogesh Dhimate - <a href=https://www.dhimate.com/license/>License</a> -
+<span class=credit>Powered by <a target=_blank href=https://gohugo.io rel="noopener noreferrer">Hugo</a> and <a target=_blank href=https://github.com/parsiya/hugo-octopress/ rel="noopener noreferrer">Hugo-Octopress</a> theme.
+</p>
+</footer>
+<script>var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];(function(a,b){var c=a.createElement(b),d=a.getElementsByTagName(b)[0];c.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js',d.parentNode.insertBefore(c,d)})(document,'script')</script>
+</body>
+</html>
