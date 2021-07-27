@@ -1,19 +1,208 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Yogesh Dhimate</title><link>https://www.dhimate.com/blog/</link><description>Recent content in Blog on Yogesh Dhimate</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 24 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Random Act of Kindness</title><link>https://www.dhimate.com/2021/random-act-of-kindness/</link><pubDate>Sat, 24 Jul 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/random-act-of-kindness/</guid><description>I frequently visit one online group. It sends some thought-provoking prompts to reflect on past experiences and random ideas.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Yogesh Dhimate</title>
+    <link>https://www.dhimate.com/blog/</link>
+    <description>Recent content in Blog on Yogesh Dhimate</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 24 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dhimate.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Random Act of Kindness</title>
+      <link>https://www.dhimate.com/2021/random-act-of-kindness/</link>
+      <pubDate>Sat, 24 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/random-act-of-kindness/</guid>
+      <description>I frequently visit one online group. It sends some thought-provoking prompts to reflect on past experiences and random ideas.
 Here are some examples.
-Which bad commercial that you saw that has stayed with you? What does a &amp;lsquo;perfect day&amp;rsquo; mean to you? This week&amp;rsquo;s prompt was about the act of kindness shown to you, that you&amp;rsquo;ll never forget.
-Before COVID-19, I was traveling for my job. In July-August 2019, my assignment was in Moline, IL.</description></item><item><title>My Audible Experience</title><link>https://www.dhimate.com/2021/my-audible-experience/</link><pubDate>Mon, 31 May 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/my-audible-experience/</guid><description>Introduction Last month I signed up for Audible. I thought it would be great to listen to the audiobooks, instead of reading them. In the past, I had enjoyed a few audiobooks on my long road trips. I especially remember listening to George Carlin’s books. The idea of listening to books on the go, the ultimate portability, and convenience, and an opportunity to give rest to my eyes was very enticing.</description></item><item><title>Certificate of Authenticity</title><link>https://www.dhimate.com/2021/certificate-of-authenticity/</link><pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/certificate-of-authenticity/</guid><description>This week I got my new pair of glasses. I use photochromic lenses to help protect my eyes from the bright sunlight. These lenses turn dark when exposed to sunlight or high temperature. With this pair, my optician gave me a &amp;lsquo;Certificate of Authenticity&amp;rsquo; card from this company called &amp;lsquo;Transitions&amp;rsquo;. Transitions provide the photochromic feature in the lenses. I wasn&amp;rsquo;t aware of them. Anyway, this certificate requested that I should register my purchase.</description></item><item><title>February Quick Update</title><link>https://www.dhimate.com/2021/february-quick-update/</link><pubDate>Sat, 06 Mar 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/february-quick-update/</guid><description>I haven&amp;rsquo;t posted anything in February. It was the busiest month I ever had. Our baby girl decided to arrive earlier than expected. Due to the pandemic, we decided to manage baby things on our own, without our parents. It&amp;rsquo;s fun, but for the first time parents like us, it&amp;rsquo;s not easy. The most difficult part is baby can&amp;rsquo;t talk and exactly tell us what she wants yet. So we have to decipher her crying.</description></item><item><title>Using Epic's FHIR APIs in Mule 4</title><link>https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/</link><pubDate>Sat, 23 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/</guid><description>Introduction FHIR (Fast Healthcare Interoperability Resources) is a new and emerging standard for interoperability in healthcare IT. Unlike the ancient HL7v2 standard, FHIR is open, extensible, and composable. It supports modern web standards like JSON, XML, HTTP(!), and Turtle. It also defines different data exchange methods like RESTful API, messaging, services, documents, and persistent storage. Best of all the FHIR documentation is outstanding: There is detail documentation for every type of resource, with lots of examples.</description></item><item><title>How to Use Different Authentication Options for Salesforce Connector in Mule 4</title><link>https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/</link><pubDate>Sat, 16 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/</guid><description>Introduction MuleSoft offers multiple connectors for Salesforce integration. This post is about Salesforce Connector for Mule 4. This connector helps in integrating with Sales Cloud, Service Cloud, Salesforce Platform, and Force.com. We will specifically look into different options for authentication with Salesforce.
+ Which bad commercial that you saw that has stayed with you? What does a &amp;lsquo;perfect day&amp;rsquo; mean to you?  This week&amp;rsquo;s prompt was about the act of kindness shown to you, that you&amp;rsquo;ll never forget.
+Before COVID-19, I was traveling for my job. In July-August 2019, my assignment was in Moline, IL.</description>
+    </item>
+    
+    <item>
+      <title>My Audible Experience</title>
+      <link>https://www.dhimate.com/2021/my-audible-experience/</link>
+      <pubDate>Mon, 31 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/my-audible-experience/</guid>
+      <description>Introduction Last month I signed up for Audible. I thought it would be great to listen to the audiobooks, instead of reading them. In the past, I had enjoyed a few audiobooks on my long road trips. I especially remember listening to George Carlin’s books. The idea of listening to books on the go, the ultimate portability, and convenience, and an opportunity to give rest to my eyes was very enticing.</description>
+    </item>
+    
+    <item>
+      <title>Certificate of Authenticity</title>
+      <link>https://www.dhimate.com/2021/certificate-of-authenticity/</link>
+      <pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/certificate-of-authenticity/</guid>
+      <description>This week I got my new pair of glasses. I use photochromic lenses to help protect my eyes from the bright sunlight. These lenses turn dark when exposed to sunlight or high temperature. With this pair, my optician gave me a &amp;lsquo;Certificate of Authenticity&amp;rsquo; card from this company called &amp;lsquo;Transitions&amp;rsquo;. Transitions provide the photochromic feature in the lenses. I wasn&amp;rsquo;t aware of them. Anyway, this certificate requested that I should register my purchase.</description>
+    </item>
+    
+    <item>
+      <title>February Quick Update</title>
+      <link>https://www.dhimate.com/2021/february-quick-update/</link>
+      <pubDate>Sat, 06 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/february-quick-update/</guid>
+      <description>I haven&amp;rsquo;t posted anything in February. It was the busiest month I ever had. Our baby girl decided to arrive earlier than expected. Due to the pandemic, we decided to manage baby things on our own, without our parents. It&amp;rsquo;s fun, but for the first time parents like us, it&amp;rsquo;s not easy. The most difficult part is baby can&amp;rsquo;t talk and exactly tell us what she wants yet. So we have to decipher her crying.</description>
+    </item>
+    
+    <item>
+      <title>Using Epic&#39;s FHIR APIs in Mule 4</title>
+      <link>https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/</link>
+      <pubDate>Sat, 23 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/</guid>
+      <description>Introduction FHIR (Fast Healthcare Interoperability Resources) is a new and emerging standard for interoperability in healthcare IT. Unlike the ancient HL7v2 standard, FHIR is open, extensible, and composable. It supports modern web standards like JSON, XML, HTTP(!), and Turtle. It also defines different data exchange methods like RESTful API, messaging, services, documents, and persistent storage. Best of all the FHIR documentation is outstanding: There is detail documentation for every type of resource, with lots of examples.</description>
+    </item>
+    
+    <item>
+      <title>How to Use Different Authentication Options for Salesforce Connector in Mule 4</title>
+      <link>https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/</link>
+      <pubDate>Sat, 16 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/</guid>
+      <description>Introduction MuleSoft offers multiple connectors for Salesforce integration. This post is about Salesforce Connector for Mule 4. This connector helps in integrating with Sales Cloud, Service Cloud, Salesforce Platform, and Force.com. We will specifically look into different options for authentication with Salesforce.
 Software Prerequisites You need a Salesforce developer account. You can get one for free by signing up here. I have used the following versions for MuleSoft software.
-Anypoint Studio 7.</description></item><item><title>Reflections on Range by David Epstein</title><link>https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/</link><pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/</guid><description>I recently finished reading Range - Why Generalists Triumph in a Specialized World by David Epstein. It wasn&amp;rsquo;t exactly a new topic. It was recommended in Bill Gates' blog so I was curious about it and picked it up. The book talks about (hyper)specialization vs broad thinking in career as well as life. I had read one perspective about this in other books like &amp;lsquo;Talent is Overrated&amp;rsquo; by Geoffrey Colvin, and Cal Newport&amp;rsquo;s &amp;lsquo;So Good They Can&amp;rsquo;t Ignore You&amp;rsquo;.</description></item><item><title>Externalizing Queries in Mule Application</title><link>https://www.dhimate.com/2021/externalizing-queries-in-mule-application/</link><pubDate>Sat, 09 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/externalizing-queries-in-mule-application/</guid><description>I like to keep my code clean, understandable, and readable. It helps the next person who will take over my work. I try my best to avoid any trouble reading, maintaining, and updating the code. There are recommended and well known best practices about organizing Mule code. It involves better structuring of the project, maintaining configuration files, hiding or securing sensitive information like passwords and API keys, transaction management, or reconnection and caching strategies.</description></item><item><title>Drinking Water Habit</title><link>https://www.dhimate.com/2021/drinking-water-habit/</link><pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/drinking-water-habit/</guid><description>I discovered that the easiest way to start drinking more water is to always keep a water bottle with me. Before going to bed, I keep a bottle of water next to the bed. The idea is, when I wake up, the first thing I see is the water bottle. I drink that bottle before getting out of bed. This system helps me get a significant headstart in meeting my daily water drinking quota.</description></item><item><title>How to Use Netcat to Debug Cloudhub Networking Issues</title><link>https://www.dhimate.com/2021/how-to-use-netcat-to-debug-cloudhub-networking-issues/</link><pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2021/how-to-use-netcat-to-debug-cloudhub-networking-issues/</guid><description>This is a simple trick I use to debug connection issues with the mule app deployed to CloudHub.
+ Anypoint Studio 7.</description>
+    </item>
+    
+    <item>
+      <title>Reflections on Range by David Epstein</title>
+      <link>https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/</link>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/</guid>
+      <description>I recently finished reading Range - Why Generalists Triumph in a Specialized World by David Epstein. It wasn&amp;rsquo;t exactly a new topic. It was recommended in Bill Gates&#39; blog so I was curious about it and picked it up. The book talks about (hyper)specialization vs broad thinking in career as well as life. I had read one perspective about this in other books like &amp;lsquo;Talent is Overrated&amp;rsquo; by Geoffrey Colvin, and Cal Newport&amp;rsquo;s &amp;lsquo;So Good They Can&amp;rsquo;t Ignore You&amp;rsquo;.</description>
+    </item>
+    
+    <item>
+      <title>Externalizing Queries in Mule Application</title>
+      <link>https://www.dhimate.com/2021/externalizing-queries-in-mule-application/</link>
+      <pubDate>Sat, 09 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/externalizing-queries-in-mule-application/</guid>
+      <description>I like to keep my code clean, understandable, and readable. It helps the next person who will take over my work. I try my best to avoid any trouble reading, maintaining, and updating the code. There are recommended and well known best practices about organizing Mule code. It involves better structuring of the project, maintaining configuration files, hiding or securing sensitive information like passwords and API keys, transaction management, or reconnection and caching strategies.</description>
+    </item>
+    
+    <item>
+      <title>Drinking Water Habit</title>
+      <link>https://www.dhimate.com/2021/drinking-water-habit/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/drinking-water-habit/</guid>
+      <description>I discovered that the easiest way to start drinking more water is to always keep a water bottle with me. Before going to bed, I keep a bottle of water next to the bed. The idea is, when I wake up, the first thing I see is the water bottle. I drink that bottle before getting out of bed. This system helps me get a significant headstart in meeting my daily water drinking quota.</description>
+    </item>
+    
+    <item>
+      <title>How to Use Netcat to Debug Cloudhub Networking Issues</title>
+      <link>https://www.dhimate.com/2021/how-to-use-netcat-to-debug-cloudhub-networking-issues/</link>
+      <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2021/how-to-use-netcat-to-debug-cloudhub-networking-issues/</guid>
+      <description>This is a simple trick I use to debug connection issues with the mule app deployed to CloudHub.
 First of all its important to understand that there are different ways to set up your application
 1. Using shared load balancer (i.e. cloudhub.io domain) with HTTP protocol.
-In this scenario, the client application makes a request to a shared load balancer URL using HTTP protocol. The SLB forwards the request to the upstream mule application listening on port 8081.</description></item><item><title>Recap of 2020</title><link>https://www.dhimate.com/2020/recap-of-2020/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2020/recap-of-2020/</guid><description>The end of the year is the time to pause, look back, and think about how the year went by. I am very grateful and fortunate to had an opportunity to enjoy a reasonably good time in 2020.
+In this scenario, the client application makes a request to a shared load balancer URL using HTTP protocol. The SLB forwards the request to the upstream mule application listening on port 8081.</description>
+    </item>
+    
+    <item>
+      <title>Recap of 2020</title>
+      <link>https://www.dhimate.com/2020/recap-of-2020/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2020/recap-of-2020/</guid>
+      <description>The end of the year is the time to pause, look back, and think about how the year went by. I am very grateful and fortunate to had an opportunity to enjoy a reasonably good time in 2020.
 On the personal front
-We visited our families in India in January. I enjoyed meeting my parents, brother, in-laws, and friends. I did not travel for work and got more time to spend with my wife.</description></item><item><title>How Intermittent Fasting Saved My Life</title><link>https://www.dhimate.com/2020/how-intermittent-fasting-saved-my-life/</link><pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2020/how-intermittent-fasting-saved-my-life/</guid><description>One of my goals for 2020 was to stick to an intermittent fasting routine. I completed 6600 hours of fasting in 2020. On average, that&amp;rsquo;s 18 hours of fasting every day, for 365 days. Other interesting stats include the longest streak of 440 fasts and the longest fast of 37 hours. I did reasonably well to maintain a healthy weight despite stress-induced binge eating during the pandemic.
-My fasting journey started in mid of 2019.</description></item><item><title>Upload Attachments to Salesforce Using MuleSoft</title><link>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</link><pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</guid><description>This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
-As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce erDiagram ContentDocument ||--|{ ContentDocumentLink : has ContentDocument { string Id string Title string PathOnClient date CreatedDate } ContentDocumentLink ||--|| Account : linkedEntity ContentDocumentLink { string Id reference LinkedEntityId reference ContentDocumentId picklist ShareType picklist Visibility } Account { string Id string AccountNumber } ContentDocumentLink ||--|| Contact : linkedEntity Contact { string Id string FirstName string LastName } ContentDocumentLink ||--|| sObject : linkedEntity sObject { string Id string SomeProperty } Things to note:</description></item><item><title>Made to Stick and the Curse of Knowledge</title><link>https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/</link><pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/</guid><description>I recently read &amp;ldquo;Made to Stick&amp;rdquo; by Chip Heath and Dan Heath. It was a fun and quick read. While I liked their framework of SUCCESs (Simple, Unexpected, Concrete, Credible, Emotional, Stories) to get the idea to stick, I thoroughly enjoyed the explanation of the Curse of Knowledge. The curse of knowledge occurs when a knowledgeable individual/expert assumes that the others have the background to understand a specific concept.
-According to Chip and Dan, In general, getting your message across has two stages - the Answer Stage, and the Telling Others Stage.</description></item><item><title>MuleSoft Capacity Explanation for Noobs and CXOs</title><link>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</link><pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</guid><description>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&amp;rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was very accomodating and somewhat understood what I was talking about. Nevertheless, I should&amp;rsquo;ve done better.</description></item><item><title>Google Spreadsheets and ArrayFormula for XIRR Calculation</title><link>https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/</link><pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/</guid><description>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets. Nice thing with Google Spreadsheets is its support for import and queries. e.g. AMFI India publishes daily NAV’s on their website http://portal.amfiindia.com/spages/NAV1.txt You can import the data programmatically and run a query on it to find desired NAV.</description></item><item><title>Automated Testing of Webmethods Services with REST Assured</title><link>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</link><pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</guid><description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
-You will need following things on your machine.</description></item><item><title>Using Web Services Client adapter in Apama</title><link>https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/</link><pubDate>Wed, 24 Aug 2016 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/</guid><description>Software AG Apama provides a SOAP-based Web Services Client adapter to invoke web services from your Apama application. In this post, we will see how to use this adapter in your application.
+ We visited our families in India in January. I enjoyed meeting my parents, brother, in-laws, and friends. I did not travel for work and got more time to spend with my wife.</description>
+    </item>
+    
+    <item>
+      <title>How Intermittent Fasting Saved My Life</title>
+      <link>https://www.dhimate.com/2020/how-intermittent-fasting-saved-my-life/</link>
+      <pubDate>Wed, 30 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2020/how-intermittent-fasting-saved-my-life/</guid>
+      <description>One of my goals for 2020 was to stick to an intermittent fasting routine. I completed 6600 hours of fasting in 2020. On average, that&amp;rsquo;s 18 hours of fasting every day, for 365 days. Other interesting stats include the longest streak of 440 fasts and the longest fast of 37 hours. I did reasonably well to maintain a healthy weight despite stress-induced binge eating during the pandemic.
+My fasting journey started in mid of 2019.</description>
+    </item>
+    
+    <item>
+      <title>Upload Attachments to Salesforce Using MuleSoft</title>
+      <link>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/</guid>
+      <description>This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
+As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce erDiagram ContentDocument ||--|{ ContentDocumentLink : has ContentDocument { string Id string Title string PathOnClient date CreatedDate } ContentDocumentLink ||--|| Account : linkedEntity ContentDocumentLink { string Id reference LinkedEntityId reference ContentDocumentId picklist ShareType picklist Visibility } Account { string Id string AccountNumber } ContentDocumentLink ||--|| Contact : linkedEntity Contact { string Id string FirstName string LastName } ContentDocumentLink ||--|| sObject : linkedEntity sObject { string Id string SomeProperty }  Things to note:</description>
+    </item>
+    
+    <item>
+      <title>Made to Stick and the Curse of Knowledge</title>
+      <link>https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/</guid>
+      <description>I recently read &amp;ldquo;Made to Stick&amp;rdquo; by Chip Heath and Dan Heath. It was a fun and quick read. While I liked their framework of SUCCESs (Simple, Unexpected, Concrete, Credible, Emotional, Stories) to get the idea to stick, I thoroughly enjoyed the explanation of the Curse of Knowledge. The curse of knowledge occurs when a knowledgeable individual/expert assumes that the others have the background to understand a specific concept.
+According to Chip and Dan, In general, getting your message across has two stages - the Answer Stage, and the Telling Others Stage.</description>
+    </item>
+    
+    <item>
+      <title>MuleSoft Capacity Explanation for Noobs and CXOs </title>
+      <link>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</link>
+      <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2020/mulesoft-capacity-explanation-for-noobs-and-cxos/</guid>
+      <description>I was talking to a C-level executive the other day and he asked me to explain how does MuleSoft&amp;rsquo;s capacity/sizing across various deployment models work. Given I always wear my technical hat I jumped right into the concept of cores and virtual cores and containers (and Kubernetes!) and did a pretty bad job. Fortunately, that executive was very accomodating and somewhat understood what I was talking about. Nevertheless, I should&amp;rsquo;ve done better.</description>
+    </item>
+    
+    <item>
+      <title>Google Spreadsheets and ArrayFormula for XIRR Calculation</title>
+      <link>https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/</link>
+      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/</guid>
+      <description>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets. Nice thing with Google Spreadsheets is its support for import and queries. e.g. AMFI India publishes daily NAV’s on their website http://portal.amfiindia.com/spages/NAV1.txt You can import the data programmatically and run a query on it to find desired NAV.</description>
+    </item>
+    
+    <item>
+      <title>Automated Testing of Webmethods Services with REST Assured</title>
+      <link>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</link>
+      <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/</guid>
+      <description>While testing REST APIs for one of my projects, I found REST Assured. It was perfect, as it took care of low level HTTP calls under the hood, and provided a high-level, easy to use framework to write tests. Not only REST Assured works really well to test webMethods flow services, you can also run these tests as part of Continuous Integration process through Gradle.
+You will need following things on your machine.</description>
+    </item>
+    
+    <item>
+      <title>Using Web Services Client adapter in Apama</title>
+      <link>https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/</link>
+      <pubDate>Wed, 24 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/</guid>
+      <description>Software AG Apama provides a SOAP-based Web Services Client adapter to invoke web services from your Apama application. In this post, we will see how to use this adapter in your application.
 We will use a free web service available at CDYNE (link) for our application. This service has multiple operations, out of which we will use GetCityWeatherByZIP operation.
-Below are the sample request and response messages for this operation, which we will use to describe our event definition in Apama.</description></item><item><title>Using OAuth 2.0 with webMethods Integration Server</title><link>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</link><pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</guid><description>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.
-For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</description></item><item><title>Integration Server Class Loading for Custom Jars</title><link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link><pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate><guid>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</guid><description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
-It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description></item></channel></rss>
+Below are the sample request and response messages for this operation, which we will use to describe our event definition in Apama.</description>
+    </item>
+    
+    <item>
+      <title>Using OAuth 2.0 with webMethods Integration Server</title>
+      <link>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</link>
+      <pubDate>Wed, 17 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/</guid>
+      <description>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.
+For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</description>
+    </item>
+    
+    <item>
+      <title>Integration Server Class Loading for Custom Jars</title>
+      <link>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</link>
+      <pubDate>Tue, 16 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/</guid>
+      <description>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.
+It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</description>
+    </item>
+    
+  </channel>
+</rss>
