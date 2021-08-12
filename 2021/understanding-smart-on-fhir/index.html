@@ -17,7 +17,7 @@
   
 
   
-  <title>Reflections on Range by David Epstein</title>
+  <title>Understanding SMART on FHIR</title>
 
   
   
@@ -124,17 +124,17 @@
         
 
 <header>
-  <p class="meta">Jan 13, 2021
-     - 2 minute read 
-     - <a href="https://www.dhimate.com/2021/reflections-on-range-by-david-epstein/#disqus_thread">Comments</a>
+  <p class="meta">Aug 12, 2021
+     - 3 minute read 
+     - <a href="https://www.dhimate.com/2021/understanding-smart-on-fhir/#disqus_thread">Comments</a>
 
     
     
-      - <a class="label" href="https://www.dhimate.com/categories/books/">Books </a>
+      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
     
   </p>
   <h1 class="entry-title">
-     Reflections on Range by David Epstein 
+    <a href="https://www.dhimate.com/2021/understanding-smart-on-fhir/">Understanding SMART on FHIR</a>
   </h1>
 </header>
 
@@ -143,10 +143,70 @@
           
           
           
-          <p>I recently finished reading Range - Why Generalists Triumph in a Specialized World by David Epstein. It wasn&rsquo;t exactly a new topic. It was recommended in Bill Gates' <a href="https://www.gatesnotes.com/Books/Range">blog</a> so I was curious about it and picked it up.  The book talks about (hyper)specialization vs broad thinking in career as well as life. I had read one perspective about this in other books like &lsquo;Talent is Overrated&rsquo; by Geoffrey Colvin, and Cal Newport&rsquo;s &lsquo;So Good They Can&rsquo;t Ignore You&rsquo;.</p>
-<p>This book offers a different perspective. It&rsquo;s quite a myth-buster about the 10000 hours theory or deliberate practice. It explains how the hyperspecialization of narrow skills can be harmful to your long term growth. David kept me engaged throughout the book, even though sometimes the content kept on dragging the same message. It also felt relevant to my experience in life and career. I have been a sort of generalist, trying out different things like software engineering, solution architecture, or pre-sales over the last 20 years in my career. I intentionally avoided sticking to a single tech stack or framework or career track. And sometimes felt bad (or incompetent) being a jack of all trades type of a person. Turns out it isn&rsquo;t bad to be that guy. In a way, I felt vindicated of everything I have done so far.</p>
-<p>The key messages that stuck with me were about the experimentation and match quality - the term used to describe the fit between work someone does and their abilities. Everyone progresses at a different rate, so feeling behind doesn&rsquo;t help much. Most likely you don&rsquo;t know where exactly you are going. In this situation, the proactive pursuit of match quality, experimentation with different things, learning and adjusting as you go is the best approach. Comparing yourself to (cherry-picked) younger people doesn&rsquo;t help either. Instead, compare yourself to your yesterday&rsquo;s self and see how you are progressing. Epstein provides a good framework and reason to encourage range (rather than depth) over different areas of interest and stay curious.</p>
-<p>As noted above, some of the repetitive content could&rsquo;ve been edited to make it more concise. But other than that it was a fun and enjoyable read.</p>
+          <p>Today practitioners and patients want to use innovative healthcare apps. Oftentimes they have their favorite app that they already use. To provide the best practitioner and patient experience, these apps need access to patient’s personal health information like allergies, or medications. This type of clinical information is stored inside the electronic health record systems (EHRs). Ultimately the apps are dependent on backend systems like EHRs to power their functionality.</p>
+<p>There are more than 50 EHR systems popular in the US alone. For an healthcare application developer this would be a nightmare, if he needs to build his app to work with 50 different EHR systems.</p>
+<p>Thanks to industry standards like FHIR and SMART on FHIR, this problem is easily solved.</p>
+<p>FHIR provides a standardized data model to represent healthcare data, whereas the SMART on FHIR provides a consistent approach to security and data access requirements.</p>
+<p>In this post let’s see some basics of these SMART apps.</p>
+<h3 id="what-is-smart-on-fhir">What is SMART on FHIR</h3>
+<p>SMART stands for <em><strong>S</strong>ubstitutable <strong>M</strong>edical <strong>A</strong>pplications and <strong>R</strong>eusable <strong>T</strong>echnology</em>.</p>
+<p>SMART app is a web or mobile app, embedded in an Electronic Health Record (EHR) system or standalone. It&rsquo;s substitutable, which means if you don’t like a particular app, you can choose another one or substitute it with something else. The app is reusable and should work with any EHR or backend system.</p>
+<p>Simply put, SMART on FHIR provides a workflow to securely request access to data, as well as receive and use the data. And ultimately enables Electronic Health Record systems to become more like platforms.</p>
+<p>SMART on FHIR addresses these key concerns</p>
+<ul>
+<li>Identity and access management</li>
+<li>Access to the data</li>
+<li>Launch framework</li>
+<li>Scopes and launch context</li>
+</ul>
+<p>Let’s look into the details of each of these for a bit.</p>
+<h3 id="identity-and-access-management">Identity and access management</h3>
+<p>SMART relies on the OIDC - OpenID Connect identity management protocol.</p>
+<p>Built on top of OAuth 2.0, it is essentially a flavor or a profile of OIDC, customized for use in healthcare applications.It defines a method through which an app requests authorization to access a FHIR resource, and then uses that authorization to retrieve the resource.</p>
+<h3 id="access-to-the-data">Access to the data</h3>
+<p>SMART on FHIR uses FHIR to access the data.</p>
+<p>FHIR provides a standardized representation of healthcare data, irrespective of how it is stored or where it is coming from. Using a standardized representation of the data makes these apps substitutable as well as reusable.</p>
+<h3 id="launch-framework">Launch framework</h3>
+<p>SMART on FHIR provides a framework for four different use cases</p>
+<ul>
+<li>Patient apps that launch standalone</li>
+<li>Patient apps that launch from an EHR portal</li>
+<li>Provider apps that launch standalone</li>
+<li>Provider apps that launch from an EHR portal</li>
+</ul>
+<h3 id="scopes-and-launch-context">Scopes and launch context</h3>
+<p>SMART provides three different categories of scopes for different kinds of data.  Launch context is a negotiation where client asks for specific launch context parameters, and server decides which launch context parameters to provide using client’s request as an input.</p>
+<ul>
+<li>
+<p>Clinical data</p>
+<p>SMART on FHIR defines read and write permissions for patient specific and user level access.</p>
+<p>E.g.</p>
+<ul>
+<li><code>patient/Observation.read </code></li>
+<li><code>user/Appointment.read</code></li>
+<li><code>patient/*.*</code></li>
+</ul>
+</li>
+<li>
+<p>Contextual data</p>
+<p>Apps typically rely on contextual data like the currently open patient record in an EHR. They explicitly request the EHR context by using scopes like</p>
+<ul>
+<li><code>launch=xyz</code></li>
+<li><code>launch/patient</code></li>
+<li><code>launch/encounter</code></li>
+</ul>
+</li>
+<li>
+<p>Identity data</p>
+<p>Some apps need to authenticate the clinical end-user. They use following openid connect scopes to request the identity information.</p>
+<ul>
+<li><code>openid</code></li>
+<li><code>fhirUser</code></li>
+</ul>
+</li>
+</ul>
+<p>This concludes my brief introduction to SMART on FHIR.</p>
+<p>SMART on FHIR provides an open, free and standards based API. Developers can use to write an app once and have it run anywhere in healthcare IT system.</p>
 
         </div>
         
@@ -155,7 +215,7 @@
   <p class="meta">
     <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
     
-    <time>Jan 13, 2021</time>
+    <time>Aug 12, 2021</time>
     
     </span>
   </p>
@@ -164,11 +224,9 @@
 
   <p class="meta">
     
-        <a class="basic-alignment left" href="https://www.dhimate.com/2021/externalizing-queries-in-mule-application/" title="Externalizing Queries in Mule Application">Externalizing Queries in Mule Application</a>
+        <a class="basic-alignment left" href="https://www.dhimate.com/2021/about-thanks-for-the-feedback/" title="About Thanks for the Feedback">About Thanks for the Feedback</a>
     
 
-    
-      <a class="basic-alignment right" href="https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/" title="How to Use Different Authentication Options for Salesforce Connector in Mule 4">How to Use Different Authentication Options for Salesforce Connector in Mule 4</a>
     
   </p>
   
