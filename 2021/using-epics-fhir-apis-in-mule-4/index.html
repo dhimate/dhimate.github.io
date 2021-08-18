@@ -1,481 +1,374 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en-us>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  
-  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
-  <script src="/js/mermaid.min.js"></script>
-  
-  <script>mermaid.initialize({ startOnLoad: true,  theme: 'neutral', securityLevel: 'loose'});</script>
-
-  
-    
-    
-      <link href="/css/fonts.css" rel="stylesheet" type="text/css">
-    
-  
-
-  
-  <title>Using Epic&#39;s FHIR APIs in Mule 4</title>
-
-  
-  
-  <link rel="stylesheet" href="/css/hugo-octopress.css">
-
-  
-  
-
-  
-    <link rel="stylesheet" href="/css/fork-awesome.min.css">
-    
-  
-
-  
-  <link href="https://www.dhimate.com/favicon.png" rel="icon">
-
-  
-  
-
-  <meta name="description" content="" />
-  <meta name="keywords" content="">
-  <meta name="author" content="Yogesh Dhimate">
-
-  
-  <meta name="generator" content="Hugo 0.87.0" />
-
-  
-  
-
-  
-  
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1">
+<script src=/js/mermaid.min.js></script>
+<script>mermaid.initialize({startOnLoad:!0,theme:'neutral',securityLevel:'loose'})</script>
+<link href=/css/fonts.css rel=stylesheet type=text/css>
+<title>Using Epic's FHIR APIs in Mule 4</title>
+<link rel=stylesheet href=/css/hugo-octopress.css>
+<link rel=stylesheet href=/css/fork-awesome.min.css>
+<link href=https://www.dhimate.com/favicon.png rel=icon>
+<meta name=description content>
+<meta name=keywords content>
+<meta name=author content="Yogesh Dhimate">
+<meta name=generator content="Hugo 0.87.0">
 </head>
 <body>
-
-
-<header role="banner">
+<header role=banner>
 <hgroup>
-  
-  <h1><a href="https://www.dhimate.com/">Yogesh Dhimate</a></h1>
-    <h2>Notes to Myself</h2>
+<h1><a href=https://www.dhimate.com/>Yogesh Dhimate</a></h1>
+<h2>Notes to Myself</h2>
 </hgroup></header>
-
-
-<nav role="navigation">
-<fieldset class="mobile-nav">
-  
-  <select onchange="location = this.value;">
-    <option value="">Navigate…</option>
-      
-        <option value="https://www.dhimate.com/about/">» About</option>
-      
-        <option value="https://www.dhimate.com/r%C3%A9sum%C3%A9/">» Résumé</option>
-      
-        <option value="https://www.dhimate.com/blog/">» Blog</option>
-      
-        <option value="https://www.dhimate.com/books/">» Bookshelf</option>
-      
-  </select>
+<nav role=navigation>
+<fieldset class=mobile-nav>
+<select onchange="location=this.value"><option value>Navigate…</option><option value=https://www.dhimate.com/about/>» About</option><option value=https://www.dhimate.com/r%C3%A9sum%C3%A9/>» Résumé</option><option value=https://www.dhimate.com/blog/>» Blog</option><option value=https://www.dhimate.com/books/>» Bookshelf</option></select>
 </fieldset>
-
-
-<ul class="main-navigation">
-  
-  
-    
-      <li><a href="https://www.dhimate.com/about/" title="About"  rel="noopener noreferrer">About</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/r%C3%A9sum%C3%A9/" title="Résumé"  rel="noopener noreferrer">Résumé</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/blog/" title="Blog"  rel="noopener noreferrer">Blog</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/books/" title="Bookshelf"  rel="noopener noreferrer">Bookshelf</a></li>
-    
-  
+<ul class=main-navigation>
+<li><a href=https://www.dhimate.com/about/ title=About rel="noopener noreferrer">About</a></li>
+<li><a href=https://www.dhimate.com/r%C3%A9sum%C3%A9/ title=Résumé rel="noopener noreferrer">Résumé</a></li>
+<li><a href=https://www.dhimate.com/blog/ title=Blog rel="noopener noreferrer">Blog</a></li>
+<li><a href=https://www.dhimate.com/books/ title=Bookshelf rel="noopener noreferrer">Bookshelf</a></li>
 </ul>
-
-<ul class="subscription">
-  
+<ul class=subscription>
 </ul>
-
-
-  <form action="https://www.google.com/search" method="get" target="_blank" rel="noopener noreferrer">
-    <fieldset role="search">
-      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-      <input type="hidden" name="q" value="site:https://www.dhimate.com/" />
-    </fieldset>
-  </form>
-
+<form action=https://www.google.com/search method=get target=_blank rel="noopener noreferrer">
+<fieldset role=search>
+<input class=search type=text name=q results=0 placeholder=Search>
+<input type=hidden name=q value=site:https://www.dhimate.com/>
+</fieldset>
+</form>
 </nav>
-
-
-<div id="main">
-  <div id="content">
-    <div>
-      <article class="hentry" role="article">
-
-        
-        
-
+<div id=main>
+<div id=content>
+<div>
+<article class=hentry role=article>
 <header>
-  <p class="meta">Jan 23, 2021
-     - 5 minute read 
-     - <a href="https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/#disqus_thread">Comments</a>
-
-    
-    
-      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
-    
-  </p>
-  <h1 class="entry-title">
-    <a href="https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/">Using Epic&#39;s FHIR APIs in Mule 4</a>
-  </h1>
+<p class=meta>Jan 23, 2021
+- 5 minute read
+- <a href=https://www.dhimate.com/2021/using-epics-fhir-apis-in-mule-4/#disqus_thread>Comments</a>
+- <a class=label href=https://www.dhimate.com/categories/programming/>Programming </a>
+</p>
+<h1 class=entry-title>
+Using Epic's FHIR APIs in Mule 4
+</h1>
 </header>
-
-
-        <div class="entry-content">
-          
-          
-          
-            <nav id="TableOfContents">
-  <ul>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#configuration">Configuration</a>
-      <ul>
-        <li><a href="#certificate-setup-for-jws">Certificate setup for JWS</a></li>
-        <li><a href="#create-an-app-in-epic">Create an app in Epic</a></li>
-      </ul>
-    </li>
-    <li><a href="#mule-application-details">Mule application details</a></li>
-  </ul>
+<div class=entry-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#configuration>Configuration</a>
+<ul>
+<li><a href=#certificate-setup-for-jws>Certificate setup for JWS</a></li>
+<li><a href=#create-an-app-in-epic>Create an app in Epic</a></li>
+</ul>
+</li>
+<li><a href=#mule-application-details>Mule application details</a></li>
+</ul>
 </nav>
-          
-          <h2 id="introduction">Introduction</h2>
-<p>FHIR (Fast Healthcare Interoperability Resources) is a new and emerging standard for interoperability in healthcare IT. Unlike the ancient HL7v2 standard, FHIR is open, extensible, and composable. It supports modern web standards like JSON, XML, HTTP(!), and Turtle. It also defines different data exchange methods like RESTful API, messaging, services, documents, and persistent storage. Best of all the FHIR documentation is outstanding: There is detail documentation for every type of resource, with lots of examples. Enough detail for anyone to create a compliant implementation. All of the data types like dates and times, terminologies, identifiers, references, numeric values, extensions are documented in detail, including how to read and write them.  It&rsquo;s probably one of the best documented and well thought out APIs I have worked with.</p>
-<p>Epic made their FHIR APIs available on <a href="https://fhir.epic.com/">https://fhir.epic.com/</a>. In this post, we will discuss using Epic&rsquo;s FHIR APIs in Mule 4</p>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>You will need an Epic developer account. You can get one for free by signing up <a href="https://fhir.epic.com/Developer/Index">here</a>. I have used Anypoint Studio 7.7 for Mule app.</p>
-<h2 id="configuration">Configuration</h2>
-<h3 id="certificate-setup-for-jws">Certificate setup for JWS</h3>
+<h2 id=introduction>Introduction</h2>
+<p>FHIR (Fast Healthcare Interoperability Resources) is a new and emerging standard for interoperability in healthcare IT. Unlike the ancient HL7v2 standard, FHIR is open, extensible, and composable. It supports modern web standards like JSON, XML, HTTP(!), and Turtle. It also defines different data exchange methods like RESTful API, messaging, services, documents, and persistent storage. Best of all the FHIR documentation is outstanding: There is detail documentation for every type of resource, with lots of examples. Enough detail for anyone to create a compliant implementation. All of the data types like dates and times, terminologies, identifiers, references, numeric values, extensions are documented in detail, including how to read and write them. It&rsquo;s probably one of the best documented and well thought out APIs I have worked with.</p>
+<p>Epic made their FHIR APIs available on <a href=https://fhir.epic.com/>https://fhir.epic.com/</a>. In this post, we will discuss using Epic&rsquo;s FHIR APIs in Mule 4</p>
+<h2 id=prerequisites>Prerequisites</h2>
+<p>You will need an Epic developer account. You can get one for free by signing up <a href=https://fhir.epic.com/Developer/Index>here</a>. I have used Anypoint Studio 7.7 for Mule app.</p>
+<h2 id=configuration>Configuration</h2>
+<h3 id=certificate-setup-for-jws>Certificate setup for JWS</h3>
 <ol>
 <li>
-<p>We will use SMART Backend Services approach described <a href="https://fhir.epic.com/Documentation?docId=oauth2&amp;section=BackendOAuth2Guide">here</a> which uses signed JWT to get the access token.</p>
+<p>We will use SMART Backend Services approach described <a href="https://fhir.epic.com/Documentation?docId=oauth2&section=BackendOAuth2Guide">here</a> which uses signed JWT to get the access token.</p>
 </li>
 <li>
 <p>Generate a new public-private key pair, and get the certificate(s) in appropriate format
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># generate a new public-private key pair</span>
-openssl genrsa -out Anypoint_Mulesoft.pem <span style="color:#ae81ff">2048</span>  
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># generate a new public-private key pair</span>
+openssl genrsa -out Anypoint_Mulesoft.pem <span style=color:#ae81ff>2048</span>  
 
-<span style="color:#75715e"># export the public key to a base64 encoded X.509 certificate</span>
-openssl req -new -x509 -key Anypoint_Mulesoft.pem -out Anypoint_PublicKey.pem -subj <span style="color:#e6db74">&#39;/CN=Anypoint&#39;</span> -days <span style="color:#ae81ff">365</span>
+<span style=color:#75715e># export the public key to a base64 encoded X.509 certificate</span>
+openssl req -new -x509 -key Anypoint_Mulesoft.pem -out Anypoint_PublicKey.pem -subj <span style=color:#e6db74>&#39;/CN=Anypoint&#39;</span> -days <span style=color:#ae81ff>365</span>
 
-<span style="color:#75715e"># export the keystore in pkcs12</span>
+<span style=color:#75715e># export the keystore in pkcs12</span>
 openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -out Anypoint_Keystore.p12</code></pre></td></tr></table>
 </div>
 </div>
-  </div>
+</div>
 </figure></p>
 </li>
 </ol>
-<h3 id="create-an-app-in-epic">Create an app in Epic</h3>
+<h3 id=create-an-app-in-epic>Create an app in Epic</h3>
 <ol>
 <li>
-<p>Login to <a href="https://fhir.epic.com/">https://fhir.epic.com/</a> and click on &lsquo;Build Apps&rsquo;
-<figure><img src="/img/2021/epic-fhir-server/epic-build-app.png"
-         alt="dwarf" width="600px"/>
+<p>Login to <a href=https://fhir.epic.com/>https://fhir.epic.com/</a> and click on &lsquo;Build Apps&rsquo;
+<figure><img src=/img/2021/epic-fhir-server/epic-build-app.png alt=dwarf width=600px>
 </figure>
 </p>
 </li>
 <li>
 <p>Click on &lsquo;Create&rsquo; and enter your app details as follows. Make sure to select the Application Audience as &lsquo;Backend Systems&rsquo;. For Sandbox JWT signing public key, upload the public key store (Anypoint_PublicKey.pem) file generated in the previous step. Click on save.
-<figure><img src="/img/2021/epic-fhir-server/epic-create-app.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-create-app.png alt=dwarf width=600px>
 </figure>
 </p>
 </li>
 <li>
-<p>You should see the Client ID and Non-Production Client ID for your app. Select the SMART on FHIR version as R4, enter the summary,  accept the terms of usage and click on &lsquo;Save &amp; Ready for Sandbox&rsquo;.
-<figure><img src="/img/2021/epic-fhir-server/epic-app-overview.png"
-         alt="dwarf" width="600px"/>
+<p>You should see the Client ID and Non-Production Client ID for your app. Select the SMART on FHIR version as R4, enter the summary, accept the terms of usage and click on &lsquo;Save & Ready for Sandbox&rsquo;.
+<figure><img src=/img/2021/epic-fhir-server/epic-app-overview.png alt=dwarf width=600px>
 </figure>
 </p>
 </li>
 </ol>
 <p><em>In my experience it usually takes a couple of hours for your app to be usable in Epic. It took me ~2 hours for my app to be usable</em></p>
-<h2 id="mule-application-details">Mule application details</h2>
+<h2 id=mule-application-details>Mule application details</h2>
 <ol>
 <li>
 <p>Create a new Mule application, and copy the pkcs12 formatted keystore (Anypoint_Keystore.p12) created earlier, in the <code>src/main/resources</code> folder.</p>
 </li>
 <li>
-<p>To generate a signed JWT (JWS), we will use <a href="https://github.com/jwtk/jjwt">Java JWT library</a>. In the pom.xml of your Mule application, include the following dependencies. (I have included Apache log4j dependencies, these are optional).
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+<p>To generate a signed JWT (JWS), we will use <a href=https://github.com/jwtk/jjwt>Java JWT library</a>. In the pom.xml of your Mule application, include the following dependencies. (I have included Apache log4j dependencies, these are optional).
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.logging.log4j<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>log4j-api<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>2.14.0<span style="color:#f92672">&lt;/version&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span>
-<span style="color:#f92672">&lt;dependency&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.logging.log4j<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>log4j-core<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>2.14.0<span style="color:#f92672">&lt;/version&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span>
-<span style="color:#f92672">&lt;dependency&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>io.jsonwebtoken<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>jjwt-api<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>0.11.2<span style="color:#f92672">&lt;/version&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span>
-<span style="color:#f92672">&lt;dependency&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>io.jsonwebtoken<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>jjwt-impl<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>0.11.2<span style="color:#f92672">&lt;/version&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span>
-<span style="color:#f92672">&lt;dependency&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>io.jsonwebtoken<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>jjwt-jackson<span style="color:#f92672">&lt;/artifactId&gt;</span> 
-    <span style="color:#f92672">&lt;version&gt;</span>0.11.2<span style="color:#f92672">&lt;/version&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span>
-<span style="color:#f92672">&lt;dependency&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>org.bouncycastle<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>bcprov-jdk15on<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>1.65<span style="color:#f92672">&lt;/version&gt;</span>
-    <span style="color:#f92672">&lt;type&gt;</span>jar<span style="color:#f92672">&lt;/type&gt;</span>
-<span style="color:#f92672">&lt;/dependency&gt;</span></code></pre></td></tr></table>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>org.apache.logging.log4j<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>log4j-api<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>2.14.0<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>org.apache.logging.log4j<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>log4j-core<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>2.14.0<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>io.jsonwebtoken<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>jjwt-api<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>0.11.2<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>io.jsonwebtoken<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>jjwt-impl<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>0.11.2<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>io.jsonwebtoken<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>jjwt-jackson<span style=color:#f92672>&lt;/artifactId&gt;</span> 
+    <span style=color:#f92672>&lt;version&gt;</span>0.11.2<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>org.bouncycastle<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>bcprov-jdk15on<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>1.65<span style=color:#f92672>&lt;/version&gt;</span>
+    <span style=color:#f92672>&lt;type&gt;</span>jar<span style=color:#f92672>&lt;/type&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span></code></pre></td></tr></table>
 </div>
 </div>
-  </div>
+</div>
 </figure></p>
 </li>
 <li>
 <p>In Mule application&rsquo;s <code>src/main/java</code> folder, create a new Java package <code>com.dhimate.demo</code>, class <code>JWTProvider</code> and use following code snippet to generate signed JWT.
-
-
-
-
-<figure class="code">
-  <figcaption>
-  	<span></span>
-  </figcaption>
-  <div class="codewrapper">
-    <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
 </span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.dhimate.demo<span style="color:#f92672">;</span>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> com.dhimate.demo<span style=color:#f92672>;</span>
 
-<span style="color:#f92672">import</span> io.jsonwebtoken.Jwts<span style="color:#f92672">;</span> 
+<span style=color:#f92672>import</span> io.jsonwebtoken.Jwts<span style=color:#f92672>;</span> 
 
-<span style="color:#f92672">import</span> java.io.File<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.io.FileInputStream<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.net.URL<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.security.KeyStore<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.security.PrivateKey<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.Date<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.Enumeration<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.UUID<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> java.util.concurrent.TimeUnit<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.apache.logging.log4j.LogManager<span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> org.apache.logging.log4j.Logger<span style="color:#f92672">;</span>
+<span style=color:#f92672>import</span> java.io.File<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.io.FileInputStream<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.net.URL<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.security.KeyStore<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.security.PrivateKey<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.Date<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.Enumeration<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.UUID<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.concurrent.TimeUnit<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.apache.logging.log4j.LogManager<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.apache.logging.log4j.Logger<span style=color:#f92672>;</span>
 
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JWTProvider</span> <span style="color:#f92672">{</span>
-<span style="color:#75715e">//	private static final String PRIVATE_KEY_FILE_RSA = &#34;Anypoint_Keystore.p12&#34;;
-</span><span style="color:#75715e">//	private static final String PRIVATE_KEY_PASSWORD = &#34;CHANGEIT&#34;;
-</span><span style="color:#75715e">//	private static final String EPIC_CLIENT_ID = &#34;86121d55-247e-4a0b-b3c0-6fa28c995f72&#34;;
-</span><span style="color:#75715e">//	private static final String EPIC_FHIR_URL = &#34;https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token&#34;;
-</span><span style="color:#75715e"></span>	
-	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Logger logger <span style="color:#f92672">=</span> LogManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getLogger</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JWTProvider&#34;</span><span style="color:#f92672">);</span>
-	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">getToken</span><span style="color:#f92672">(</span>String PRIVATE_KEY_FILE_RSA<span style="color:#f92672">,</span> 
-                                String PRIVATE_KEY_PASSWORD<span style="color:#f92672">,</span> 
-                                String EPIC_CLIENT_ID<span style="color:#f92672">,</span> 
-                                String EPIC_FHIR_URL<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>JWTProvider</span> <span style=color:#f92672>{</span>
+<span style=color:#75715e>//	private static final String PRIVATE_KEY_FILE_RSA = &#34;Anypoint_Keystore.p12&#34;;
+</span><span style=color:#75715e>//	private static final String PRIVATE_KEY_PASSWORD = &#34;CHANGEIT&#34;;
+</span><span style=color:#75715e>//	private static final String EPIC_CLIENT_ID = &#34;86121d55-247e-4a0b-b3c0-6fa28c995f72&#34;;
+</span><span style=color:#75715e>//	private static final String EPIC_FHIR_URL = &#34;https://fhir.epic.com/interconnect-fhir-oauth/oauth2/token&#34;;
+</span><span style=color:#75715e></span>	
+	<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LogManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getLogger</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;JWTProvider&#34;</span><span style=color:#f92672>);</span>
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> String <span style=color:#a6e22e>getToken</span><span style=color:#f92672>(</span>String PRIVATE_KEY_FILE_RSA<span style=color:#f92672>,</span> 
+                                String PRIVATE_KEY_PASSWORD<span style=color:#f92672>,</span> 
+                                String EPIC_CLIENT_ID<span style=color:#f92672>,</span> 
+                                String EPIC_FHIR_URL<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
 		
-		logger<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Generating JWS token&#34;</span><span style="color:#f92672">);</span>
+		logger<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Generating JWS token&#34;</span><span style=color:#f92672>);</span>
 		
-		String jws <span style="color:#f92672">=</span> Jwts
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">builder</span><span style="color:#f92672">()</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeaderParam</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;alg&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;RS384&#34;</span><span style="color:#f92672">)</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeaderParam</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;typ&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;JWT&#34;</span><span style="color:#f92672">)</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setIssuer</span><span style="color:#f92672">(</span>EPIC_CLIENT_ID<span style="color:#f92672">)</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setSubject</span><span style="color:#f92672">(</span>EPIC_CLIENT_ID<span style="color:#f92672">)</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setAudience</span><span style="color:#f92672">(</span>EPIC_FHIR_URL<span style="color:#f92672">)</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setId</span><span style="color:#f92672">(</span>UUID<span style="color:#f92672">.</span><span style="color:#a6e22e">randomUUID</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">())</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">setExpiration</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">MINUTES</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toMillis</span><span style="color:#f92672">(</span>5<span style="color:#f92672">)))</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">signWith</span><span style="color:#f92672">(</span>getKey<span style="color:#f92672">(</span>PRIVATE_KEY_FILE_RSA<span style="color:#f92672">,</span> PRIVATE_KEY_PASSWORD<span style="color:#f92672">))</span>
-				<span style="color:#f92672">.</span><span style="color:#a6e22e">compact</span><span style="color:#f92672">();</span>
+		String jws <span style=color:#f92672>=</span> Jwts
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setHeaderParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;alg&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;RS384&#34;</span><span style=color:#f92672>)</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setHeaderParam</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;typ&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;JWT&#34;</span><span style=color:#f92672>)</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setIssuer</span><span style=color:#f92672>(</span>EPIC_CLIENT_ID<span style=color:#f92672>)</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setSubject</span><span style=color:#f92672>(</span>EPIC_CLIENT_ID<span style=color:#f92672>)</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setAudience</span><span style=color:#f92672>(</span>EPIC_FHIR_URL<span style=color:#f92672>)</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setId</span><span style=color:#f92672>(</span>UUID<span style=color:#f92672>.</span><span style=color:#a6e22e>randomUUID</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>())</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>setExpiration</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> Date<span style=color:#f92672>(</span>System<span style=color:#f92672>.</span><span style=color:#a6e22e>currentTimeMillis</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> TimeUnit<span style=color:#f92672>.</span><span style=color:#a6e22e>MINUTES</span><span style=color:#f92672>.</span><span style=color:#a6e22e>toMillis</span><span style=color:#f92672>(</span>5<span style=color:#f92672>)))</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>signWith</span><span style=color:#f92672>(</span>getKey<span style=color:#f92672>(</span>PRIVATE_KEY_FILE_RSA<span style=color:#f92672>,</span> PRIVATE_KEY_PASSWORD<span style=color:#f92672>))</span>
+				<span style=color:#f92672>.</span><span style=color:#a6e22e>compact</span><span style=color:#f92672>();</span>
 		
-		<span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>jws<span style="color:#f92672">);</span>
-	<span style="color:#f92672">}</span>
+		<span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>jws<span style=color:#f92672>);</span>
+	<span style=color:#f92672>}</span>
 
-	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> PrivateKey <span style="color:#a6e22e">getKey</span><span style="color:#f92672">(</span>String PRIVATE_KEY_FILE_RSA<span style="color:#f92672">,</span> 
-                                    String PRIVATE_KEY_PASSWORD<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+	<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> PrivateKey <span style=color:#a6e22e>getKey</span><span style=color:#f92672>(</span>String PRIVATE_KEY_FILE_RSA<span style=color:#f92672>,</span> 
+                                    String PRIVATE_KEY_PASSWORD<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
 		
-		KeyStore keystore <span style="color:#f92672">=</span> KeyStore<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;PKCS12&#34;</span><span style="color:#f92672">);</span>
-		URL resource <span style="color:#f92672">=</span> JWTProvider<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClassLoader</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span>PRIVATE_KEY_FILE_RSA<span style="color:#f92672">);</span>
-		FileInputStream is <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span>resource<span style="color:#f92672">.</span><span style="color:#a6e22e">toURI</span><span style="color:#f92672">()));</span>
+		KeyStore keystore <span style=color:#f92672>=</span> KeyStore<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;PKCS12&#34;</span><span style=color:#f92672>);</span>
+		URL resource <span style=color:#f92672>=</span> JWTProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getResource</span><span style=color:#f92672>(</span>PRIVATE_KEY_FILE_RSA<span style=color:#f92672>);</span>
+		FileInputStream is <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> FileInputStream<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> File<span style=color:#f92672>(</span>resource<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>()));</span>
 		
-		keystore<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>is<span style="color:#f92672">,</span> PRIVATE_KEY_PASSWORD<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">());</span>
-		Enumeration<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> aliases <span style="color:#f92672">=</span> keystore<span style="color:#f92672">.</span><span style="color:#a6e22e">aliases</span><span style="color:#f92672">();</span>
-		String keyAlias <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
+		keystore<span style=color:#f92672>.</span><span style=color:#a6e22e>load</span><span style=color:#f92672>(</span>is<span style=color:#f92672>,</span> PRIVATE_KEY_PASSWORD<span style=color:#f92672>.</span><span style=color:#a6e22e>toCharArray</span><span style=color:#f92672>());</span>
+		Enumeration<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> aliases <span style=color:#f92672>=</span> keystore<span style=color:#f92672>.</span><span style=color:#a6e22e>aliases</span><span style=color:#f92672>();</span>
+		String keyAlias <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>;</span>
 		
-		<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>aliases<span style="color:#f92672">.</span><span style="color:#a6e22e">hasMoreElements</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-			keyAlias <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">)</span> aliases<span style="color:#f92672">.</span><span style="color:#a6e22e">nextElement</span><span style="color:#f92672">();</span>
-		<span style="color:#f92672">}</span>
+		<span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>aliases<span style=color:#f92672>.</span><span style=color:#a6e22e>hasMoreElements</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+			keyAlias <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>String<span style=color:#f92672>)</span> aliases<span style=color:#f92672>.</span><span style=color:#a6e22e>nextElement</span><span style=color:#f92672>();</span>
+		<span style=color:#f92672>}</span>
 
-		PrivateKey key <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>PrivateKey<span style="color:#f92672">)</span> keystore<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">(</span>keyAlias<span style="color:#f92672">,</span> PRIVATE_KEY_PASSWORD<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">());</span>
-		<span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-	<span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+		PrivateKey key <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>PrivateKey<span style=color:#f92672>)</span> keystore<span style=color:#f92672>.</span><span style=color:#a6e22e>getKey</span><span style=color:#f92672>(</span>keyAlias<span style=color:#f92672>,</span> PRIVATE_KEY_PASSWORD<span style=color:#f92672>.</span><span style=color:#a6e22e>toCharArray</span><span style=color:#f92672>());</span>
+		<span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+	<span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
  </code></pre></td></tr></table>
 </div>
 </div>
-  </div>
+</div>
 </figure></p>
 </li>
 </ol>
 <p>Your Mule application should look like this.</p>
-<figure><img src="/img/2021/epic-fhir-server/epic-mule-app-structure.png"
-         alt="dwarf" width="300px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-app-structure.png alt=dwarf width=300px>
 </figure>
-
-<ol start="3">
+<ol start=3>
 <li>
 <p>In Mule application&rsquo;s <code>src/main/java</code> folder, create a new Java package <code>com.dhimate.demo</code>, class <code>JWTProvider</code> and use the following code snippet to generate signed JWT.</p>
 </li>
@@ -486,218 +379,101 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
 <ul>
 <li>In the first step we need to get the access token using the signed JWT token</li>
 <li>In the second step we will use the access token received in the step above to access FHIR resource
-<figure><img src="/img/2021/epic-fhir-server/epic-mule-flow.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow.png alt=dwarf width=600px>
 </figure>
 </li>
 </ul>
-<ol start="5">
+<ol start=5>
 <li>Let&rsquo;s look at the configuration of important components</li>
 </ol>
 <ul>
 <li>Generate signed JWS token using <code>Invoke Static</code> component
-<figure><img src="/img/2021/epic-fhir-server/epic-mule-flow-generate-JWS.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-generate-JWS.png alt=dwarf width=600px>
 </figure>
 </li>
 <li>Prepare request payload to get access token
-<figure><img src="/img/2021/epic-fhir-server/epic-mule-flow-prepare-token-request.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-prepare-token-request.png alt=dwarf width=600px>
 </figure>
 </li>
 <li>Get the access token
-<figure><img src="/img/2021/epic-fhir-server/epic-mule-flow-get-access-token.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-get-access-token.png alt=dwarf width=600px>
 </figure>
 </li>
 <li>Call FHIR API to get the data
-<figure><img src="/img/2021/epic-fhir-server/epic-mule-flow-epic-fhir-api.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-mule-flow-epic-fhir-api.png alt=dwarf width=600px>
 </figure>
 </li>
 </ul>
-<ol start="6">
+<ol start=6>
 <li>Once this is done, we can add a simple HTTP listener and connect our flow to it to get the data from Epic&rsquo;s FHIR API. Epic has provided <a href="https://fhir.epic.com/Documentation?docId=testpatients">test data</a> in the sandbox. Let&rsquo;s use it to search for a patient record.
-<figure><img src="/img/2021/epic-fhir-server/epic-fhir-postman.png"
-         alt="dwarf" width="600px"/>
+<figure><img src=/img/2021/epic-fhir-server/epic-fhir-postman.png alt=dwarf width=600px>
 </figure>
 </li>
 </ol>
-
-        </div>
-        
-
-<footer>
-  <p class="meta">
-    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
-    
-    <time>Jan 23, 2021</time>
-    
-      <span class="categories">
-        Tags:
-        
-          <a class="category" href="https://www.dhimate.com/tags/mulesoft">MuleSoft</a>  
-    
-    </span>
-  </p>
-
-  
-
-  <p class="meta">
-    
-        <a class="basic-alignment left" href="https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/" title="How to Use Different Authentication Options for Salesforce Connector in Mule 4">How to Use Different Authentication Options for Salesforce Connector in Mule 4</a>
-    
-
-    
-      <a class="basic-alignment right" href="https://www.dhimate.com/2021/february-quick-update/" title="February Quick Update">February Quick Update</a>
-    
-  </p>
-  
-    
-      <div id="disqus_thread"></div>
-<script type="text/javascript">
-  (function() {
-      
-      
-      
-      if (window.location.hostname == "localhost")
-          return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'dhimate';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-  
-</footer>
-
-      </article>
-    </div>
-    
-
-<aside class="sidebar thirds">
-  <section class="first odd">
-
-    
-      <h1>About Me</h1>
-    
-
-    <p>
-      
-        I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href="/about">About</a> to know more.
-      
-    </p>
-  </section>
-
-
-
-  
-  <ul class="sidebar-nav">
-    <li class="sidebar-nav-item">
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/dhimate/" title="https://github.com/dhimate/"><i class="fa fa-github fa-3x"></i></a>
-      
-      
-      
-      
-         
-      
-      <a target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/dhimate" title="https://linkedin.com/in/dhimate"><i class="fa fa-linkedin fa-3x"></i></a>
-      
-      
-      
-      
-      
-      
-
-    
-    
-    </li>
-  </ul>
-
-  
-
-  
-    
-      <section class="odd">
-        
-        
-      </section>
-    
-  
-
-  
-  
-  
-    
-      <section class="even">
-        <h1>Recent Posts</h1>
-        <ul id="recent_posts">
-          
-          
-            
-          
-            
-              <li class="post">
-                <a href="/2021/oci-application/">OCI Application</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/understanding-smart-on-fhir/">Understanding SMART on FHIR</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/about-thanks-for-the-feedback/">About Thanks for the Feedback</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/random-act-of-kindness/">Random Act of Kindness</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/my-audible-experience/">My Audible Experience</a>
-              </li>
-            
-          
-        </ul>
-      </section>
-    
-  
-</aside>
-
-  </div>
 </div>
-
-    <footer role="contentinfo">
-      <p>Copyright &copy; 2021 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
-        <span class="credit">Powered by <a target="_blank" href="https://gohugo.io" rel="noopener noreferrer">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/" rel="noopener noreferrer">Hugo-Octopress</a> theme.
-      </p>
-    </footer>
-
-    
-    
-    
-
-    
-      <script>
-        var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
-      </script>
-    
-  </body>
+<footer>
+<p class=meta>
+<span class="byline author vcard">Posted by <span class=fn>Yogesh Dhimate</span></span>
+<time>Jan 23, 2021</time>
+<span class=categories>
+Tags:
+<a class=category href=https://www.dhimate.com/tags/mulesoft>MuleSoft</a>
+</span>
+</p>
+<p class=meta>
+<a class="basic-alignment left" href=https://www.dhimate.com/2021/how-to-use-different-authentication-options-for-salesforce-connector-in-mule-4/ title="How to Use Different Authentication Options for Salesforce Connector in Mule 4">How to Use Different Authentication Options for Salesforce Connector in Mule 4</a>
+<a class="basic-alignment right" href=https://www.dhimate.com/2021/february-quick-update/ title="February Quick Update">February Quick Update</a>
+</p>
+<div id=disqus_thread></div>
+<script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='dhimate',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</footer>
+</article>
+</div>
+<aside class="sidebar thirds">
+<section class="first odd">
+<h1>About Me</h1>
+<p>
+I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href=/about>About</a> to know more.
+</p>
+</section>
+<ul class=sidebar-nav>
+<li class=sidebar-nav-item>
+<a target=_blank rel="noopener noreferrer" href=https://github.com/dhimate/ title=https://github.com/dhimate/><i class="fa fa-github fa-3x"></i></a>
+<a target=_blank rel="noopener noreferrer" href=https://linkedin.com/in/dhimate title=https://linkedin.com/in/dhimate><i class="fa fa-linkedin fa-3x"></i></a>
+</li>
+</ul>
+<section class=odd>
+</section>
+<section class=even>
+<h1>Recent Posts</h1>
+<ul id=recent_posts>
+<li class=post>
+<a href=/2021/oci-application/>OCI Application</a>
+</li>
+<li class=post>
+<a href=/2021/understanding-smart-on-fhir/>Understanding SMART on FHIR</a>
+</li>
+<li class=post>
+<a href=/2021/about-thanks-for-the-feedback/>About Thanks for the Feedback</a>
+</li>
+<li class=post>
+<a href=/2021/random-act-of-kindness/>Random Act of Kindness</a>
+</li>
+<li class=post>
+<a href=/2021/my-audible-experience/>My Audible Experience</a>
+</li>
+</ul>
+</section>
+</aside>
+</div>
+</div>
+<footer role=contentinfo>
+<p>Copyright &copy; 2021 Yogesh Dhimate - <a href=https://www.dhimate.com/license/>License</a> -
+<span class=credit>Powered by <a target=_blank href=https://gohugo.io rel="noopener noreferrer">Hugo</a> and <a target=_blank href=https://github.com/parsiya/hugo-octopress/ rel="noopener noreferrer">Hugo-Octopress</a> theme.
+</p>
+</footer>
+<script>var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];(function(a,b){var c=a.createElement(b),d=a.getElementsByTagName(b)[0];c.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js',d.parentNode.insertBefore(c,d)})(document,'script')</script>
+</body>
 </html>
-
