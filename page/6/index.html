@@ -45,6 +45,242 @@
 <div class=blog-index>
 <article>
 <header>
+<p class=meta>Dec 29, 2020
+- 3 minute read
+- <a href=https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/#disqus_thread>Comments</a>
+- <a class=label href=https://www.dhimate.com/categories/programming/>Programming </a>
+</p>
+<h1 class=entry-title>
+<a href=https://www.dhimate.com/2020/upload-attachments-to-salesforce-using-mulesoft/>Upload Attachments to Salesforce Using MuleSoft</a>
+</h1>
+</header>
+<p>This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.</p>
+<p>As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce
+<div class=mermaid align=center>
+erDiagram
+ContentDocument ||--|{ ContentDocumentLink : has
+ContentDocument {
+string Id
+string Title
+string PathOnClient
+date CreatedDate
+}
+ContentDocumentLink ||--|| Account : linkedEntity
+ContentDocumentLink {
+string Id
+reference LinkedEntityId
+reference ContentDocumentId
+picklist ShareType
+picklist Visibility
+}
+Account {
+string Id
+string AccountNumber
+}
+ContentDocumentLink ||--|| Contact : linkedEntity
+Contact {
+string Id
+string FirstName
+string LastName
+}
+ContentDocumentLink ||--|| sObject : linkedEntity
+sObject {
+string Id
+string SomeProperty
+}
+</div>
+Things to note:</p>
+<ul>
+<li>Salesforce attachments are stored in ContentDocument (and ContentVersion) objects.
+<ul>
+<li>The ContentDocument object is used to retrieve, query, update and delete the latest version of a document.</li>
+<li>The ContentVersion object is used to create, query, retrieve, search, edit, and update a specific version of a Salesforce CRM Content document.</li>
+</ul>
+</li>
+<li>The attachment is stored in ContentDocument (Or ContentVersion) and linked to any sObject (Contact, Account etc) via ContentDocumentLink Object</li>
+<li>Thus, to successfully upload an attachment to Salesforce following needs to happen
+<ul>
+<li>Upsert an attachment (file) to ContentDocument/ContentVersion object</li>
+<li>Query the ContentDocument/ContentVersion to get the ContentDocumentId</li>
+<li>Use the ContentDocumentId to link to your sObject (Account, Lead Opportunity, etc) by upserting the relationship in the ContentDocumentLink object</li>
+</ul>
+</li>
+</ul>
+<p>Following flow chart shows the general approach to upload an attachment to Salesforce:
+<div class=mermaid align=center>
+graph TD
+A([Start]) -->B[/Get file/]
+B --> C{{Prepare ContentDocument}} --> D[(<br>Create <br>ContentDocument)]
+D --> E{{Get ContentDocument Id}}
+E --> F{{Prepare ContentDocumentLink}}
+F --> G[(<br>Create <br>ContentDocumentLink)]
+G --> H([End])
+</div>
+</p>
+<p>Mule DSL code to achieve this
+<figure class=code>
+<figcaption>
+<span></span>
+</figcaption>
+<div class=codewrapper>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">73
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>    <span style=color:#f92672>&lt;sub-flow</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;Upload Attachment&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;ee:transform</span> 
+            <span style=color:#a6e22e>doc:name=</span><span style=color:#e6db74>&#34;Prepare ContentDocument&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;ee:message&gt;</span>
+            <span style=color:#f92672>&lt;ee:set-payload&gt;</span>
+            <span style=color:#75715e>&lt;![CDATA[%dw 2.0
+</span><span style=color:#75715e>                output application/java
+</span><span style=color:#75715e>                ---
+</span><span style=color:#75715e>                [
+</span><span style=color:#75715e>                    {
+</span><span style=color:#75715e>                        Title: &#34;filename&#34; //Replace this with actual filename,
+</span><span style=color:#75715e>                        PathOnClient: &#34;filename&#34; //Replace this with the path on storage system
+</span><span style=color:#75715e>                        VersionData: payload.content as Binary {class: &#34;byte[]&#34;}
+</span><span style=color:#75715e>                        //This is the attachment content
+</span><span style=color:#75715e>                    }
+</span><span style=color:#75715e>                ]
+</span><span style=color:#75715e>                ]]&gt;</span>
+            <span style=color:#f92672>&lt;/ee:set-payload&gt;</span>
+            <span style=color:#f92672>&lt;/ee:message&gt;</span>
+        <span style=color:#f92672>&lt;/ee:transform&gt;</span>
+        <span style=color:#f92672>&lt;salesforce:create</span> <span style=color:#a6e22e>type=</span><span style=color:#e6db74>&#34;ContentVersion&#34;</span>
+            <span style=color:#a6e22e>doc:name=</span><span style=color:#e6db74>&#34;Create ContentDocument&#34;</span>
+            <span style=color:#a6e22e>config-ref=</span><span style=color:#e6db74>&#34;Salesforce_Config&#34;</span><span style=color:#f92672>/&gt;</span>
+        <span style=color:#f92672>&lt;ee:transform</span> <span style=color:#a6e22e>doc:name=</span><span style=color:#e6db74>&#34;Get Attachment Id&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;ee:variables&gt;</span>
+                <span style=color:#f92672>&lt;ee:set-variable</span> <span style=color:#a6e22e>variableName=</span><span style=color:#e6db74>&#34;contentVersionId&#34;</span><span style=color:#f92672>&gt;</span>
+                    <span style=color:#75715e>&lt;![CDATA[%dw 2.0
+</span><span style=color:#75715e>                    output application/java
+</span><span style=color:#75715e>                    ---
+</span><span style=color:#75715e>                    payload[0].id
+</span><span style=color:#75715e>                    ]]&gt;</span>
+                <span style=color:#f92672>&lt;/ee:set-variable&gt;</span>
+            <span style=color:#f92672>&lt;/ee:variables&gt;</span>
+        <span style=color:#f92672>&lt;/ee:transform&gt;</span>
+        <span style=color:#f92672>&lt;salesforce:query</span> 
+            <span style=color:#a6e22e>doc:name=</span><span style=color:#e6db74>&#34;Get ContentDocumentId&#34;</span>
+            <span style=color:#a6e22e>config-ref=</span><span style=color:#e6db74>&#34;Salesforce_Config&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;salesforce:salesforce-query&gt;</span>
+                SELECT ContentDocumentId From ContentVersion Where Id = &#39;:contentVersionId&#39;
+            <span style=color:#f92672>&lt;/salesforce:salesforce-query&gt;</span>
+            <span style=color:#f92672>&lt;salesforce:parameters&gt;</span>
+            <span style=color:#75715e>&lt;![CDATA[#[
+</span><span style=color:#75715e>                output application/java
+</span><span style=color:#75715e>                ---
+</span><span style=color:#75715e>                {
+</span><span style=color:#75715e>                    &#34;contentVersionId&#34; : vars.contentVersionId
+</span><span style=color:#75715e>                }
+</span><span style=color:#75715e>            ]
+</span><span style=color:#75715e>            ]]&gt;</span>
+            <span style=color:#f92672>&lt;/salesforce:parameters&gt;</span>
+        <span style=color:#f92672>&lt;/salesforce:query&gt;</span>
+        <span style=color:#f92672>&lt;ee:transform</span> <span style=color:#a6e22e>doc:name=</span><span style=color:#e6db74>&#34;Prepare ContentDocumentLink&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;ee:message&gt;</span>
+                <span style=color:#f92672>&lt;ee:set-payload&gt;</span>
+                    <span style=color:#75715e>&lt;![CDATA[%dw 2.0
+</span><span style=color:#75715e>                    output application/java
+</span><span style=color:#75715e>                    ---
+</span><span style=color:#75715e>                    [
+</span><span style=color:#75715e>                        {
+</span><span style=color:#75715e>                            LinkedEntityId: vars.accountId,
+</span><span style=color:#75715e>                            ContentDocumentId: payload[0].ContentDocumentId,
+</span><span style=color:#75715e>                            ShareType: &#34;I&#34;
+</span><span style=color:#75715e>                        }
+</span><span style=color:#75715e>                    ]
+</span><span style=color:#75715e>                    ]]&gt;</span>
+                <span style=color:#f92672>&lt;/ee:set-payload&gt;</span>
+            <span style=color:#f92672>&lt;/ee:message&gt;</span>
+        <span style=color:#f92672>&lt;/ee:transform&gt;</span>
+        <span style=color:#f92672>&lt;salesforce:create</span> 
+            <span style=color:#a6e22e>doc:name=</span><span style=color:#e6db74>&#34;Create ContentDocumentLink&#34;</span>
+            <span style=color:#a6e22e>config-ref=</span><span style=color:#e6db74>&#34;Salesforce_Config&#34;</span>
+            <span style=color:#a6e22e>type=</span><span style=color:#e6db74>&#34;ContentDocumentLink&#34;</span> <span style=color:#f92672>/&gt;</span>
+    <span style=color:#f92672>&lt;/sub-flow&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</figure></p>
+<p>With this approach you can easily upload attachments to Salesforce.</p>
+</article>
+<article>
+<header>
 <p class=meta>Dec 24, 2020
 - 2 minute read
 - <a href=https://www.dhimate.com/2020/made-to-stick-and-the-curse-of-knowledge/#disqus_thread>Comments</a>
@@ -80,161 +316,6 @@ There is also an allergen/gluten free version of pre-baked cookies for governmen
 <li><strong>Runtime Fabric:</strong> After some guests complained that pre-baked cookies were too big, and &lsquo;make your own cookies&rsquo; unappetizing. MuleSoft started offering &lsquo;Runtime Fabric&rsquo; branded cookie dough. You still have to bake your cookies, but the sizes of cookies are standardized. They won&rsquo;t look funny.</li>
 </ul>
 </article>
-<article>
-<header>
-<p class=meta>Oct 24, 2017
-- 2 minute read
-- <a href=https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/#disqus_thread>Comments</a>
-</p>
-<h1 class=entry-title>
-<a href=https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/>Google Spreadsheets and ArrayFormula for XIRR Calculation</a>
-</h1>
-</header>
-<p>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets.
-Nice thing with Google Spreadsheets is its support for import and queries.
-e.g. AMFI India publishes daily NAV’s on their website <a href=http://portal.amfiindia.com/spages/NAV1.txt>http://portal.amfiindia.com/spages/NAV1.txt</a>
-You can import the data programmatically and run a query on it to find desired NAV.
-I can use following simple query to check the latest NAV of Birla Sunlife Frontline Equity fund, whose symbol is INF209K01YY7</p>
-<pre><code>=QUERY(SPLIT(QUERY(importDATA(&quot;http://portal.amfiindia.com/spages/NAV1.txt&quot;),
-&quot;SELECT * Where Col1 like '%INF209K01YY7%'&quot;),&quot;;&quot;), &quot;Select Col5&quot;)
-</code></pre><p>Google Spreadsheets obviously supports data from Google Finance with its built in function GOOGLEFINANCE</p>
-<pre><code>=GOOGLEFINANCE(&quot;SBIN&quot;,&quot;price&quot;)
-</code></pre><p>This will return latest price for State Bank of India.
-You can also use Stock Exchange assigned ID’s to query the data from Google Finance</p>
-<pre><code>=GOOGLEFINANCE(&quot;500510&quot;,&quot;price&quot;)
-</code></pre><p>This will return latest price for Larsen and Tubro.
-However the most killer feature of Google Spreadsheets is its support for ArrayFormula in conjunction with XIRR.
-Let me explain.
-Consider following cash flow.</p>
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>C</th>
-<th>D</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Transaction</td>
-<td>Symbol</td>
-<td>Date</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Sell</td>
-<td>Havells</td>
-<td>31/12/2017</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Buy</td>
-<td>Havells</td>
-<td>01/01/2017</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Buy</td>
-<td>Havells</td>
-<td>06/01/2017</td>
-</tr>
-</tbody>
-</table>
-<p>We have to update the XIRR formula to include the new transaction we just added in our cash flow</p>
-<pre><code>=XIRR(D2:D4,C2:C4)*100
-</code></pre><table>
-<thead>
-<tr>
-<th>Symbol</th>
-<th>XIRR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Havells</td>
-<td>4.493</td>
-</tr>
-</tbody>
-</table>
-<p>This is very cumbersome to update XIRR formula, if you have a diversified portfolio with 10+ symbols and investing on a regular basis.</p>
-<table>
-<thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>C</th>
-<th>D</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Transaction</td>
-<td>Symbol</td>
-<td>Date</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Sell</td>
-<td>Havells</td>
-<td>31/12/2017</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Buy</td>
-<td>Havells</td>
-<td>01/01/2017</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Buy</td>
-<td>Havells</td>
-<td>06/01/2017</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Sell</td>
-<td>SBI</td>
-<td>31/12/2017</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Buy</td>
-<td>SBI</td>
-<td>01/01/2017</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Buy</td>
-<td>SBI</td>
-<td>06/01/2017</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<pre><code>Havells =XIRR(D2:D4,C2:C4)*100
-SBI =XIRR(D5:D7,C5:C7)*100
-</code></pre><p>You can see for two symbols we have to keep close track of cell numbers etc to accurately calculate XIRR.
-ArrayFormula provides nice workaround to simplify and automate this process of using XIRR formulas for a growing number of transactions</p>
-<blockquote>
-<p><a href="https://support.google.com/docs/answer/3093275?hl=en">https://support.google.com/docs/answer/3093275?hl=en</a></p>
-</blockquote>
-<blockquote>
-<p>Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.</p>
-</blockquote>
-<p>XIRR can be easily combined with ArrayFormula like below</p>
-<pre><code>=ArrayFormula(XIRR((B2:B7=&quot;HAVELLS&quot;)*D2:D7,C2:C7))*100
-=ArrayFormula(XIRR((B2:B7=&quot;SBI&quot;)*D2:D7,C2:C7))*100
-</code></pre><p>As you can see that except the symbol name both the formulas are identical. We can remove the hard coded symbol name and refer to the cell which has symbol name.
-Using ArrayFormula in the portfolio tracker has simplified maintenance of the spreadsheet and saved quite a few hours for me.</p>
-</article>
 <div class=pagination>
 <a href=/ aria-label=First class=label-pagination><i class="fa fa-angle-double-left fa-lg"></i></a>
 <a href=/page/5/ aria-label=Previous class=label-pagination><i class="fa fa-angle-left fa-lg"></i></a>
@@ -269,6 +350,9 @@ I’m Yogesh Dhimate. This is my personal website. All opinions expressed here a
 <h1>Recent Posts</h1>
 <ul id=recent_posts>
 <li class=post>
+<a href=/2021/oci-application/>OCI Application</a>
+</li>
+<li class=post>
 <a href=/2021/understanding-smart-on-fhir/>Understanding SMART on FHIR</a>
 </li>
 <li class=post>
@@ -279,9 +363,6 @@ I’m Yogesh Dhimate. This is my personal website. All opinions expressed here a
 </li>
 <li class=post>
 <a href=/2021/my-audible-experience/>My Audible Experience</a>
-</li>
-<li class=post>
-<a href=/2021/certificate-of-authenticity/>Certificate of Authenticity</a>
 </li>
 </ul>
 </section>

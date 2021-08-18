@@ -45,6 +45,161 @@
 <div class=blog-index>
 <article>
 <header>
+<p class=meta>Oct 24, 2017
+- 2 minute read
+- <a href=https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/#disqus_thread>Comments</a>
+</p>
+<h1 class=entry-title>
+<a href=https://www.dhimate.com/2017/google-spreadsheets-and-arrayformula-for-xirr-calculation/>Google Spreadsheets and ArrayFormula for XIRR Calculation</a>
+</h1>
+</header>
+<p>I was looking for a simple way to calculate performance of my investments over time. Popular portfolio trackers like Moneycontrol and Value Research did not meet my needs. So I decided to try out Google Spreadsheets.
+Nice thing with Google Spreadsheets is its support for import and queries.
+e.g. AMFI India publishes daily NAV’s on their website <a href=http://portal.amfiindia.com/spages/NAV1.txt>http://portal.amfiindia.com/spages/NAV1.txt</a>
+You can import the data programmatically and run a query on it to find desired NAV.
+I can use following simple query to check the latest NAV of Birla Sunlife Frontline Equity fund, whose symbol is INF209K01YY7</p>
+<pre><code>=QUERY(SPLIT(QUERY(importDATA(&quot;http://portal.amfiindia.com/spages/NAV1.txt&quot;),
+&quot;SELECT * Where Col1 like '%INF209K01YY7%'&quot;),&quot;;&quot;), &quot;Select Col5&quot;)
+</code></pre><p>Google Spreadsheets obviously supports data from Google Finance with its built in function GOOGLEFINANCE</p>
+<pre><code>=GOOGLEFINANCE(&quot;SBIN&quot;,&quot;price&quot;)
+</code></pre><p>This will return latest price for State Bank of India.
+You can also use Stock Exchange assigned ID’s to query the data from Google Finance</p>
+<pre><code>=GOOGLEFINANCE(&quot;500510&quot;,&quot;price&quot;)
+</code></pre><p>This will return latest price for Larsen and Tubro.
+However the most killer feature of Google Spreadsheets is its support for ArrayFormula in conjunction with XIRR.
+Let me explain.
+Consider following cash flow.</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Transaction</td>
+<td>Symbol</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>Havells</td>
+<td>31/12/2017</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>01/01/2017</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>06/01/2017</td>
+</tr>
+</tbody>
+</table>
+<p>We have to update the XIRR formula to include the new transaction we just added in our cash flow</p>
+<pre><code>=XIRR(D2:D4,C2:C4)*100
+</code></pre><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>XIRR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Havells</td>
+<td>4.493</td>
+</tr>
+</tbody>
+</table>
+<p>This is very cumbersome to update XIRR formula, if you have a diversified portfolio with 10+ symbols and investing on a regular basis.</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Transaction</td>
+<td>Symbol</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>Havells</td>
+<td>31/12/2017</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>01/01/2017</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>Havells</td>
+<td>06/01/2017</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sell</td>
+<td>SBI</td>
+<td>31/12/2017</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Buy</td>
+<td>SBI</td>
+<td>01/01/2017</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Buy</td>
+<td>SBI</td>
+<td>06/01/2017</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code>Havells =XIRR(D2:D4,C2:C4)*100
+SBI =XIRR(D5:D7,C5:C7)*100
+</code></pre><p>You can see for two symbols we have to keep close track of cell numbers etc to accurately calculate XIRR.
+ArrayFormula provides nice workaround to simplify and automate this process of using XIRR formulas for a growing number of transactions</p>
+<blockquote>
+<p><a href="https://support.google.com/docs/answer/3093275?hl=en">https://support.google.com/docs/answer/3093275?hl=en</a></p>
+</blockquote>
+<blockquote>
+<p>Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.</p>
+</blockquote>
+<p>XIRR can be easily combined with ArrayFormula like below</p>
+<pre><code>=ArrayFormula(XIRR((B2:B7=&quot;HAVELLS&quot;)*D2:D7,C2:C7))*100
+=ArrayFormula(XIRR((B2:B7=&quot;SBI&quot;)*D2:D7,C2:C7))*100
+</code></pre><p>As you can see that except the symbol name both the formulas are identical. We can remove the hard coded symbol name and refer to the cell which has symbol name.
+Using ArrayFormula in the portfolio tracker has simplified maintenance of the spreadsheet and saved quite a few hours for me.</p>
+</article>
+<article>
+<header>
 <p class=meta>Sep 24, 2017
 - 3 minute read
 - <a href=https://www.dhimate.com/2017/automated-testing-of-webmethods-services-with-rest-assured/#disqus_thread>Comments</a>
@@ -562,80 +717,6 @@ task <span style=color:#a6e22e>wrapper</span><span style=color:#f92672>(</span>t
 </figure>
 <p>Instead of logging the information to a file we can actually use Apama Dashboard to visually monitor the weather fluctuation and any patterns in the data. I will explain how to do that in another post.</p>
 </article>
-<article>
-<header>
-<p class=meta>Aug 17, 2016
-- 4 minute read
-- <a href=https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/#disqus_thread>Comments</a>
-- <a class=label href=https://www.dhimate.com/categories/programming/>Programming </a>
-</p>
-<h1 class=entry-title>
-<a href=https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/>Using OAuth 2.0 with webMethods Integration Server</a>
-</h1>
-</header>
-<p>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.</p>
-<p>For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</p>
-<p>Integration Server supports two types of OAuth grant types</p>
-<p><strong>Authorization Code</strong>:
-This is a secure way of obtaining an OAuth token, where the client needs to authorize himself with the authorization server. The authorization server responds with the authorization code, which the client uses to obtain the access token. This approach is typically used by clients hosted on web server-based applications where the application code runs on the server.</p>
-<p><strong>Implicit</strong>:
-This approach is used by mobile apps or browser-based applications. In this approach, the client does not need to authorize himself with the authorization server. The access token is passed through the browser, as a fragment in the URL. A simple javascript code can be used to extract the access token from the fragment.</p>
-<p>We will see how to implement both approaches in the integration server. For both approaches, you need to do some basic setup on the IS console.</p>
-<ul>
-<li><strong>Client Configuration</strong>:</li>
-</ul>
-<p>A client must register himself and obtain client_id from the integration server. In the IS console go to Security->OAuth->Client Registration page and click on &lsquo;Register Client&rsquo;. Enter the information as shown below.
-Redirect URL should be the URL, where IS will redirect the page after authorizing the request. I have created a simple RESTful service on the IS as a redirect URL.</p>
-<figure><img src=/img/2016/OAuth_1.PNG alt=dwarf width=700px>
-</figure>
-<p>Remember that the Client ID will be generated when you click Save Changes.</p>
-<figure><img src=/img/2016/OAuth_2.PNG alt=dwarf width=700px>
-</figure>
-<p>Your client will use this &lsquo;Client ID&rsquo; to authorize himself and request an access token.</p>
-<ul>
-<li><strong>Scope Management</strong>:</li>
-</ul>
-<p>The scope indicates the resources the client can access on behalf of resource owner. You need to indicate one or more folders or services on the IS in the scope. Once a client is granted access to a scope, he can access the folders and services included in that scope.</p>
-<p>Go to Security->Oauth->Scope Management page and click on &lsquo;Add Scope&rsquo;. Once the page is open, mention the scope details as shown below</p>
-<p>Here we have included one service &lsquo;OAuthDemo&rsquo; in the scope. This is an URL Alias for /rest/Sandbox.OAuthDemo folder on the server</p>
-<figure><img src=/img/2016/OAuth_3.PNG alt=dwarf width=700px>
-</figure>
-<p>Once the scope is added, map the scope with the client using the &lsquo;Associate Scope to Clients&rsquo; option on the &lsquo;Scope Management&rsquo; page.</p>
-<figure><img src=/img/2016/OAuth_4.PNG alt=dwarf width=700px>
-</figure>
-<p>Once this setup is done your client can request the access token either for the Authorization Code approach or Implicit approach.</p>
-<ul>
-<li>Authorization Code:</li>
-</ul>
-<p>Requesting token for authorization code approach is a 2 step process. In the first step, the client authorizes himself with the authorization server using <code>pub.auth:authorize</code> service and receives the authorization code. Once the authorization code is received, it can be used to obtain the access token using <code>pub.auth:getAccessToken</code> service.</p>
-<p>When the client initiates the <code>pub.oauth:authorize</code> request, it brings up a page for the resource owner to either approve the access request or reject it.</p>
-<figure><img src=/img/2016/OAuth_5.PNG alt=dwarf width=700px>
-</figure>
-<p>When the resource owner approves the request, the integration server generates the authorization code and redirects the page to the &lsquo;redirect URL&rsquo; specified in the client configuration.</p>
-<p>The service hosted at redirect URL passes the authorization code to <code>pub.oauth:getAccessToken</code> service to exchange authorization code for an access token as shown below</p>
-<figure><img src=/img/2016/OAuth_6.PNG alt=dwarf width=700px>
-</figure>
-<p>The client application can now use the access token to access the resource described in the Scope.</p>
-<ul>
-<li>Implicit:</li>
-</ul>
-<p>Requesting token for implicit approach is one-step process.
-When the client initiates the <code>pub.oauth:authorize</code> request, it indicates the implicit approach by mentioning the response type as &lsquo;token&rsquo; in the input to <code>pub.oauth:authorize</code> service. The service brings up a page for resource owner to either approve the access request or reject it.</p>
-<figure><img src=/img/2016/OAuth_7.PNG alt=dwarf width=700px>
-</figure>
-<p>When the resource owner approves the request the integration server generates the access token and includes it as a fragment in the redirect URI, which the client application can extract it using simple javascript code.</p>
-<figure><img src=/img/2016/OAuth_8.PNG alt=dwarf width=700px>
-</figure>
-<p>Integration Server administrator can verify all the tokens in the IS console</p>
-<figure><img src=/img/2016/OAuth_9.PNG alt=dwarf width=700px>
-</figure>
-<p>The client application can use the token as a bearer token to access the resource on the server.</p>
-<figure><img src=/img/2016/OAuth_10.PNG alt=dwarf width=700px>
-</figure>
-<p>If the client application tries to use an invalid token or tries to access a service which is not in the scope, it will get an error</p>
-<figure><img src=/img/2016/OAuth_11.PNG alt=dwarf width=700px>
-</figure>
-</article>
 <div class=pagination>
 <a href=/ aria-label=First class=label-pagination><i class="fa fa-angle-double-left fa-lg"></i></a>
 <a href=/page/6/ aria-label=Previous class=label-pagination><i class="fa fa-angle-left fa-lg"></i></a>
@@ -670,6 +751,9 @@ I’m Yogesh Dhimate. This is my personal website. All opinions expressed here a
 <h1>Recent Posts</h1>
 <ul id=recent_posts>
 <li class=post>
+<a href=/2021/oci-application/>OCI Application</a>
+</li>
+<li class=post>
 <a href=/2021/understanding-smart-on-fhir/>Understanding SMART on FHIR</a>
 </li>
 <li class=post>
@@ -680,9 +764,6 @@ I’m Yogesh Dhimate. This is my personal website. All opinions expressed here a
 </li>
 <li class=post>
 <a href=/2021/my-audible-experience/>My Audible Experience</a>
-</li>
-<li class=post>
-<a href=/2021/certificate-of-authenticity/>Certificate of Authenticity</a>
 </li>
 </ul>
 </section>
