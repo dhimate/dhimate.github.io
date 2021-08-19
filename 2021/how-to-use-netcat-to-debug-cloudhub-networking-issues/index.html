@@ -1,227 +1,132 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en-us>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  
-  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
-  <script src="/js/mermaid.min.js"></script>
-  
-  <script>mermaid.initialize({ startOnLoad: true,  theme: 'neutral', securityLevel: 'loose'});</script>
-
-  
-    
-    
-      <link href="/css/fonts.css" rel="stylesheet" type="text/css">
-    
-  
-
-  
-  <title>How to Use Netcat to Debug Cloudhub Networking Issues</title>
-
-  
-  
-  <link rel="stylesheet" href="/css/hugo-octopress.css">
-
-  
-  
-
-  
-    <link rel="stylesheet" href="/css/fork-awesome.min.css">
-    
-  
-
-  
-  <link href="https://www.dhimate.com/favicon.png" rel="icon">
-
-  
-  
-
-  <meta name="description" content="" />
-  <meta name="keywords" content="">
-  <meta name="author" content="Yogesh Dhimate">
-
-  
-  <meta name="generator" content="Hugo 0.87.0" />
-
-  
-  
-
-  
-  
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1">
+<script src=/js/mermaid.min.js></script>
+<script>mermaid.initialize({startOnLoad:!0,theme:'neutral',securityLevel:'loose'})</script>
+<link href=/css/fonts.css rel=stylesheet type=text/css>
+<title>How to Use Netcat to Debug Cloudhub Networking Issues</title>
+<link rel=stylesheet href=/css/hugo-octopress.css>
+<link rel=stylesheet href=/css/fork-awesome.min.css>
+<link href=https://www.dhimate.com/favicon.png rel=icon>
+<meta name=description content>
+<meta name=keywords content>
+<meta name=author content="Yogesh Dhimate">
+<meta name=generator content="Hugo 0.87.0">
 </head>
 <body>
-
-
-<header role="banner">
+<header role=banner>
 <hgroup>
-  
-  <h1><a href="https://www.dhimate.com/">Yogesh Dhimate</a></h1>
-    <h2>Notes to Myself</h2>
+<h1><a href=https://www.dhimate.com/>Yogesh Dhimate</a></h1>
+<h2>Notes to Myself</h2>
 </hgroup></header>
-
-
-<nav role="navigation">
-<fieldset class="mobile-nav">
-  
-  <select onchange="location = this.value;">
-    <option value="">Navigate…</option>
-      
-        <option value="https://www.dhimate.com/about/">» About</option>
-      
-        <option value="https://www.dhimate.com/r%C3%A9sum%C3%A9/">» Résumé</option>
-      
-        <option value="https://www.dhimate.com/blog/">» Blog</option>
-      
-        <option value="https://www.dhimate.com/books/">» Bookshelf</option>
-      
-  </select>
+<nav role=navigation>
+<fieldset class=mobile-nav>
+<select onchange="location=this.value"><option value>Navigate…</option><option value=https://www.dhimate.com/about/>» About</option><option value=https://www.dhimate.com/r%C3%A9sum%C3%A9/>» Résumé</option><option value=https://www.dhimate.com/blog/>» Blog</option><option value=https://www.dhimate.com/books/>» Bookshelf</option></select>
 </fieldset>
-
-
-<ul class="main-navigation">
-  
-  
-    
-      <li><a href="https://www.dhimate.com/about/" title="About"  rel="noopener noreferrer">About</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/r%C3%A9sum%C3%A9/" title="Résumé"  rel="noopener noreferrer">Résumé</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/blog/" title="Blog"  rel="noopener noreferrer">Blog</a></li>
-    
-  
-    
-      <li><a href="https://www.dhimate.com/books/" title="Bookshelf"  rel="noopener noreferrer">Bookshelf</a></li>
-    
-  
+<ul class=main-navigation>
+<li><a href=https://www.dhimate.com/about/ title=About rel="noopener noreferrer">About</a></li>
+<li><a href=https://www.dhimate.com/r%C3%A9sum%C3%A9/ title=Résumé rel="noopener noreferrer">Résumé</a></li>
+<li><a href=https://www.dhimate.com/blog/ title=Blog rel="noopener noreferrer">Blog</a></li>
+<li><a href=https://www.dhimate.com/books/ title=Bookshelf rel="noopener noreferrer">Bookshelf</a></li>
 </ul>
-
-<ul class="subscription">
-  
+<ul class=subscription>
 </ul>
-
-
-  <form action="https://www.google.com/search" method="get" target="_blank" rel="noopener noreferrer">
-    <fieldset role="search">
-      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-      <input type="hidden" name="q" value="site:https://www.dhimate.com/" />
-    </fieldset>
-  </form>
-
+<form action=https://www.google.com/search method=get target=_blank rel="noopener noreferrer">
+<fieldset role=search>
+<input class=search type=text name=q results=0 placeholder=Search>
+<input type=hidden name=q value=site:https://www.dhimate.com/>
+</fieldset>
+</form>
 </nav>
-
-
-<div id="main">
-  <div id="content">
-    <div>
-      <article class="hentry" role="article">
-
-        
-        
-
+<div id=main>
+<div id=content>
+<div>
+<article class=hentry role=article>
 <header>
-  <p class="meta">Jan 2, 2021
-     - 5 minute read 
-    
-
-    
-    
-      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
-    
-  </p>
-  <h1 class="entry-title">
-     How to Use Netcat to Debug Cloudhub Networking Issues 
-  </h1>
+<p class=meta>Jan 2, 2021
+- 5 minute read
+- <a class=label href=https://www.dhimate.com/categories/programming/>Programming </a>
+</p>
+<h1 class=entry-title>
+How to Use Netcat to Debug Cloudhub Networking Issues
+</h1>
 </header>
-
-
-        <div class="entry-content">
-          
-          
-          
-          <p>This is a simple trick I use to debug connection issues with the mule app deployed to CloudHub.</p>
+<div class=entry-content>
+<p>This is a simple trick I use to debug connection issues with the mule app deployed to CloudHub.</p>
 <p>First of all its important to understand that there are different ways to set up your application</p>
 <p><strong>1. Using shared load balancer (i.e. cloudhub.io domain) with HTTP protocol.</strong></p>
 <p>In this scenario, the client application makes a request to a shared load balancer URL using <strong>HTTP</strong> protocol. The SLB forwards the request to the upstream mule application listening on port 8081.</p>
 <p>Note that in this scenario the SLB URL <em>receives</em> the request on port 80, and forwards it to mule application listening on port 8081.
-
-<div class="mermaid" align="center">
+<div class=mermaid align=center>
 flowchart LR
-   l1[Shared Load Balancer]-.->c1 
-    subgraph A[Shared Load Balancer w/ HTTP]
-        u(client)--http-->c1
-        c1(hello-world.cloudhub.io<br/>)--port 8081-->a1
-        subgraph VPC 10.0.0.0/24
-        a1(mule-worker-hello-world.cloudhub.io:8081)--->id1((hello-world))
-      end
-    end
- style A fill:#FFF,stroke:#DDD,stroke-width:2px
+l1[Shared Load Balancer]-.->c1
+subgraph A[Shared Load Balancer w/ HTTP]
+u(client)--http-->c1
+c1(hello-world.cloudhub.io<br>)--port 8081-->a1
+subgraph VPC 10.0.0.0/24
+a1(mule-worker-hello-world.cloudhub.io:8081)--->id1((hello-world))
+end
+end
+style A fill:#FFF,stroke:#DDD,stroke-width:2px
 </div>
 </p>
 <p><strong>2. Using shared load balancer (i.e. cloudhub.io domain) with HTTPS protocol.</strong></p>
 <p>In this scenario, the client application makes a request to a shared load balancer URL using <strong>HTTPS</strong> protocol. The SLB forwards the request to the upstream mule application listening on port 8082.</p>
 <p>Note that in this scenario the SLB URL <em>receives</em> the request on port 443, and forwards it to mule application listening on port 8082.
-
-<div class="mermaid" align="center">
+<div class=mermaid align=center>
 flowchart LR
-   l1[Shared Load Balancer]-.->c1 
-    subgraph B[Shared Load Balancer w/ HTTPS]
-        u(client)--https-->c1
-        c1(hello-world.cloudhub.io<br/>)--port 8082-->a1
-        subgraph VPC 10.0.0.0/24
-        a1(mule-worker-hello-world.cloudhub.io:8082)--->id1((hello-world))
-      end
-    end
- style B fill:#FFF,stroke:#DDD,stroke-width:2px
+l1[Shared Load Balancer]-.->c1
+subgraph B[Shared Load Balancer w/ HTTPS]
+u(client)--https-->c1
+c1(hello-world.cloudhub.io<br>)--port 8082-->a1
+subgraph VPC 10.0.0.0/24
+a1(mule-worker-hello-world.cloudhub.io:8082)--->id1((hello-world))
+end
+end
+style B fill:#FFF,stroke:#DDD,stroke-width:2px
 </div>
 </p>
 <p><strong>3. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.</strong></p>
 <p>In this scenario, the client application makes a request to a dedicated load balancer URL(exposed by a vanity domain) using <strong>HTTPS</strong> protocol. The DLB forwards the request to the upstream mule application listening on port 8091.</p>
 <p>Note that in this scenario the DLB URL <em>receives</em> the request on port 443, and forwards it to mule application listening on port 8091.
-
-<div class="mermaid" align="center">
+<div class=mermaid align=center>
 flowchart LR
-   l1[Dedicated Load Balancer<br/>Vanity Domain]-.->c1 
-    subgraph C[Dedicated Load Balancer w/ upstream HTTP]
-        u(client)--https-->c1
-        c1(api.example.com<br/>)--port 8091-->a1
-        subgraph VPC 10.0.0.0/24
-        a1(mule-worker-hello-world.cloudhub.io:8091)-->id1((hello-world))
-        end
-    end
- style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
+l1[Dedicated Load Balancer<br>Vanity Domain]-.->c1
+subgraph C[Dedicated Load Balancer w/ upstream HTTP]
+u(client)--https-->c1
+c1(api.example.com<br>)--port 8091-->a1
+subgraph VPC 10.0.0.0/24
+a1(mule-worker-hello-world.cloudhub.io:8091)-->id1((hello-world))
+end
+end
+style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
 </div>
 </p>
 <p><strong>4. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.</strong></p>
 <p>In this scenario, the client application makes a request to a dedicated load balancer URL(exposed by a vanity domain) using <strong>HTTPS</strong> protocol. The DLB forwards the request to the upstream mule application listening on port 8092.</p>
 <p>Note that in this scenario the DLB URL <em>receives</em> the request on port 443, and forwards it to mule application listening on port 8092.
-
-<div class="mermaid" align="center">
+<div class=mermaid align=center>
 flowchart LR
-   l1[Dedicated Load Balancer<br/>Vanity Domain]-.->c1
-    subgraph C[Dedicated Load Balancer w/ upstream HTTPS]
-        u(client)--https-->c1
-        c1(api.example.com<br/>)--port 8092-->a1
-        subgraph VPC 10.0.0.0/24
-        a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
-        end
-    end
- style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
+l1[Dedicated Load Balancer<br>Vanity Domain]-.->c1
+subgraph C[Dedicated Load Balancer w/ upstream HTTPS]
+u(client)--https-->c1
+c1(api.example.com<br>)--port 8092-->a1
+subgraph VPC 10.0.0.0/24
+a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
+end
+end
+style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
 </div>
 </p>
 <p><strong>5. Not using load balancers.</strong></p>
 <p>This is one of those scenarios where you are not using Anypoint Platform load balancers. You are either using third-party load balancers, or your applications are using non HTTP protocols like a simple socket, or MLLP. In this case, the client application makes a request directly to the application (mule-worker).
-
-<div class="mermaid" align="center">
+<div class=mermaid align=center>
 flowchart LR
-        u(client)--HTTPS-->a1
-        subgraph VPC 10.0.0.0/24
-        a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
-        end
+u(client)--HTTPS-->a1
+subgraph VPC 10.0.0.0/24
+a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
+end
 </div>
 </p>
 <p>As seen above, to make your application endpoint available to the clients</p>
@@ -232,12 +137,12 @@ flowchart LR
 </ul>
 <p>If there is a misconfiguration, your application endpoint will not be accessible. Your clients will get errors like &lsquo;Bad Gateway&rsquo;, or &lsquo;Timeout&rsquo;. The easiest way to debug these types of errors is to use netcat to perform port scanning and identify open ports on your application.</p>
 <p>For example, to check if your application <code>hello-httpbin</code> is listening on port 8081 you can use</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
-  nc -w <span style="color:#ae81ff">1</span> -G <span style="color:#ae81ff">1</span> -z -v mule-worker-hello-httpbin.cloudhub.io <span style="color:#ae81ff">8081</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>
+  nc -w <span style=color:#ae81ff>1</span> -G <span style=color:#ae81ff>1</span> -z -v mule-worker-hello-httpbin.cloudhub.io <span style=color:#ae81ff>8081</span>
 
-  Connection to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8081</span> <span style="color:#f92672">[</span>tcp/sunproxyadmin<span style="color:#f92672">]</span> succeeded!
+  Connection to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8081</span> <span style=color:#f92672>[</span>tcp/sunproxyadmin<span style=color:#f92672>]</span> succeeded!
 
-</code></pre></div><p>In this you can see, the application name is prefixed with <code>mule-worker</code>, to get the correct DNS name. For more details about this convention, please see the DNS records section in <a href="https://docs.mulesoft.com/runtime-manager/cloudhub-networking-guide#dns-records">Cloudhub Networking Guide</a>. The other options of netcat (or nc) are as follows</p>
+</code></pre></div><p>In this you can see, the application name is prefixed with <code>mule-worker</code>, to get the correct DNS name. For more details about this convention, please see the DNS records section in <a href=https://docs.mulesoft.com/runtime-manager/cloudhub-networking-guide#dns-records>Cloudhub Networking Guide</a>. The other options of netcat (or nc) are as follows</p>
 <ul>
 <li>-w: Timeout when a connection is idle for more than specified seconds.</li>
 <li>-G: TCP connection timeout in seconds.</li>
@@ -245,177 +150,83 @@ flowchart LR
 <li>-v: Give more verbose output.</li>
 </ul>
 <p>If you are not sure about the specific open port in your application, you can specify the range and identify all open ports using</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
-  nc -w <span style="color:#ae81ff">1</span> -G <span style="color:#ae81ff">1</span> -z -v mule-worker-hello-httpbin.cloudhub.io 8081-8092
-  Connection to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8081</span> <span style="color:#f92672">[</span>tcp/sunproxyadmin<span style="color:#f92672">]</span> succeeded!
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8082</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Connection refused
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8083</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8084</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8085</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8086</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8087</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8088</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8089</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8090</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Operation timed out
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8091</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Connection refused
-  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style="color:#ae81ff">8092</span> <span style="color:#f92672">(</span>tcp<span style="color:#f92672">)</span> failed: Connection refused
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>
+  nc -w <span style=color:#ae81ff>1</span> -G <span style=color:#ae81ff>1</span> -z -v mule-worker-hello-httpbin.cloudhub.io 8081-8092
+  Connection to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8081</span> <span style=color:#f92672>[</span>tcp/sunproxyadmin<span style=color:#f92672>]</span> succeeded!
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8082</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Connection refused
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8083</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8084</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8085</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8086</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8087</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8088</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8089</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8090</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Operation timed out
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8091</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Connection refused
+  nc: connectx to mule-worker-hello-httpbin.cloudhub.io port <span style=color:#ae81ff>8092</span> <span style=color:#f92672>(</span>tcp<span style=color:#f92672>)</span> failed: Connection refused
 
 </code></pre></div><p>In this, you can see that the application only has port 8081 open. Also interesting to note that the ports 8082, 8091, and 8092 are &lsquo;refusing connection&rsquo;, as they are allowed in the firewall but they are not exposed in the application. Whereas for the remaining ports we are getting an &lsquo;Operation timed out&rsquo; error as they are blocked at the firewall.</p>
 <p>The simple netcat/nc utility has saved me a lot of time. I hope it helps you as well.</p>
-
-        </div>
-        
-
-<footer>
-  <p class="meta">
-    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
-    
-    <time>Jan 2, 2021</time>
-    
-      <span class="categories">
-        Tags:
-        
-          <a class="category" href="https://www.dhimate.com/tags/mulesoft">MuleSoft</a>  
-    
-    </span>
-  </p>
-
-  
-
-  <p class="meta">
-    
-        <a class="basic-alignment left" href="https://www.dhimate.com/2020/recap-of-2020/" title="Recap of 2020">Recap of 2020</a>
-    
-
-    
-      <a class="basic-alignment right" href="https://www.dhimate.com/2021/drinking-water-habit/" title="Drinking Water Habit">Drinking Water Habit</a>
-    
-  </p>
-  
-</footer>
-
-      </article>
-    </div>
-    
-
-<aside class="sidebar thirds">
-  <section class="first odd">
-
-    
-      <h1>About Me</h1>
-    
-
-    <p>
-      
-        I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href="/about">About</a> to know more.
-      
-    </p>
-  </section>
-
-
-
-  
-  <ul class="sidebar-nav">
-    <li class="sidebar-nav-item">
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/dhimate/" title="https://github.com/dhimate/"><i class="fa fa-github fa-3x"></i></a>
-      
-      
-      
-      
-         
-      
-      <a target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/dhimate" title="https://linkedin.com/in/dhimate"><i class="fa fa-linkedin fa-3x"></i></a>
-      
-      
-      
-      
-      
-      
-
-    
-    
-    </li>
-  </ul>
-
-  
-
-  
-    
-      <section class="odd">
-        
-        
-      </section>
-    
-  
-
-  
-  
-  
-    
-      <section class="even">
-        <h1>Recent Posts</h1>
-        <ul id="recent_posts">
-          
-          
-            
-          
-            
-              <li class="post">
-                <a href="/2021/oci-application/">OCI Application Experience</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/understanding-smart-on-fhir/">Understanding SMART on FHIR</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/about-thanks-for-the-feedback/">About Thanks for the Feedback</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/random-act-of-kindness/">Random Act of Kindness</a>
-              </li>
-            
-          
-            
-              <li class="post">
-                <a href="/2021/my-audible-experience/">My Audible Experience</a>
-              </li>
-            
-          
-        </ul>
-      </section>
-    
-  
-</aside>
-
-  </div>
 </div>
-
-    <footer role="contentinfo">
-      <p>Copyright &copy; 2021 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
-        <span class="credit">Powered by <a target="_blank" href="https://gohugo.io" rel="noopener noreferrer">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/" rel="noopener noreferrer">Hugo-Octopress</a> theme.
-      </p>
-    </footer>
-
-    
-    
-    
-
-    
-      <script>
-        var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];
-        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
-      </script>
-    
-  </body>
+<footer>
+<p class=meta>
+<span class="byline author vcard">Posted by <span class=fn>Yogesh Dhimate</span></span>
+<time>Jan 2, 2021</time>
+<span class=categories>
+Tags:
+<a class=category href=https://www.dhimate.com/tags/mulesoft>MuleSoft</a>
+</span>
+</p>
+<p class=meta>
+<a class="basic-alignment left" href=https://www.dhimate.com/2020/recap-of-2020/ title="Recap of 2020">Recap of 2020</a>
+<a class="basic-alignment right" href=https://www.dhimate.com/2021/drinking-water-habit/ title="Drinking Water Habit">Drinking Water Habit</a>
+</p>
+</footer>
+</article>
+</div>
+<aside class="sidebar thirds">
+<section class="first odd">
+<h1>About Me</h1>
+<p>
+I’m Yogesh Dhimate. This is my personal website. All opinions expressed here are my own. Click on <a href=/about>About</a> to know more.
+</p>
+</section>
+<ul class=sidebar-nav>
+<li class=sidebar-nav-item>
+<a target=_blank rel="noopener noreferrer" href=https://github.com/dhimate/ title=https://github.com/dhimate/><i class="fa fa-github fa-3x"></i></a>
+<a target=_blank rel="noopener noreferrer" href=https://linkedin.com/in/dhimate title=https://linkedin.com/in/dhimate><i class="fa fa-linkedin fa-3x"></i></a>
+</li>
+</ul>
+<section class=odd>
+</section>
+<section class=even>
+<h1>Recent Posts</h1>
+<ul id=recent_posts>
+<li class=post>
+<a href=/2021/oci-application/>OCI Application Experience</a>
+</li>
+<li class=post>
+<a href=/2021/understanding-smart-on-fhir/>Understanding SMART on FHIR</a>
+</li>
+<li class=post>
+<a href=/2021/about-thanks-for-the-feedback/>About Thanks for the Feedback</a>
+</li>
+<li class=post>
+<a href=/2021/random-act-of-kindness/>Random Act of Kindness</a>
+</li>
+<li class=post>
+<a href=/2021/my-audible-experience/>My Audible Experience</a>
+</li>
+</ul>
+</section>
+</aside>
+</div>
+</div>
+<footer role=contentinfo>
+<p>Copyright &copy; 2021 Yogesh Dhimate - <a href=https://www.dhimate.com/license/>License</a> -
+<span class=credit>Powered by <a target=_blank href=https://gohugo.io rel="noopener noreferrer">Hugo</a> and <a target=_blank href=https://github.com/parsiya/hugo-octopress/ rel="noopener noreferrer">Hugo-Octopress</a> theme.
+</p>
+</footer>
+<script>var _gaq=[['_setAccount','UA-65531716-1'],['_trackPageview']];(function(a,b){var c=a.createElement(b),d=a.getElementsByTagName(b)[0];c.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js',d.parentNode.insertBefore(c,d)})(document,'script')</script>
+</body>
 </html>
-
