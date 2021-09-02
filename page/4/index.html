@@ -13,7 +13,7 @@
 <meta name=description content>
 <meta name=keywords content="[Yogesh Dhimate dhimate MuleSoft]">
 <meta name=author content="Yogesh Dhimate">
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.0">
 </head>
 <body>
 <header role=banner>
@@ -328,13 +328,13 @@ Nice thing with Google Spreadsheets is its support for import and queries.
 e.g. AMFI India publishes daily NAV’s on their website <a href=http://portal.amfiindia.com/spages/NAV1.txt>http://portal.amfiindia.com/spages/NAV1.txt</a>
 You can import the data programmatically and run a query on it to find desired NAV.
 I can use following simple query to check the latest NAV of Birla Sunlife Frontline Equity fund, whose symbol is INF209K01YY7</p>
-<pre><code>=QUERY(SPLIT(QUERY(importDATA(&quot;http://portal.amfiindia.com/spages/NAV1.txt&quot;),
+<pre tabindex=0><code>=QUERY(SPLIT(QUERY(importDATA(&quot;http://portal.amfiindia.com/spages/NAV1.txt&quot;),
 &quot;SELECT * Where Col1 like '%INF209K01YY7%'&quot;),&quot;;&quot;), &quot;Select Col5&quot;)
 </code></pre><p>Google Spreadsheets obviously supports data from Google Finance with its built in function GOOGLEFINANCE</p>
-<pre><code>=GOOGLEFINANCE(&quot;SBIN&quot;,&quot;price&quot;)
+<pre tabindex=0><code>=GOOGLEFINANCE(&quot;SBIN&quot;,&quot;price&quot;)
 </code></pre><p>This will return latest price for State Bank of India.
 You can also use Stock Exchange assigned ID’s to query the data from Google Finance</p>
-<pre><code>=GOOGLEFINANCE(&quot;500510&quot;,&quot;price&quot;)
+<pre tabindex=0><code>=GOOGLEFINANCE(&quot;500510&quot;,&quot;price&quot;)
 </code></pre><p>This will return latest price for Larsen and Tubro.
 However the most killer feature of Google Spreadsheets is its support for ArrayFormula in conjunction with XIRR.
 Let me explain.
@@ -376,7 +376,7 @@ Consider following cash flow.</p>
 </tbody>
 </table>
 <p>We have to update the XIRR formula to include the new transaction we just added in our cash flow</p>
-<pre><code>=XIRR(D2:D4,C2:C4)*100
+<pre tabindex=0><code>=XIRR(D2:D4,C2:C4)*100
 </code></pre><table>
 <thead>
 <tr>
@@ -452,7 +452,7 @@ Consider following cash flow.</p>
 </tr>
 </tbody>
 </table>
-<pre><code>Havells =XIRR(D2:D4,C2:C4)*100
+<pre tabindex=0><code>Havells =XIRR(D2:D4,C2:C4)*100
 SBI =XIRR(D5:D7,C5:C7)*100
 </code></pre><p>You can see for two symbols we have to keep close track of cell numbers etc to accurately calculate XIRR.
 ArrayFormula provides nice workaround to simplify and automate this process of using XIRR formulas for a growing number of transactions</p>
@@ -463,7 +463,7 @@ ArrayFormula provides nice workaround to simplify and automate this process of u
 <p>Enables the display of values returned from an array formula into multiple rows and/or columns and the use of non-array functions with arrays.</p>
 </blockquote>
 <p>XIRR can be easily combined with ArrayFormula like below</p>
-<pre><code>=ArrayFormula(XIRR((B2:B7=&quot;HAVELLS&quot;)*D2:D7,C2:C7))*100
+<pre tabindex=0><code>=ArrayFormula(XIRR((B2:B7=&quot;HAVELLS&quot;)*D2:D7,C2:C7))*100
 =ArrayFormula(XIRR((B2:B7=&quot;SBI&quot;)*D2:D7,C2:C7))*100
 </code></pre><p>As you can see that except the symbol name both the formulas are identical. We can remove the hard coded symbol name and refer to the cell which has symbol name.
 Using ArrayFormula in the portfolio tracker has simplified maintenance of the spreadsheet and saved quite a few hours for me.</p>
