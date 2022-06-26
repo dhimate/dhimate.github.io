@@ -17,7 +17,7 @@
   
 
   
-  <title>Using OAuth 2.0 with webMethods Integration Server</title>
+  <title>Yogesh Dhimate</title>
 
   
   
@@ -35,7 +35,7 @@
   <link href="https://www.dhimate.com/favicon.png" rel="icon">
 
   
-  
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Yogesh Dhimate" />
 
   <meta name="description" content="" />
   <meta name="keywords" content="[Yogesh Dhimate dhimate MuleSoft]">
@@ -119,11 +119,16 @@
 </nav>
 
 
+
+
+  
+
 <div id="main">
   <div id="content">
-    <div>
-      <article class="hentry" role="article">
-
+    <div class="blog-index">
+      
+      
+      <article>
         
         
 
@@ -138,17 +143,11 @@
     
   </p>
   <h1 class="entry-title">
-     Using OAuth 2.0 with webMethods Integration Server 
+    <a href="https://www.dhimate.com/2016/using-oauth-2.0-with-webmethods-integration-server/">Using OAuth 2.0 with webMethods Integration Server</a>
   </h1>
 </header>
 
-
-        <div class="entry-content">
-          
-          
-          
-            <nav id="TableOfContents"></nav>
-          
+        
           <p>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.</p>
 <p>For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</p>
 <p>Integration Server supports two types of OAuth grant types</p>
@@ -245,38 +244,105 @@ When the client initiates the <code>pub.oauth:authorize</code> request, it indic
 </figure>
 
 
-        </div>
         
-
-<footer>
-  <p class="meta">
-    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
-    
-    <time>Aug 17, 2016</time>
-    
-      <span class="categories">
-        Tags:
-        
-          <a class="category" href="https://www.dhimate.com/tags/webmethods">webMethods</a>  
-    
-    </span>
-  </p>
-
-  
-
-  <p class="meta">
-    
-        <a class="basic-alignment left" href="https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/" title="Integration Server Class Loading for Custom Jars">Integration Server Class Loading for Custom Jars</a>
-    
-
-    
-      <a class="basic-alignment right" href="https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/" title="Using Web Services Client adapter in Apama">Using Web Services Client adapter in Apama</a>
-    
-  </p>
-  
-</footer>
-
       </article>
+      
+      <article>
+        
+        
+
+<header>
+  <p class="meta">Aug 16, 2016
+     - 1 minute read 
+    
+
+    
+    
+      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
+    
+  </p>
+  <h1 class="entry-title">
+    <a href="https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/">Integration Server Class Loading for Custom Jars</a>
+  </h1>
+</header>
+
+        
+          <p>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.</p>
+<p>It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</p>
+<ol>
+<li>
+<p>packages/<!-- raw HTML omitted -->/code/jars or packages/<!-- raw HTML omitted -->/code/classes:  The jar file placed in these folders are only accessible to java services inside the same package and the packages dependent on this package. If there is any change in the jar, simply reloading of the package is sufficient to have the classes loaded in memory.</p>
+</li>
+<li>
+<p>packages/<!-- raw HTML omitted -->/code/jars/static are accessible to all java services across the entire IS. If there is any change in the jar, a restart of IS is required to activate any additions or changes to these.</p>
+</li>
+</ol>
+
+        
+      </article>
+      
+      
+      
+
+
+
+
+
+
+<div class="pagination">
+
+    
+        
+        
+        
+        <a href="/" aria-label="First" class="label-pagination"><i class="fa fa-angle-double-left fa-lg"></i></a>
+    
+
+    
+    
+        <a href="/page/13/" aria-label="Previous" class="label-pagination"><i class="fa fa-angle-left fa-lg"></i></a>
+    
+
+    
+        <a href="/" class="label-pagination">1</a>
+    
+        <a href="/page/2/" class="label-pagination">2</a>
+    
+        <a href="/page/3/" class="label-pagination">3</a>
+    
+        <a href="/page/4/" class="label-pagination">4</a>
+    
+        <a href="/page/5/" class="label-pagination">5</a>
+    
+        <a href="/page/6/" class="label-pagination">6</a>
+    
+        <a href="/page/7/" class="label-pagination">7</a>
+    
+        <a href="/page/8/" class="label-pagination">8</a>
+    
+        <a href="/page/9/" class="label-pagination">9</a>
+    
+        <a href="/page/10/" class="label-pagination">10</a>
+    
+        <a href="/page/11/" class="label-pagination">11</a>
+    
+        <a href="/page/12/" class="label-pagination">12</a>
+    
+        <a href="/page/13/" class="label-pagination">13</a>
+    
+        <a href="/page/14/" class="label-pagination">14</a>
+    
+
+    
+
+    
+    
+        <a href="/page/14/" aria-label="Last"><i class="fa fa-angle-double-right fa-lg"></i></a>
+    
+
+</div>
+
+  
     </div>
     
 
@@ -398,10 +464,9 @@ Click on <a href="/about">About</a> to know more.
     
   
 </aside>
-
+    
   </div>
 </div>
-
     <footer role="contentinfo">
       <p>Copyright &copy; 2022 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
         <span class="credit">Powered by <a target="_blank" href="https://gohugo.io" rel="noopener noreferrer">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/" rel="noopener noreferrer">Hugo-Octopress</a> theme.
@@ -415,4 +480,5 @@ Click on <a href="/about">About</a> to know more.
     
   </body>
 </html>
+   
 
