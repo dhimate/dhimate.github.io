@@ -1,18 +1,418 @@
-<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=en lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1"><script src=/js/mermaid.min.js></script>
-<script>mermaid.initialize({startOnLoad:!0,theme:"neutral",securityLevel:"loose"})</script><link href=/css/fonts.css rel=stylesheet type=text/css><title>Using OAuth 2.0 with webMethods Integration Server</title><link rel=stylesheet href=/css/hugo-octopress.css><link rel=stylesheet href=/css/fork-awesome.min.css><link href=https://www.dhimate.com/favicon.png rel=icon><meta name=description content><meta name=keywords content="[Yogesh Dhimate dhimate MuleSoft]"><meta name=author content="Yogesh Dhimate"><meta name=generator content="Hugo 0.101.0"></head><body><header role=banner><hgroup><h1><a href=https://www.dhimate.com/>Yogesh Dhimate</a></h1><h2>Notes to Myself</h2></hgroup></header><nav role=navigation><fieldset class=mobile-nav><select onchange="location=this.value"><option value>Navigate…</option><option value=https://www.dhimate.com/about/>» About Me!</option><option value=https://www.dhimate.com/r%C3%A9sum%C3%A9/>» Résumé</option><option value=https://www.dhimate.com/blog/>» Blog</option><option value=https://www.dhimate.com/books/>» Bookshelf</option></select></fieldset><ul class=main-navigation><li><a href=https://www.dhimate.com/about/ title="About Me!" rel="noopener noreferrer">About Me!</a></li><li><a href=https://www.dhimate.com/r%C3%A9sum%C3%A9/ title=Résumé rel="noopener noreferrer">Résumé</a></li><li><a href=https://www.dhimate.com/blog/ title=Blog rel="noopener noreferrer">Blog</a></li><li><a href=https://www.dhimate.com/books/ title=Bookshelf rel="noopener noreferrer">Bookshelf</a></li></ul><ul class=subscription><a href=https://www.dhimate.com/index.xml target=_blank type=application/rss+xml title=RSS rel="noopener noreferrer"><i class="fa fa-rss-square fa-lg"></i></a></ul><form action=https://www.google.com/search method=get target=_blank rel="noopener noreferrer"><fieldset role=search><input class=search type=text name=q results=0 placeholder=Search>
-<input type=hidden name=q value=site:https://www.dhimate.com/></fieldset></form></nav><div id=main><div id=content><div><article class=hentry role=article><header><p class=meta>Aug 17, 2016
-- 4 minute read
-- <a class=label href=https://www.dhimate.com/categories/programming/>Programming</a></p><h1 class=entry-title>Using OAuth 2.0 with webMethods Integration Server</h1></header><div class=entry-content><nav id=TableOfContents></nav><p>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.</p><p>For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</p><p>Integration Server supports two types of OAuth grant types</p><p><strong>Authorization Code</strong>:
-This is a secure way of obtaining an OAuth token, where the client needs to authorize himself with the authorization server. The authorization server responds with the authorization code, which the client uses to obtain the access token. This approach is typically used by clients hosted on web server-based applications where the application code runs on the server.</p><p><strong>Implicit</strong>:
-This approach is used by mobile apps or browser-based applications. In this approach, the client does not need to authorize himself with the authorization server. The access token is passed through the browser, as a fragment in the URL. A simple javascript code can be used to extract the access token from the fragment.</p><p>We will see how to implement both approaches in the integration server. For both approaches, you need to do some basic setup on the IS console.</p><ul><li><strong>Client Configuration</strong>:</li></ul><p>A client must register himself and obtain client_id from the integration server. In the IS console go to Security->OAuth->Client Registration page and click on &lsquo;Register Client&rsquo;. Enter the information as shown below.
-Redirect URL should be the URL, where IS will redirect the page after authorizing the request. I have created a simple RESTful service on the IS as a redirect URL.</p><figure><img src=/img/2016/OAuth_1.PNG alt=dwarf width=700px></figure><p>Remember that the Client ID will be generated when you click Save Changes.</p><figure><img src=/img/2016/OAuth_2.PNG alt=dwarf width=700px></figure><p>Your client will use this &lsquo;Client ID&rsquo; to authorize himself and request an access token.</p><ul><li><strong>Scope Management</strong>:</li></ul><p>The scope indicates the resources the client can access on behalf of resource owner. You need to indicate one or more folders or services on the IS in the scope. Once a client is granted access to a scope, he can access the folders and services included in that scope.</p><p>Go to Security->Oauth->Scope Management page and click on &lsquo;Add Scope&rsquo;. Once the page is open, mention the scope details as shown below</p><p>Here we have included one service &lsquo;OAuthDemo&rsquo; in the scope. This is an URL Alias for /rest/Sandbox.OAuthDemo folder on the server</p><figure><img src=/img/2016/OAuth_3.PNG alt=dwarf width=700px></figure><p>Once the scope is added, map the scope with the client using the &lsquo;Associate Scope to Clients&rsquo; option on the &lsquo;Scope Management&rsquo; page.</p><figure><img src=/img/2016/OAuth_4.PNG alt=dwarf width=700px></figure><p>Once this setup is done your client can request the access token either for the Authorization Code approach or Implicit approach.</p><ul><li>Authorization Code:</li></ul><p>Requesting token for authorization code approach is a 2 step process. In the first step, the client authorizes himself with the authorization server using <code>pub.auth:authorize</code> service and receives the authorization code. Once the authorization code is received, it can be used to obtain the access token using <code>pub.auth:getAccessToken</code> service.</p><p>When the client initiates the <code>pub.oauth:authorize</code> request, it brings up a page for the resource owner to either approve the access request or reject it.</p><figure><img src=/img/2016/OAuth_5.PNG alt=dwarf width=700px></figure><p>When the resource owner approves the request, the integration server generates the authorization code and redirects the page to the &lsquo;redirect URL&rsquo; specified in the client configuration.</p><p>The service hosted at redirect URL passes the authorization code to <code>pub.oauth:getAccessToken</code> service to exchange authorization code for an access token as shown below</p><figure><img src=/img/2016/OAuth_6.PNG alt=dwarf width=700px></figure><p>The client application can now use the access token to access the resource described in the Scope.</p><ul><li>Implicit:</li></ul><p>Requesting token for implicit approach is one-step process.
-When the client initiates the <code>pub.oauth:authorize</code> request, it indicates the implicit approach by mentioning the response type as &rsquo;token&rsquo; in the input to <code>pub.oauth:authorize</code> service. The service brings up a page for resource owner to either approve the access request or reject it.</p><figure><img src=/img/2016/OAuth_7.PNG alt=dwarf width=700px></figure><p>When the resource owner approves the request the integration server generates the access token and includes it as a fragment in the redirect URI, which the client application can extract it using simple javascript code.</p><figure><img src=/img/2016/OAuth_8.PNG alt=dwarf width=700px></figure><p>Integration Server administrator can verify all the tokens in the IS console</p><figure><img src=/img/2016/OAuth_9.PNG alt=dwarf width=700px></figure><p>The client application can use the token as a bearer token to access the resource on the server.</p><figure><img src=/img/2016/OAuth_10.PNG alt=dwarf width=700px></figure><p>If the client application tries to use an invalid token or tries to access a service which is not in the scope, it will get an error</p><figure><img src=/img/2016/OAuth_11.PNG alt=dwarf width=700px></figure></div><footer><p class=meta><span class="byline author vcard">Posted by <span class=fn>Yogesh Dhimate</span></span>
-<time>Aug 17, 2016</time>
-<span class=categories>Tags:
-<a class=category href=https://www.dhimate.com/tags/webmethods>webMethods</a></span></p><p class=meta><a class="basic-alignment left" href=https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/ title="Integration Server Class Loading for Custom Jars">Integration Server Class Loading for Custom Jars</a>
-<a class="basic-alignment right" href=https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/ title="Using Web Services Client adapter in Apama">Using Web Services Client adapter in Apama</a></p></footer></article></div><aside class="sidebar thirds"><section class="first odd"><h1>Who am I?</h1><p>I’m Yogesh Dhimate. This is my personal website.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+  <script src="/js/mermaid.min.js"></script>
+  
+  <script>mermaid.initialize({ startOnLoad: true,  theme: 'neutral', securityLevel: 'loose'});</script>
+
+  
+    
+    
+      <link href="/css/fonts.css" rel="stylesheet" type="text/css">
+    
+  
+
+  
+  <title>Using OAuth 2.0 with webMethods Integration Server</title>
+
+  
+  
+  <link rel="stylesheet" href="/css/hugo-octopress.css">
+
+  
+  
+
+  
+    <link rel="stylesheet" href="/css/fork-awesome.min.css">
+    
+  
+
+  
+  <link href="https://www.dhimate.com/favicon.png" rel="icon">
+
+  
+  
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="[Yogesh Dhimate dhimate MuleSoft]">
+  <meta name="author" content="Yogesh Dhimate">
+
+  
+  <meta name="generator" content="Hugo 0.79.1" />
+
+  
+  
+
+  
+  
+</head>
+<body>
+
+
+<header role="banner">
+<hgroup>
+  
+  <h1><a href="https://www.dhimate.com/">Yogesh Dhimate</a></h1>
+    <h2>Notes to Myself</h2>
+</hgroup></header>
+
+
+<nav role="navigation">
+<fieldset class="mobile-nav">
+  
+  <select onchange="location = this.value;">
+    <option value="">Navigate…</option>
+      
+        <option value="https://www.dhimate.com/about/">» About Me!</option>
+      
+        <option value="https://www.dhimate.com/r%C3%A9sum%C3%A9/">» Résumé</option>
+      
+        <option value="https://www.dhimate.com/blog/">» Blog</option>
+      
+        <option value="https://www.dhimate.com/books/">» Bookshelf</option>
+      
+  </select>
+</fieldset>
+
+
+<ul class="main-navigation">
+  
+  
+    
+      <li><a href="https://www.dhimate.com/about/" title="About Me!"  rel="noopener noreferrer">About Me!</a></li>
+    
+  
+    
+      <li><a href="https://www.dhimate.com/r%C3%A9sum%C3%A9/" title="Résumé"  rel="noopener noreferrer">Résumé</a></li>
+    
+  
+    
+      <li><a href="https://www.dhimate.com/blog/" title="Blog"  rel="noopener noreferrer">Blog</a></li>
+    
+  
+    
+      <li><a href="https://www.dhimate.com/books/" title="Bookshelf"  rel="noopener noreferrer">Bookshelf</a></li>
+    
+  
+</ul>
+
+<ul class="subscription">
+  
+    
+        <a href="https://www.dhimate.com/index.xml" target="_blank" type="application/rss+xml" title="RSS" rel="noopener noreferrer"><i class="fa fa-rss-square fa-lg"></i></a>
+    
+  
+</ul>
+
+
+  <form action="https://www.google.com/search" method="get" target="_blank" rel="noopener noreferrer">
+    <fieldset role="search">
+      <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+      <input type="hidden" name="q" value="site:https://www.dhimate.com/" />
+    </fieldset>
+  </form>
+
+</nav>
+
+
+<div id="main">
+  <div id="content">
+    <div>
+      <article class="hentry" role="article">
+
+        
+        
+
+<header>
+  <p class="meta">Aug 17, 2016
+     - 4 minute read 
+    
+
+    
+    
+      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
+    
+  </p>
+  <h1 class="entry-title">
+     Using OAuth 2.0 with webMethods Integration Server 
+  </h1>
+</header>
+
+
+        <div class="entry-content">
+          
+          
+          
+            <nav id="TableOfContents"></nav>
+          
+          <p>webMethods Integration Server supports OAuth 2.0. The Integration Server (IS) can be used as an OAuth client, an authorization server, or a resource server. This post describes how to use OAuth 2.0 with Integration Server in a simplified format.</p>
+<p>For ease of understanding, we will consider IS as an authorization server and resource server in this post. However, the same concept can be used to set up any role that you may want IS to perform in your architecture.</p>
+<p>Integration Server supports two types of OAuth grant types</p>
+<p><strong>Authorization Code</strong>:
+This is a secure way of obtaining an OAuth token, where the client needs to authorize himself with the authorization server. The authorization server responds with the authorization code, which the client uses to obtain the access token. This approach is typically used by clients hosted on web server-based applications where the application code runs on the server.</p>
+<p><strong>Implicit</strong>:
+This approach is used by mobile apps or browser-based applications. In this approach, the client does not need to authorize himself with the authorization server. The access token is passed through the browser, as a fragment in the URL. A simple javascript code can be used to extract the access token from the fragment.</p>
+<p>We will see how to implement both approaches in the integration server. For both approaches, you need to do some basic setup on the IS console.</p>
+<ul>
+<li><strong>Client Configuration</strong>:</li>
+</ul>
+<p>A client must register himself and obtain client_id from the integration server.  In the IS console go to Security-&gt;OAuth-&gt;Client Registration page and click on &lsquo;Register Client&rsquo;. Enter the information as shown below.
+Redirect URL should be the URL, where IS will redirect the page after authorizing the request. I have created a simple RESTful service on the IS as a redirect URL.</p>
+<figure>
+    <img src="/img/2016/OAuth_1.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>Remember that the Client ID will be generated when you click Save Changes.</p>
+<figure>
+    <img src="/img/2016/OAuth_2.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>Your client will use this &lsquo;Client ID&rsquo; to authorize himself and request an access token.</p>
+<ul>
+<li><strong>Scope Management</strong>:</li>
+</ul>
+<p>The scope indicates the resources the client can access on behalf of resource owner. You need to indicate one or more folders or services on the IS in the scope. Once a client is granted access to a scope, he can access the folders and services included in that scope.</p>
+<p>Go to Security-&gt;Oauth-&gt;Scope Management page and click on &lsquo;Add Scope&rsquo;. Once the page is open, mention the scope details as shown below</p>
+<p>Here we have included one service &lsquo;OAuthDemo&rsquo; in the scope. This is an URL Alias for /rest/Sandbox.OAuthDemo folder on the server</p>
+<figure>
+    <img src="/img/2016/OAuth_3.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>Once the scope is added, map the scope with the client using the &lsquo;Associate Scope to Clients&rsquo; option on the &lsquo;Scope Management&rsquo; page.</p>
+<figure>
+    <img src="/img/2016/OAuth_4.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>Once this setup is done your client can request the access token either for the Authorization Code approach or Implicit approach.</p>
+<ul>
+<li>Authorization Code:</li>
+</ul>
+<p>Requesting token for authorization code approach is a 2 step process. In the first step, the client authorizes himself with the authorization server using <code>pub.auth:authorize</code> service and receives the authorization code. Once the authorization code is received, it can be used to obtain the access token using <code>pub.auth:getAccessToken</code> service.</p>
+<p>When the client initiates the <code>pub.oauth:authorize</code> request, it brings up a page for the resource owner to either approve the access request or reject it.</p>
+<figure>
+    <img src="/img/2016/OAuth_5.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>When the resource owner approves the request, the integration server generates the authorization code and redirects the page to the &lsquo;redirect URL&rsquo; specified in the client configuration.</p>
+<p>The service hosted at redirect URL passes the authorization code to <code>pub.oauth:getAccessToken</code> service to exchange authorization code for an access token as shown below</p>
+<figure>
+    <img src="/img/2016/OAuth_6.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>The client application can now use the access token to access the resource described in the Scope.</p>
+<ul>
+<li>Implicit:</li>
+</ul>
+<p>Requesting token for implicit approach is one-step process.
+When the client initiates the <code>pub.oauth:authorize</code> request, it indicates the implicit approach by mentioning the response type as &lsquo;token&rsquo; in the input to <code>pub.oauth:authorize</code> service. The service brings up a page for resource owner to either approve the access request or reject it.</p>
+<figure>
+    <img src="/img/2016/OAuth_7.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>When the resource owner approves the request the integration server generates the access token and includes it as a fragment in the redirect URI, which the client application can extract it using simple javascript code.</p>
+<figure>
+    <img src="/img/2016/OAuth_8.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>Integration Server administrator can verify all the tokens in the IS console</p>
+<figure>
+    <img src="/img/2016/OAuth_9.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>The client application can use the token as a bearer token to access the resource on the server.</p>
+<figure>
+    <img src="/img/2016/OAuth_10.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+<p>If the client application tries to use an invalid token or tries to access a service which is not in the scope, it will get an error</p>
+<figure>
+    <img src="/img/2016/OAuth_11.PNG"
+         alt="dwarf" width="700px"/> 
+</figure>
+
+
+        </div>
+        
+
+<footer>
+  <p class="meta">
+    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
+    
+    <time>Aug 17, 2016</time>
+    
+      <span class="categories">
+        Tags:
+        
+          <a class="category" href="https://www.dhimate.com/tags/webmethods">webMethods</a>  
+    
+    </span>
+  </p>
+
+  
+
+  <p class="meta">
+    
+        <a class="basic-alignment left" href="https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/" title="Integration Server Class Loading for Custom Jars">Integration Server Class Loading for Custom Jars</a>
+    
+
+    
+      <a class="basic-alignment right" href="https://www.dhimate.com/2016/using-web-services-client-adapter-in-apama/" title="Using Web Services Client adapter in Apama">Using Web Services Client adapter in Apama</a>
+    
+  </p>
+  
+</footer>
+
+      </article>
+    </div>
+    
+
+<aside class="sidebar thirds">
+  <section class="first odd">
+
+    
+      <h1>Who am I?</h1>
+    
+
+    <p>
+      
+        I’m Yogesh Dhimate. This is my personal website.
 All opinions expressed here are my own.
-Click on <a href=/about>About</a> to know more.</p></section><ul class=sidebar-nav><li class=sidebar-nav-item><a target=_blank rel="noopener noreferrer" href=https://github.com/dhimate/ title=https://github.com/dhimate/><i class="fa fa-github fa-3x"></i></a>
-<a target=_blank rel="noopener noreferrer" href=https://twitter.com/ydhimate/ title=https://twitter.com/ydhimate/><i class="fa fa-twitter fa-3x"></i></a>
-<a target=_blank rel="noopener noreferrer" href=https://www.linkedin.com/in/dhimate title=https://www.linkedin.com/in/dhimate><i class="fa fa-linkedin fa-3x"></i></a></li></ul><section class=odd><h1>Collections</h1><li><a href=https://www.dhimate.com/categories/programming/ title=Programming>Programming</a></li><li><a href=https://www.dhimate.com/tags/mulesoft/ title=MuleSoft>MuleSoft</a></li><li><a href=https://www.dhimate.com/categories/personal/ title=Personal>Personal</a></li></section><section class=even><h1>Recent Posts</h1><ul id=recent_posts><li class=post><a href=/2022/solving-absurd-trolley-problems/>Solving Absurd Trolley Problems</a></li><li class=post><a href=/2022/finishing-clash-of-clans/>Finishing Clash of Clans</a></li><li class=post><a href=/2022/smartlock/>Smartlock</a></li><li class=post><a href=/2021/facebook-annoyance/>Facebook Annoyance</a></li><li class=post><a href=/2021/making-clay-ganesha-at-home/>Making Clay Ganesha At Home</a></li><li class=post><a href=/2021/thinking-in-bets/>Thinking in Bets</a></li></ul></section></aside></div></div><footer role=contentinfo><p>Copyright &copy; 2022 Yogesh Dhimate - <a href=https://www.dhimate.com/license/>License</a> -
-<span class=credit>Powered by <a target=_blank href=https://gohugo.io rel="noopener noreferrer">Hugo</a> and <a target=_blank href=https://github.com/parsiya/hugo-octopress/ rel="noopener noreferrer">Hugo-Octopress</a> theme.</p></footer></body></html>
+Click on <a href="/about">About</a> to know more.
+      
+    </p>
+  </section>
+
+
+
+  
+  <ul class="sidebar-nav">
+    <li class="sidebar-nav-item">
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/dhimate/" title="https://github.com/dhimate/"><i class="fa fa-github fa-3x"></i></a>
+      
+      
+      <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/ydhimate/" title="https://twitter.com/ydhimate/"><i class="fa fa-twitter fa-3x"></i></a>
+      
+         
+      
+      <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/dhimate" title="https://www.linkedin.com/in/dhimate"><i class="fa fa-linkedin fa-3x"></i></a>
+      
+      
+      
+      
+      
+      
+
+    
+    
+    </li>
+  </ul>
+
+  
+
+  
+    
+      <section class="odd">
+        
+          <h1>Collections</h1>
+        
+        
+          <li>
+            <a href="https://www.dhimate.com/categories/programming/" title="Programming" >Programming</a>
+          </li>
+        
+          <li>
+            <a href="https://www.dhimate.com/tags/mulesoft/" title="MuleSoft" >MuleSoft</a>
+          </li>
+        
+          <li>
+            <a href="https://www.dhimate.com/categories/personal/" title="Personal" >Personal</a>
+          </li>
+        
+      </section>
+    
+  
+
+  
+  
+  
+    
+      <section class="even">
+        <h1>Recent Posts</h1>
+        <ul id="recent_posts">
+          
+          
+            
+          
+            
+              <li class="post">
+                <a href="/2022/solving-absurd-trolley-problems/">Solving Absurd Trolley Problems</a>
+              </li>
+            
+          
+            
+              <li class="post">
+                <a href="/2022/finishing-clash-of-clans/">Finishing Clash of Clans</a>
+              </li>
+            
+          
+            
+              <li class="post">
+                <a href="/2022/smartlock/">Smartlock</a>
+              </li>
+            
+          
+            
+              <li class="post">
+                <a href="/2021/facebook-annoyance/">Facebook Annoyance</a>
+              </li>
+            
+          
+            
+              <li class="post">
+                <a href="/2021/making-clay-ganesha-at-home/">Making Clay Ganesha At Home</a>
+              </li>
+            
+          
+            
+              <li class="post">
+                <a href="/2021/thinking-in-bets/">Thinking in Bets</a>
+              </li>
+            
+          
+        </ul>
+      </section>
+    
+  
+</aside>
+
+  </div>
+</div>
+
+    <footer role="contentinfo">
+      <p>Copyright &copy; 2022 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
+        <span class="credit">Powered by <a target="_blank" href="https://gohugo.io" rel="noopener noreferrer">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/" rel="noopener noreferrer">Hugo-Octopress</a> theme.
+      </p>
+    </footer>
+
+    
+    
+    
+
+    
+  </body>
+</html>
+
