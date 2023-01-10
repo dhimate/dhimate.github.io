@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
@@ -20,7 +17,7 @@
   
 
   
-  <title>Tags</title>
+  <title>Yogesh Dhimate</title>
 
   
   
@@ -38,7 +35,7 @@
   <link href="https://www.dhimate.com/favicon.png" rel="icon">
 
   
-  
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Yogesh Dhimate" />
 
   <meta name="description" content="" />
   <meta name="keywords" content="[Yogesh Dhimate dhimate MuleSoft]">
@@ -122,153 +119,116 @@
 </nav>
 
 
+
+
+  
+
 <div id="main">
   <div id="content">
-    <div>
-      <article role="article">
-        <header>
-          <h1 class="entry-title">
-            Tag: Tags
-          </h1>
-        </header>
-        <div id="blog-archives" class="category">
-          
-          <h2>
-            2021
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/mulesoft/" title="MuleSoft">MuleSoft</a>
-            </h1>
-            <time>
-              <span class="month">Jan</span>
-              <span class="day">23</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+    <div class="blog-index">
+      
+      
+      <article>
+        
+        
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2020
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/personal/" title="Personal">Personal</a>
-            </h1>
-            <time>
-              <span class="month">Dec</span>
-              <span class="day">31</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+<header>
+  <p class="meta">Aug 16, 2016
+     - 1 minute read 
+    
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2020
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/books/" title="Books">Books</a>
-            </h1>
-            <time>
-              <span class="month">Dec</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+    
+    
+      - <a class="label" href="https://www.dhimate.com/categories/programming/">Programming </a>
+    
+  </p>
+  <h1 class="entry-title">
+    <a href="https://www.dhimate.com/2016/integration-server-class-loading-for-custom-jars/">Integration Server Class Loading for Custom Jars</a>
+  </h1>
+</header>
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2017
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/google/" title="Google">Google</a>
-            </h1>
-            <time>
-              <span class="month">Oct</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+        
+          <p>If a specific functionality is not available out of box from the integration server, you often need to use external jars or java libraries in IS. e.g. If you want to generate a PDF document or excel spreadsheet on your IS, you need to use your preferred libraries like IText or Apache POI.</p>
+<p>It is not recommended to place your custom jars in the IntegrationServer/lib/jars folder. But Integration Server provides you couple of places to place these jars depending on how you want them to be loaded.</p>
+<ol>
+<li>
+<p>packages/<!-- raw HTML omitted -->/code/jars or packages/<!-- raw HTML omitted -->/code/classes:  The jar file placed in these folders are only accessible to java services inside the same package and the packages dependent on this package. If there is any change in the jar, simply reloading of the package is sufficient to have the classes loaded in memory.</p>
+</li>
+<li>
+<p>packages/<!-- raw HTML omitted -->/code/jars/static are accessible to all java services across the entire IS. If there is any change in the jar, a restart of IS is required to activate any additions or changes to these.</p>
+</li>
+</ol>
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2017
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/webmethods/" title="webMethods">webMethods</a>
-            </h1>
-            <time>
-              <span class="month">Sep</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
-
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2016
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/apama/" title="Apama">Apama</a>
-            </h1>
-            <time>
-              <span class="month">Aug</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
-
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-        </div>
+        
       </article>
-    </div>
+      
+      
+      
 
+
+
+
+
+
+<div class="pagination">
+
+    
+        
+        
+        
+        <a href="/" aria-label="First" class="label-pagination"><i class="fa fa-angle-double-left fa-lg"></i></a>
+    
+
+    
+    
+        <a href="/page/15/" aria-label="Previous" class="label-pagination"><i class="fa fa-angle-left fa-lg"></i></a>
+    
+
+    
+        <a href="/" class="label-pagination">1</a>
+    
+        <a href="/page/2/" class="label-pagination">2</a>
+    
+        <a href="/page/3/" class="label-pagination">3</a>
+    
+        <a href="/page/4/" class="label-pagination">4</a>
+    
+        <a href="/page/5/" class="label-pagination">5</a>
+    
+        <a href="/page/6/" class="label-pagination">6</a>
+    
+        <a href="/page/7/" class="label-pagination">7</a>
+    
+        <a href="/page/8/" class="label-pagination">8</a>
+    
+        <a href="/page/9/" class="label-pagination">9</a>
+    
+        <a href="/page/10/" class="label-pagination">10</a>
+    
+        <a href="/page/11/" class="label-pagination">11</a>
+    
+        <a href="/page/12/" class="label-pagination">12</a>
+    
+        <a href="/page/13/" class="label-pagination">13</a>
+    
+        <a href="/page/14/" class="label-pagination">14</a>
+    
+        <a href="/page/15/" class="label-pagination">15</a>
+    
+        <a href="/page/16/" class="label-pagination">16</a>
+    
+
+    
+
+    
+    
+        <a href="/page/16/" aria-label="Last"><i class="fa fa-angle-double-right fa-lg"></i></a>
+    
+
+</div>
+
+  
+    </div>
     
 
 <aside class="sidebar thirds">
@@ -389,10 +349,9 @@ Click on <a href="/about">About</a> to know more.
     
   
 </aside>
-
+    
   </div>
 </div>
-
     <footer role="contentinfo">
       <p>Copyright &copy; 2023 Yogesh Dhimate - <a href="https://www.dhimate.com/license/">License</a> -
         <span class="credit">Powered by <a target="_blank" href="https://gohugo.io" rel="noopener noreferrer">Hugo</a> and <a target="_blank" href="https://github.com/parsiya/hugo-octopress/" rel="noopener noreferrer">Hugo-Octopress</a> theme.
@@ -406,4 +365,5 @@ Click on <a href="/about">About</a> to know more.
     
   </body>
 </html>
+   
 

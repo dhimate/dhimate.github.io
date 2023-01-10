@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
@@ -20,7 +17,7 @@
   
 
   
-  <title>Tags</title>
+  <title>Ideas to improve Anypoint Exchange user experience</title>
 
   
   
@@ -125,150 +122,85 @@
 <div id="main">
   <div id="content">
     <div>
-      <article role="article">
-        <header>
-          <h1 class="entry-title">
-            Tag: Tags
-          </h1>
-        </header>
-        <div id="blog-archives" class="category">
-          
-          <h2>
-            2021
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/mulesoft/" title="MuleSoft">MuleSoft</a>
-            </h1>
-            <time>
-              <span class="month">Jan</span>
-              <span class="day">23</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+      <article class="hentry" role="article">
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2020
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/personal/" title="Personal">Personal</a>
-            </h1>
-            <time>
-              <span class="month">Dec</span>
-              <span class="day">31</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+        
+        
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2020
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/books/" title="Books">Books</a>
-            </h1>
-            <time>
-              <span class="month">Dec</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+<header>
+  <p class="meta">Jan 10, 2023
+     - 3 minute read 
+    
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2017
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/google/" title="Google">Google</a>
-            </h1>
-            <time>
-              <span class="month">Oct</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+    
+    
+      - <a class="label" href="https://www.dhimate.com/categories/mulesoft/">MuleSoft </a>
+    
+  </p>
+  <h1 class="entry-title">
+     Ideas to improve Anypoint Exchange user experience 
+  </h1>
+</header>
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
-          <h2>
-            2017
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/webmethods/" title="webMethods">webMethods</a>
-            </h1>
-            <time>
-              <span class="month">Sep</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
 
-                
-                
-              </span>
-            </footer>
-          </article>
+        <div class="entry-content">
           
-          <h2>
-            2016
-          </h2>
-          <article>
-            <h1>
-              <a href="https://www.dhimate.com/tags/apama/" title="Apama">Apama</a>
-            </h1>
-            <time>
-              <span class="month">Aug</span>
-              <span class="day">24</span>
-            </time>
-            <footer>
-              <span class="categories"> 
-                
-                
+          
+          
+          <p>Anypoint Exchange is a key component of MuleSoft&rsquo;s Anypoint Platform. In my opinion, it is <em>the</em> differentiator to allow Anypoint Platform stand apart in the crowded market of API management and integration/ESB software vendors. Unfortunately MuleSoft hasn&rsquo;t paid the required attention to Anypoint Exchange since I first started using it in 2017. The newer search functionality introduced in 2020 was atrocious. Other than a few cosmetic changes around background color and support for tags, Anypoint Exchange became <em>significantly</em> worse for users over time.</p>
+<p>My hypothesis for Anypoint Exchange not seeing any significant improvements is that it didn&rsquo;t provide up-sell opportunities. MuleSoft packages Anypoint Exchange with it&rsquo;s &lsquo;Base platform&rsquo;. It doesn&rsquo;t have any bells and whistles for add-on charges. For advanced use cases around API management, MuleSoft had Anypoint API Community Manager. In the meantime Anypoint Exchange kept on languishing.</p>
+<p>Here are my 4 quick ideas to improve Anypoint Exchange&rsquo;s usefulness for it&rsquo;s customers:</p>
+<ol>
+<li>
+<p><strong>Support to store non-Mule assets, relevant for MuleSoft implementation</strong> -
+Anypoint platform currently supports &lsquo;MuleSoft assets&rsquo;. Now what qualifies for &lsquo;MuleSoft assets&rsquo; is debatable. These are connectors, templates, examples, APIs, fragments and other prebuilt assets within MuleSoft ecosystem. You cannot store random jar files in Exchange, even though they could be required for your Mule app to function. This is a significant friction for customers who invested in MuleSoft platform. Many MuleSoft customers aren&rsquo;t traditional Java shops. Customers using .NET ecosystem don&rsquo;t have maven repositories like Jfrog Artifactory or Sonatype Nexus. They have to setup a separate repository to store Mule artifacts, especially when Anypoint Exchange can perfectly help meet this need.</p>
+</li>
+<li>
+<p><strong>Better content management support</strong> -
+When I was helping Mule customers, I recommended them to use Atlassian Confluence or MediaWiki to write better documentation for their APIs and other guidelines. Anypoint Exchange should be the place to find the documentation for your apis and integration assets. But Anypoint Exchange only works well for simpler documentation needs. It doesn&rsquo;t support mildly complex use cases like resizing of images, or align the content appropriately on a page.</p>
+</li>
+<li>
+<p><strong>Proxying other Mule repositories</strong> -
+MuleSoft&rsquo;s dependency libraries are distributed via two separate maven compliant repositories.</p>
+<p>a. Public (free) repository - <a href="https://repository.mulesoft.org/nexus/content/repositories/releases/">https://repository.mulesoft.org/nexus/content/repositories/releases/</a></p>
+<p>b. Enterprise (paid) repository - <a href="https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee">https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee</a></p>
+<p>Then there are some other dependencies (e.g. Connectors) distributed via Anypoint Exchange - <a href="https://maven.anypoint.mulesoft.com">https://maven.anypoint.mulesoft.com</a>
+And lastly customers have their own private libraries and dependencies based on what they have built so far.</p>
+<p>These are at least 4 repositories required to build a useful Mule app. Exchange can provide a single proxy to receive the dependency assets to build Mule apps to reduce customer pain.</p>
+</li>
+<li>
+<p><strong>Secure API Portal</strong> -
+Exchange provides capabilities to build a &lsquo;public portal&rsquo; to publish your APIs and documentation. This unauthenticated portal is publicly available over the internet. Not all customers like their APIs, documentation and request/response examples publicly available. The only alternative is not to publish to a portal. This is not a good developer experience. Exchange should provide a way to setup a private or secure API portal that can solve this problem.</p>
+</li>
+</ol>
+<p>Addressing these gaps in Anypoint Exchange will improve customer satisfaction and help customers get better return on their MuleSoft investments.</p>
 
-                
-                
-              </span>
-            </footer>
-          </article>
-          
         </div>
+        
+
+<footer>
+  <p class="meta">
+    <span class="byline author vcard">Posted by <span class="fn">Yogesh Dhimate</span></span>
+    
+    <time>Jan 10, 2023</time>
+    
+    </span>
+  </p>
+
+  
+
+  <p class="meta">
+    
+        <a class="basic-alignment left" href="https://www.dhimate.com/2022/looking-for-calvin-and-hobbes/" title="Looking for Calvin and Hobbes">Looking for Calvin and Hobbes</a>
+    
+
+    
+  </p>
+  
+</footer>
+
       </article>
     </div>
-
     
 
 <aside class="sidebar thirds">
