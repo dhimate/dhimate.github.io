@@ -35,14 +35,14 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
 
 ### Create an app in Epic
 1. Login to https://fhir.epic.com/ and click on 'Build Apps'
-{{< figure src="/img/2021/epic-fhir-server/epic-build-app.png" alt="dwarf" width="600px" >}}
+![](/img/2021/epic-fhir-server/epic-build-app.png)
 
 2. Click on 'Create' and enter your app details as follows. Make sure to select the Application Audience as 'Backend Systems'. For Sandbox JWT signing public key, upload the public key store (Anypoint_PublicKey.pem) file generated in the previous step. Click on save.
-{{< figure src="/img/2021/epic-fhir-server/epic-create-app.png" alt="dwarf" width="600px" >}}
+![](/img/2021/epic-fhir-server/epic-create-app.png)
 
 
 3. You should see the Client ID and Non-Production Client ID for your app. Select the SMART on FHIR version as R4, enter the summary,  accept the terms of usage and click on 'Save & Ready for Sandbox'. 
-{{< figure src="/img/2021/epic-fhir-server/epic-app-overview.png" alt="dwarf" width="600px" >}}
+![](/img/2021/epic-fhir-server/epic-app-overview.png)
 
 *In my experience it usually takes a couple of hours for your app to be usable in Epic. It took me ~2 hours for my app to be usable*
 
@@ -50,8 +50,8 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
 1. Create a new Mule application, and copy the pkcs12 formatted keystore (Anypoint_Keystore.p12) created earlier, in the `src/main/resources` folder.
 
 2. To generate a signed JWT (JWS), we will use [Java JWT library](https://github.com/jwtk/jjwt). In the pom.xml of your Mule application, include the following dependencies. (I have included Apache log4j dependencies, these are optional).
-{{< codecaption lang="xml" title="" >}}
 
+```
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-api</artifactId>
@@ -84,11 +84,11 @@ openssl pkcs12 -export -in Anypoint_PublicKey.pem -inkey Anypoint_Mulesoft.pem -
     <type>jar</type>
 </dependency>
 
-{{< /codecaption  >}}
+```
 
 3. In Mule application's `src/main/java` folder, create a new Java package `com.dhimate.demo`, class `JWTProvider` and use following code snippet to generate signed JWT.
-{{< codecaption lang="java" title="" >}}
 
+```
 package com.dhimate.demo;
 
 import io.jsonwebtoken.Jwts; 
@@ -155,28 +155,28 @@ public class JWTProvider {
 	}
 }
  
-{{< /codecaption  >}}
+```
 
 Your Mule application should look like this.
 
-{{< figure src="/img/2021/epic-fhir-server/epic-mule-app-structure.png" alt="dwarf" width="300px" >}}
+![](/img/2021/epic-fhir-server/epic-mule-app-structure.png)
 
 3. In Mule application's `src/main/java` folder, create a new Java package `com.dhimate.demo`, class `JWTProvider` and use the following code snippet to generate signed JWT.
 
 4. Calling Epic's FHIR APIs is a two-step process. 
   - In the first step we need to get the access token using the signed JWT token
   - In the second step we will use the access token received in the step above to access FHIR resource
-{{< figure src="/img/2021/epic-fhir-server/epic-mule-flow.png" alt="dwarf" width="600px" >}}
+![](/img/2021/epic-fhir-server/epic-mule-flow.png)
 
 5. Let's look at the configuration of important components
   - Generate signed JWS token using `Invoke Static` component
-    {{< figure src="/img/2021/epic-fhir-server/epic-mule-flow-generate-JWS.png" alt="dwarf" width="600px" >}}
+    ![](/img/2021/epic-fhir-server/epic-mule-flow-generate-JWS.png)
   - Prepare request payload to get access token
-    {{< figure src="/img/2021/epic-fhir-server/epic-mule-flow-prepare-token-request.png" alt="dwarf" width="600px" >}}
+    ![](/img/2021/epic-fhir-server/epic-mule-flow-prepare-token-request.png)
   - Get the access token
-    {{< figure src="/img/2021/epic-fhir-server/epic-mule-flow-get-access-token.png" alt="dwarf" width="600px" >}}
+    ![](/img/2021/epic-fhir-server/epic-mule-flow-get-access-token.png)
   - Call FHIR API to get the data
-    {{< figure src="/img/2021/epic-fhir-server/epic-mule-flow-epic-fhir-api.png" alt="dwarf" width="600px" >}}
+    ![](/img/2021/epic-fhir-server/epic-mule-flow-epic-fhir-api.png)
 
 6. Once this is done, we can add a simple HTTP listener and connect our flow to it to get the data from Epic's FHIR API. Epic has provided [test data](https://fhir.epic.com/Documentation?docId=testpatients) in the sandbox. Let's use it to search for a patient record.
-{{< figure src="/img/2021/epic-fhir-server/epic-fhir-postman.png" alt="dwarf" width="600px" >}}
+![](/img/2021/epic-fhir-server/epic-fhir-postman.png)

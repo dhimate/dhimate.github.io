@@ -27,7 +27,7 @@ Follow following steps to create automated tests.
 
 - Add following lines in your build.gradle file
 
-{{< codecaption lang="java" title="" >}}
+```
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
@@ -38,7 +38,7 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0' //version required
 } 
-{{< /codecaption >}}
+```
 
   ![Update_BuildGradle](/img/2017/Update_BuildGradle.gif)
 
@@ -48,7 +48,7 @@ task wrapper(type: Wrapper) {
 
 - Create new Java class for our tests. 
 
-{{< codecaption lang="java" title="" >}}
+```
 package com.dhimate.wm;
 
 import org.junit.Before;
@@ -89,7 +89,7 @@ public class AddNumbersTest {
         		assertThat("sum", responseBody.get("sum"), equalTo("30"));
     	}
 }
-{{< /codecaption >}}
+```
 
 Here we are just taking advantage of Integration Server's built in content handler for Content Type - 'application/json'. For the flow service available on Integration Server, we can simply pass JSON request using REST Assured framework. Integration Server will take care of converting this to IDoc and subsequently process it to return a JSON response back to your test case.
 

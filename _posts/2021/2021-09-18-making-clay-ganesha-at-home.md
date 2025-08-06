@@ -13,16 +13,16 @@ When I was in school, drawing and painting were my Achilles' heel. I would get t
  
 In spite of my reservations about my mediocre skills, I decided to make an idol last year. Before investing in the procurement of supplies and committing to delivering the idol, I built a small prototype using clay doh. That wasn't very bad. It looked like Ganapati. The mouse was even more adorable.
 
-{{< figure src="/img/2021/2020_Clay-Doh.jpg" alt="dwarf" width="700px" >}}
+![](/img/2021/2020_Clay-Doh.jpg)
  
 Encouraged by this prototype, I purchased supplies and various colors. My weekend was put into good use. Instead of mindlessly watching television or scrolling on social media, I built something with my hands. Granted that it was mediocre, that was still my best attempt yet. When I started painting it, I realized that the eyes are the most difficult part of an idol. The idol's personality is by the eyes. Even a minor imperfection would completely ruin the idol. I became very anxious about it and decided to not draw the eyes but rather glued them. The rest of the adornment was easy. I used craft stones and golden chains along with my wife's cosmetic bindis to decorate it. The result was pretty good.
 
-{{< figure src="/img/2021/2020_Ganesh.jpg" alt="dwarf" width="700px" >}}
+![](/img/2021/2020_Ganesh.jpg)
 
 
 Inspired by my earlier success of the first attempt in 2020, I tried making an idol again this year. I was more confident about handling not only the clay but also the brush while painting the idol. It turned out very well.
 
-{{< figure src="/img/2021/2021_Ganesh.jpg" alt="dwarf" width="700px" >}}
+![](/img/2021/2021_Ganesh.jpg)
 
 <br/> 
 

@@ -16,15 +16,15 @@ The lesser-known trick is about externalizing SOQL and SQL queries. Before I kne
 
 Using this notation is easy. In your Mule app, organize your queries in the src/main/resources folder in their own files as shown below.
 
-{{< figure src="/img/2021/externalize-queries-mule-1.jpg" alt="dwarf" width="400px" >}}
+![](/img/2021/externalize-queries-mule-1.jpg)
 
 Once you organize your queries properly, injecting those queries is easy.
 
-{{< figure src="/img/2021/externalize-queries-mule-2.jpg" alt="dwarf" width="600px" >}}
+![](/img/2021/externalize-queries-mule-2.jpg)
 
 This organization helps in keeping the XML configuration file readable and easily maintainable.
 
-{{< codecaption lang="xml" title="" >}}
+```
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
@@ -62,4 +62,4 @@ This organization helps in keeping the XML configuration file readable and easil
 		</ee:transform>
 	</flow>
 </mule>
-{{< /codecaption >}}
+```

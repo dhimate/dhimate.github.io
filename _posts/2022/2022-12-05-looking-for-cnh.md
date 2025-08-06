@@ -12,7 +12,7 @@ The 'free' supply of internet connectivity opened world of enterntainment opport
   
 One day I received a cartoon in my Inbox where a big tiger and mischievous looking kid were making some philosophical comment about life. I hadn't seen these cartoon characters before. Growing up I either read cartoons in Marathi newspapers or in the Marathi comics books. This cartoon was very different than what I was used to. I loved that cartoon and found its name.
 
-{{< figure src="/img/2022/cnh.png" alt="dwarf" width="700px" >}}
+![](/img/2022/cnh.png)
 
   
 Calvin and Hobbes turned out to become one of my favorite cartoons ever.

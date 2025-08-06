@@ -16,7 +16,8 @@ First of all its important to understand that there are different ways to set up
 In this scenario, the client application makes a request to a shared load balancer URL using **HTTP** protocol. The SLB forwards the request to the upstream mule application listening on port 8081.
 
 Note that in this scenario the SLB URL *receives* the request on port 80, and forwards it to mule application listening on port 8081.
-{{<mermaid >}}
+
+```mermaid
 flowchart LR
    l1[Shared Load Balancer]-.->c1 
     subgraph A[Shared Load Balancer w/ HTTP]
@@ -27,14 +28,15 @@ flowchart LR
       end
     end
  style A fill:#FFF,stroke:#DDD,stroke-width:2px
-{{</mermaid >}}
+```
 
 **2. Using shared load balancer (i.e. cloudhub.io domain) with HTTPS protocol.**
 
 In this scenario, the client application makes a request to a shared load balancer URL using **HTTPS** protocol. The SLB forwards the request to the upstream mule application listening on port 8082.
 
 Note that in this scenario the SLB URL *receives* the request on port 443, and forwards it to mule application listening on port 8082.
-{{<mermaid >}}
+
+```mermaid
 flowchart LR
    l1[Shared Load Balancer]-.->c1 
     subgraph B[Shared Load Balancer w/ HTTPS]
@@ -45,14 +47,15 @@ flowchart LR
       end
     end
  style B fill:#FFF,stroke:#DDD,stroke-width:2px
-{{</mermaid >}}
+```
 
 **3. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.**
 
 In this scenario, the client application makes a request to a dedicated load balancer URL(exposed by a vanity domain) using **HTTPS** protocol. The DLB forwards the request to the upstream mule application listening on port 8091.
 
 Note that in this scenario the DLB URL *receives* the request on port 443, and forwards it to mule application listening on port 8091.
-{{<mermaid >}}
+
+```mermaid
 flowchart LR
    l1[Dedicated Load Balancer<br/>Vanity Domain]-.->c1 
     subgraph C[Dedicated Load Balancer w/ upstream HTTP]
@@ -63,14 +66,15 @@ flowchart LR
         end
     end
  style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
-{{</mermaid >}}
+```
 
 **4. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.**
 
 In this scenario, the client application makes a request to a dedicated load balancer URL(exposed by a vanity domain) using **HTTPS** protocol. The DLB forwards the request to the upstream mule application listening on port 8092.
 
 Note that in this scenario the DLB URL *receives* the request on port 443, and forwards it to mule application listening on port 8092.
-{{<mermaid >}}
+
+```mermaid
 flowchart LR
    l1[Dedicated Load Balancer<br/>Vanity Domain]-.->c1
     subgraph C[Dedicated Load Balancer w/ upstream HTTPS]
@@ -81,18 +85,19 @@ flowchart LR
         end
     end
  style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
-{{</mermaid >}}
+```
 
 **5. Not using load balancers.**
 
 This is one of those scenarios where you are not using Anypoint Platform load balancers. You are either using third-party load balancers, or your applications are using non HTTP protocols like a simple socket, or MLLP. In this case, the client application makes a request directly to the application (mule-worker). 
-{{<mermaid >}}
+
+```mermaid
 flowchart LR
         u(client)--HTTPS-->a1
         subgraph VPC 10.0.0.0/24
         a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
         end
-{{</mermaid >}}
+```
 
 As seen above, to make your application endpoint available to the clients
 

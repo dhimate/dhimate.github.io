@@ -12,7 +12,7 @@ description: "Programmatically upload attachments to Salesforce using MuleSoft."
 This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
 
 As shown in the following ER diagram, there are multiple entities involved in storing and managing the attachments in Salesforce
-{{<mermaid >}}
+```mermaid
 erDiagram
     ContentDocument ||--|{ ContentDocumentLink : has
     ContentDocument {
@@ -44,7 +44,7 @@ erDiagram
     string Id
     string SomeProperty
     }
-{{</mermaid >}}
+```
 Things to note:
 
 - Salesforce attachments are stored in ContentDocument (and ContentVersion) objects.
@@ -57,7 +57,7 @@ Things to note:
   - Use the ContentDocumentId to link to your sObject (Account, Lead Opportunity, etc) by upserting the relationship in the ContentDocumentLink object
 
 Following flow chart shows the general approach to upload an attachment to Salesforce: 
-{{<mermaid >}}
+```mermaid
 graph TD
     A([Start]) -->B[/Get file/]
     B -->  C{{Prepare ContentDocument}} -->  D[(<br/>Create <br/>ContentDocument)]
@@ -67,10 +67,10 @@ graph TD
     G --> H([End])
     
             
-{{</mermaid >}}
+```
 
 Mule DSL code to achieve this
-{{< codecaption lang="xml" title="" >}}
+```
 
     <sub-flow name="Upload Attachment">
         <ee:transform 
@@ -146,7 +146,7 @@ Mule DSL code to achieve this
             type="ContentDocumentLink" />
     </sub-flow>
 
-{{< /codecaption >}}
+```
 
 With this approach you can easily upload attachments to Salesforce.
  
