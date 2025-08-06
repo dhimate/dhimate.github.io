@@ -1,6 +1,7 @@
 ---
 title: "OCI Application Experience"
 date: 2021-08-18
+layout: post
 description: "OCI application process"
 url: "2021/oci-application"
 categories:

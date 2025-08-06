@@ -1,6 +1,7 @@
 ---
 title: "Using Epic's FHIR APIs in Mule 4"
 date: 2021-01-23
+layout: post
 tags:
  - MuleSoft
 categories:

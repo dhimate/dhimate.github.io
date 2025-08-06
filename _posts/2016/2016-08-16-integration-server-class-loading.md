@@ -1,6 +1,7 @@
 ---
 title: "Integration Server Class Loading for Custom Jars"
 date: 2016-08-16
+layout: post
 tags:
  - webMethods
 categories:

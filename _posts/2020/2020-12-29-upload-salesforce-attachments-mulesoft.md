@@ -1,6 +1,7 @@
 ---
 title: "Upload Attachments to Salesforce Using MuleSoft"
 date: 2020-12-29
+layout: post
 toc: true
 tags: 
   - MuleSoft

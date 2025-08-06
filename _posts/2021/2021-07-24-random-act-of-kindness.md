@@ -1,6 +1,7 @@
 ---
 title: "Random Act of Kindness"
 date: 2021-07-24
+layout: post
 categories:
  - Personal
 draft: false

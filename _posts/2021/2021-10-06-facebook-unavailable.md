@@ -1,6 +1,7 @@
 ---
 title: "Facebook Annoyance"
 date: 2021-10-06
+layout: post
 categories:
  - Personal
 ---

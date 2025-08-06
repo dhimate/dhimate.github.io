@@ -1,6 +1,7 @@
 ---
 title: "Certificate of Authenticity"
 date: 2021-04-10
+layout: post
 categories:
  - Personal
 draft: false

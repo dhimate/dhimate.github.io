@@ -1,6 +1,7 @@
 ---
 title: "MuleSoft Capacity Explanation for Noobs and CXOs "
 date: 2020-12-21
+layout: post
 tags:
  - MuleSoft
 categories:

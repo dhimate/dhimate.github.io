@@ -1,6 +1,7 @@
 ---
 title: "Using OAuth 2.0 with webMethods Integration Server"
 date: 2016-08-17
+layout: post
 tags:
  - webMethods
 categories:

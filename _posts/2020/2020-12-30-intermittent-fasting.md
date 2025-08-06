@@ -1,6 +1,7 @@
 ---
 title: "How Intermittent Fasting Saved My Life"
 date: 2020-12-30
+layout: post
 toc: true
 categories:
  - Personal

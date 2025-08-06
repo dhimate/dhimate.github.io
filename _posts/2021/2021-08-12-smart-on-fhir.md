@@ -1,6 +1,7 @@
 ---
 title: "Understanding SMART on FHIR"
 date: 2021-08-12
+layout: post
 categories:
  - Programming
 description: "Easy to understand explanation of SMART on FHIR"

@@ -1,6 +1,7 @@
 ---
 title: "Made to Stick and the Curse of Knowledge"
 date: 2020-12-24
+layout: post
 tags:
  - Books
 categories:

@@ -6,6 +6,7 @@ tags:
 categories:
  - Programming 
 toc: true
+layout: post
 ---
 Software AG Apama provides a SOAP-based Web Services Client adapter to invoke web services from your Apama application. In this post, we will see how to use this adapter in your application.
 

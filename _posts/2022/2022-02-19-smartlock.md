@@ -1,6 +1,7 @@
 ---
 title: "Smartlock"
 date: 2022-02-19
+layout: post
 categories:
  - Personal
 ---

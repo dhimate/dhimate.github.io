@@ -1,6 +1,7 @@
 ---
 title: "How to Use Different Authentication Options for Salesforce Connector in Mule 4"
 date: 2021-01-16
+layout: post
 description: "Authentication options for Salesforce Connector in Mule 4"
 tags:
  - MuleSoft

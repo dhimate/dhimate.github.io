@@ -1,6 +1,7 @@
 ---
 title: "About Thanks for the Feedback"
 date: 2021-07-28
+layout: post
 categories:
  - Personal
 draft: false

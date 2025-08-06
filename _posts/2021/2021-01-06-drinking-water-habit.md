@@ -1,6 +1,7 @@
 ---
 title: "Drinking Water Habit"
 date: 2021-01-06
+layout: post
 categories:
  - Personal
 draft: false

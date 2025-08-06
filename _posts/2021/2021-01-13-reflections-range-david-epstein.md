@@ -1,6 +1,7 @@
 ---
 title: "Reflections on Range by David Epstein"
 date: 2021-01-13
+layout: post
 categories:
  - Books
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Externalizing Queries in Mule Application"
 date: 2021-01-09
+layout: post
 tags:
  - MuleSoft
 categories:

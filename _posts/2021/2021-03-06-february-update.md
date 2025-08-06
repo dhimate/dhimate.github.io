@@ -1,6 +1,7 @@
 ---
 title: "February Quick Update"
 date: 2021-03-06
+layout: post
 categories:
  - Personal
 draft: false

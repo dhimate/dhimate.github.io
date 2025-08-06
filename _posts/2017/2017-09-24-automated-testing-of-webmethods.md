@@ -1,6 +1,7 @@
 ---
 title: "Automated Testing of Webmethods Services with REST Assured"
 date: 2017-09-24
+layout: post
 tags:
  - webMethods
 categories:

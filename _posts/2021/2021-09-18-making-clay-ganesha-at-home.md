@@ -1,6 +1,7 @@
 ---
 title: "Making Clay Ganesha At Home"
 date: 2021-09-18
+layout: post
 description: "Making Clay Ganesha At Home"
 categories:
  - Personal

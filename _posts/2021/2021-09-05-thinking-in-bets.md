@@ -1,6 +1,7 @@
 ---
 title: "Thinking in Bets"
 date: 2021-09-05
+layout: post
 categories:
  - Books
 ---

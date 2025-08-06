@@ -1,6 +1,7 @@
 ---
 title: "Finishing Clash of Clans"
 date: 2022-06-23
+layout: post
 categories:
  - Personal
 ---

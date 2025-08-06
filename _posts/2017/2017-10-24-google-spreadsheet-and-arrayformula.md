@@ -1,6 +1,7 @@
 ---
 title: "Google Spreadsheets and ArrayFormula for XIRR Calculation"
 date: 2017-10-24
+layout: post
 tags:
  - Google
 toc: true

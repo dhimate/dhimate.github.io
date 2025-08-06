@@ -1,6 +1,7 @@
 ---
 title: "How to Use Netcat to Debug Cloudhub Networking Issues"
 date: 2021-01-02
+layout: post
 tags:
  - MuleSoft
 categories:
