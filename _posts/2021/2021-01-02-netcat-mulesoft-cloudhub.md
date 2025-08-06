@@ -7,6 +7,13 @@ tags:
 categories:
  - Programming
 ---
+<script type="module">
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+	mermaid.initialize({
+		startOnLoad: true,
+		theme: 'dark'
+	});
+</script>
 This is a simple trick I use to debug connection issues with the mule app deployed to CloudHub.
 
 First of all its important to understand that there are different ways to set up your application
@@ -17,7 +24,7 @@ In this scenario, the client application makes a request to a shared load balanc
 
 Note that in this scenario the SLB URL *receives* the request on port 80, and forwards it to mule application listening on port 8081.
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
    l1[Shared Load Balancer]-.->c1 
     subgraph A[Shared Load Balancer w/ HTTP]
@@ -28,7 +35,7 @@ flowchart LR
       end
     end
  style A fill:#FFF,stroke:#DDD,stroke-width:2px
-```
+</pre>
 
 **2. Using shared load balancer (i.e. cloudhub.io domain) with HTTPS protocol.**
 
