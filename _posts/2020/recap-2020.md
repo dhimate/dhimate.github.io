@@ -1,0 +1,28 @@
+---
+title: "Recap of 2020"
+date: 2020-12-31
+tags:
+ - Personal
+categories:
+ - Personal
+---
+The end of the year is the time to pause, look back, and think about how the year went by. I am very grateful and fortunate to had an opportunity to enjoy a reasonably good time in 2020.
+
+On the personal front
+
+- We visited our families in India in January. I enjoyed meeting my parents, brother, in-laws, and friends.
+- I did not travel for work and got more time to spend with my wife.
+- I started reading books. As a kid, I was an avid reader. The librarian in my town knew me by name. He would hold the books for me. With job and other things taking precedence over the years, I forgot about the books.
+- I stopped procrastinating about writing this blog. I had some solid excuses like not having enough content to write, poor writing skills, not enough time with work-related travel, etc. I discovered that none of this matters if I can just sit down and write something.
+- I re-started playing Clash of Clans. I enjoyed playing it a few years ago, but got addicted to it and burned out. During the pandemic, I wanted something other than movies to wind down. I downloaded my favorite game again and took it for a spin. I was surprised to find my old clan-mates still playing. Then I realized that I was thinking about this game all wrong. There is no end goal to it. The journey of playing is what makes it enjoyable.
+- I was able to stick to my intermittent fasting routine throughout the year, even during my visit to India.
+- And the best for the last. I was positively surprised by something magic. :)
+
+On the professional front
+
+- I got promoted to a senior position in the team, started mentoring the team members. By the end of the year, I transitioned to a more exciting role that I am looking forward to in the next year.
+- I continued my learning by becoming a Salesforce Ranger, as well as became a Certified Administrator. I also completed the HL7 FHIR training and became proficient in FHIR.
+
+What are my plans for the next year? I like to keep things simple, so I will continue to do the things I did this year already, but in a more structured way.
+
+
