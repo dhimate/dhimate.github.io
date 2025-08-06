@@ -15,7 +15,7 @@ We will use a free web service available at  CDYNE (link) for our application. T
 Below are the sample request and response messages for this operation, which we will use to describe our event definition in Apama.
 
 Request XML
-{{< codecaption lang="xml" title="Request XML" >}}
+```
     <soap:envelope 
     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
@@ -56,7 +56,7 @@ Response XML
     </soap:Body>
     </soap:Envelope>
 
-{{< /codecaption >}}
+```
 
 Let's begin by creating a new Apama project. We will name it WeatherWebServiceDemo.
 
@@ -70,7 +70,7 @@ Now let's describe the event definitions. We will define events such that their 
 
 The event definition will look like this:
 
-{{< codecaption lang="java" title="" >}}
+```
     event GetCityWeatherByZIPType {
         string ZIP;
     }
@@ -108,7 +108,7 @@ The event definition will look like this:
         string ZIP;
     }
 
-{{< /codecaption >}}
+```
 
 Out of these the MyRequest and MyResponse event definitions are wrapper types required for Convention based mapping, whereas MyZIP is our custom event definition which we will use to request weather information for a zip code.
 
@@ -146,7 +146,7 @@ Following simple monitor script program will just print the weather information 
 
 In this script, whenever the correlator engine detects MyZIP event in the queue, it will route the MyRequest event. MyRequest event will in turn call the web service to get the weather information using web service client adapter and receive the response in the form of MyResponse event. Whenever MyResponse event is detected, our script prints the weather information in the log.
 
-{{< codecaption lang="java" title="" >}}
+```
     monitor WeatherServiceMonitor {
         MyRequest myRequest;
         MyResponse myResponse;
@@ -181,23 +181,23 @@ In this script, whenever the correlator engine detects MyZIP event in the queue,
         }
     }
 
-{{< /codecaption >}}
+```
 
  Let's fetch the weather for zip code 43209
-{{< codecaption lang="shell" title="" >}}
+```
     C:\SoftwareAG\Apama\bin>engine_send
     MyZIP("43209");
-{{< /codecaption >}}
+```
 
 ![img](/img/2016/ApamaWS_result.PNG)
 
 
 We can invoke the web service periodically to fetch the weather information using 'on all wait() ' as shown below. This code snippet will route the MyZIP event every minute (60 seconds) to fetch the weather information.
 
-{{< codecaption lang="java" title="" >}}
+```
     on all wait (60.0) {
       MyZIP("43209"); 
     }
-{{< /codecaption >}}
+```
 
 Instead of logging the information to a file we can actually use Apama Dashboard to visually monitor the weather fluctuation and any patterns in the data. I will explain how to do that in another post.

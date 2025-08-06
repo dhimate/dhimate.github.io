@@ -46,13 +46,13 @@ Go to Security->Oauth->Scope Management page and click on 'Add Scope'. Once the 
 
 Here we have included one service 'OAuthDemo' in the scope. This is an URL Alias for /rest/Sandbox.OAuthDemo folder on the server
 
-{{< figure src="/img/2016/OAuth_3.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_3.PNG)
 
 
 
 Once the scope is added, map the scope with the client using the 'Associate Scope to Clients' option on the 'Scope Management' page.
 
-{{< figure src="/img/2016/OAuth_4.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_4.PNG)
 
 
 Once this setup is done your client can request the access token either for the Authorization Code approach or Implicit approach.
@@ -64,13 +64,13 @@ Requesting token for authorization code approach is a 2 step process. In the fir
 
 When the client initiates the `pub.oauth:authorize` request, it brings up a page for the resource owner to either approve the access request or reject it. 
 
-{{< figure src="/img/2016/OAuth_5.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_5.PNG)
 
 When the resource owner approves the request, the integration server generates the authorization code and redirects the page to the 'redirect URL' specified in the client configuration.  
 
 The service hosted at redirect URL passes the authorization code to `pub.oauth:getAccessToken` service to exchange authorization code for an access token as shown below
 
-{{< figure src="/img/2016/OAuth_6.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_6.PNG)
 
 The client application can now use the access token to access the resource described in the Scope.
 
@@ -79,25 +79,25 @@ The client application can now use the access token to access the resource descr
 Requesting token for implicit approach is one-step process. 
 When the client initiates the `pub.oauth:authorize` request, it indicates the implicit approach by mentioning the response type as 'token' in the input to `pub.oauth:authorize` service. The service brings up a page for resource owner to either approve the access request or reject it.  
 
-{{< figure src="/img/2016/OAuth_7.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_7.PNG)
 
 When the resource owner approves the request the integration server generates the access token and includes it as a fragment in the redirect URI, which the client application can extract it using simple javascript code. 
 
-{{< figure src="/img/2016/OAuth_8.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_8.PNG)
  
  Integration Server administrator can verify all the tokens in the IS console
 
-{{< figure src="/img/2016/OAuth_9.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_9.PNG)
 
 
 The client application can use the token as a bearer token to access the resource on the server. 
 
-{{< figure src="/img/2016/OAuth_10.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_10.PNG)
 
 
 If the client application tries to use an invalid token or tries to access a service which is not in the scope, it will get an error
 
-{{< figure src="/img/2016/OAuth_11.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_11.PNG)
 
 
 
