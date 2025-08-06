@@ -34,7 +34,7 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8081)--->id1((hello-world))
       end
     end
- style A fill:#000,stroke:#DDD,stroke-width:2px
+ style A fill:#FFF,stroke:#DDD,stroke-width:2px
 </pre>
 
 **2. Using shared load balancer (i.e. cloudhub.io domain) with HTTPS protocol.**
@@ -53,7 +53,7 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8082)--->id1((hello-world))
       end
     end
- style B fill:#000,stroke:#DDD,stroke-width:2px
+ style B fill:#FFF,stroke:#DDD,stroke-width:2px
 </pre>
 
 **3. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.**
@@ -72,7 +72,7 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8091)-->id1((hello-world))
         end
     end
- style C fill:#000,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
+ style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
 </pre>
 
 **4. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.**
@@ -91,7 +91,7 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
         end
     end
- style C fill:#000,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
+ style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
 </pre>
 
 **5. Not using load balancers.**
@@ -104,6 +104,7 @@ flowchart LR
         subgraph VPC 10.0.0.0/24
         a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
         end
+style D fill:#FFF,stroke:#DDD,stroke-width:2px
 </pre>
 
 As seen above, to make your application endpoint available to the clients
