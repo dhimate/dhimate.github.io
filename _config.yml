@@ -6,7 +6,6 @@ url:                 http://lanyon.getpoole.com
 baseurl:             ''
 paginate:            5
 permalink:           pretty
-theme: minima
 
 # About/contact
 author:
