@@ -29,12 +29,12 @@ A client must register himself and obtain client_id from the integration server.
 Redirect URL should be the URL, where IS will redirect the page after authorizing the request. I have created a simple RESTful service on the IS as a redirect URL.
 
 
-{{< figure src="/img/2016/OAuth_1.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_1.PNG)
 
 
 Remember that the Client ID will be generated when you click Save Changes.
 
-{{< figure src="/img/2016/OAuth_2.PNG" alt="dwarf" width="700px" >}}
+![](/img/2016/OAuth_2.PNG)
 
 Your client will use this 'Client ID' to authorize himself and request an access token.
 
