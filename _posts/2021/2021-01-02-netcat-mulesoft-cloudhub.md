@@ -34,7 +34,7 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8081)--->id1((hello-world))
       end
     end
- style A fill:#FFF,stroke:#DDD,stroke-width:2px
+ style A fill:#000,stroke:#DDD,stroke-width:2px
 </pre>
 
 **2. Using shared load balancer (i.e. cloudhub.io domain) with HTTPS protocol.**
@@ -43,7 +43,7 @@ In this scenario, the client application makes a request to a shared load balanc
 
 Note that in this scenario the SLB URL *receives* the request on port 443, and forwards it to mule application listening on port 8082.
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
    l1[Shared Load Balancer]-.->c1 
     subgraph B[Shared Load Balancer w/ HTTPS]
@@ -53,8 +53,8 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8082)--->id1((hello-world))
       end
     end
- style B fill:#FFF,stroke:#DDD,stroke-width:2px
-```
+ style B fill:#000,stroke:#DDD,stroke-width:2px
+</pre>
 
 **3. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.**
 
@@ -62,7 +62,7 @@ In this scenario, the client application makes a request to a dedicated load bal
 
 Note that in this scenario the DLB URL *receives* the request on port 443, and forwards it to mule application listening on port 8091.
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
    l1[Dedicated Load Balancer<br/>Vanity Domain]-.->c1 
     subgraph C[Dedicated Load Balancer w/ upstream HTTP]
@@ -72,8 +72,8 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8091)-->id1((hello-world))
         end
     end
- style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
-```
+ style C fill:#000,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
+</pre>
 
 **4. Using dedicated load balancer (i.e. vanity domain) with HTTPS protocol.**
 
@@ -81,7 +81,7 @@ In this scenario, the client application makes a request to a dedicated load bal
 
 Note that in this scenario the DLB URL *receives* the request on port 443, and forwards it to mule application listening on port 8092.
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
    l1[Dedicated Load Balancer<br/>Vanity Domain]-.->c1
     subgraph C[Dedicated Load Balancer w/ upstream HTTPS]
@@ -91,20 +91,20 @@ flowchart LR
         a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
         end
     end
- style C fill:#FFF,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
-```
+ style C fill:#000,stroke:#DDD,stroke-width:2px,font-face:Ubuntu
+</pre>
 
 **5. Not using load balancers.**
 
 This is one of those scenarios where you are not using Anypoint Platform load balancers. You are either using third-party load balancers, or your applications are using non HTTP protocols like a simple socket, or MLLP. In this case, the client application makes a request directly to the application (mule-worker). 
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
         u(client)--HTTPS-->a1
         subgraph VPC 10.0.0.0/24
         a1(mule-worker-hello-world.cloudhub.io:8092)-->id1((hello-world))
         end
-```
+</pre>
 
 As seen above, to make your application endpoint available to the clients
 
