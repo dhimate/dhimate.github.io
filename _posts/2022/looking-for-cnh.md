@@ -1,8 +1,7 @@
 ---
 title: "Looking for Calvin and Hobbes"
+layout: post
 date: 2022-12-05
-categories:
- - Personal
 ---
 
 
