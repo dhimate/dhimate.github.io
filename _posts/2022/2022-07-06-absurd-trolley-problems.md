@@ -2,8 +2,7 @@
 title: "Solving Absurd Trolley Problems"
 date: 2022-07-06
 layout: post
-categories:
- - Personal
+permalink: /2022/solving-absurd-trolley-problems/
 ---
 
 
