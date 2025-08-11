@@ -3,10 +3,7 @@ title: "Upload Attachments to Salesforce Using MuleSoft"
 date: 2020-12-29
 layout: post
 toc: true
-tags: 
-  - MuleSoft
-categories: 
-  - Programming
+permalink: /2020/upload-attachments-to-salesforce-using-mulesoft/
 description: "Programmatically upload attachments to Salesforce using MuleSoft."
 ---
 This question comes up occasionally in my conversations with customers. Often there is a need to programmatically upload an attachment (a pdf or an image) file to Salesforce using MuleSoft. If the integration developer is not very familiar with the Salesforce Platform, it usually confusing due to the way Salesforce manages the attachments.
